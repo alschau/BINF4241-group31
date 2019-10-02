@@ -2,12 +2,31 @@ package com.company;
 
 
 public class Player {
+
+    // Attributes of Player
     Player player;
     int field = 0;
-    int reihenfolge = 0;
+    int reihenfolge;
     String name;
-
     boolean turn = false;
+
+
+
+    public Player(String name, int reihenfolge){
+        this.name = name;
+        this.reihenfolge = reihenfolge;
+    }
+
+
+    // Setters and Getters
+
+    public int getReihenfolge(){
+        return this.reihenfolge;
+    }
+
+    public void setReihenfolge(int n){
+        this.reihenfolge = n;
+    }
 
 
     public int getField(){

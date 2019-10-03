@@ -15,7 +15,6 @@ public class Main {
         ArrayList<Player> player = new ArrayList<>();
         ArrayList<Field> fields = new ArrayList<>();
 
-
         Scanner scanner= new Scanner(System.in);
         //System.out.println("How many players? ");
         int number;

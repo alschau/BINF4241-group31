@@ -24,9 +24,13 @@ public class Main {
             try {
                 System.out.println("How many players? ");
                 number = Integer.parseInt(scanner.nextLine());
+                if(number<2){
+                    System.out.println("you need some friends to play this you lonely fuck");
+                    continue;
+                }
                 break;
             } catch (NumberFormatException e) {
-                System.out.println("fuck you");
+                System.out.println("fuck you retard cant even input a number");
             }
         }
 

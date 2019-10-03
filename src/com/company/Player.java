@@ -5,15 +5,16 @@ public class Player {
 
     // Attributes of Player
     Player player;
-    int field = 0;
+    Field field;
     int reihenfolge;
     String name;
     boolean turn = false;
 
 
 
-    public Player(String name, int reihenfolge){
+    public Player(String name, int reihenfolge, Field field){
         this.name = name;
+        this.field = field;
         this.reihenfolge = reihenfolge;
         if (this.reihenfolge == 1){
             turn = true;
@@ -32,12 +33,12 @@ public class Player {
     }
 
 
-    public int getField(){
+    public Field getField(){
         return this.field;
     }
 
-    public void setField(int anzahl){
-        this.field += anzahl;
+    public void setField(Field field){
+        this.field = field;
     }
 
 

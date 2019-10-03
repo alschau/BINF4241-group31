@@ -1,6 +1,7 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
@@ -16,8 +17,25 @@ public class Main {
 
 
         Scanner scanner= new Scanner(System.in);
-        System.out.println("How many players? ");
-        int number = Integer.parseInt(scanner.nextLine());
+        //System.out.println("How many players? ");
+        int number;
+
+
+        while(true) {
+            try {
+                System.out.println("How many players? ");
+                number = Integer.parseInt(scanner.nextLine());
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("fuck you");
+            }
+        }
+
+
+        //int number = Integer.parseInt(scanner.nextLine());
+
+
+
         int start = 1;
         System.out.println("How many Fields (>= 10)? ");
         int field_amount = Integer.parseInt(scanner.nextLine());
@@ -43,6 +61,7 @@ public class Main {
         }
 
         //Game Loop
+
 
         //Game over as soon as one player.getField==field_amount
 

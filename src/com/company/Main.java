@@ -35,15 +35,23 @@ public class Main {
         }
 
 
-        //int number = Integer.parseInt(scanner.nextLine());
+        int field_amount;
+        while(true) {
+            try {
+                System.out.println("How many Fields (>= 10)? ");
+                field_amount = Integer.parseInt(scanner.nextLine());
+                if(field_amount<10){
+                    System.out.println("can you fucking read????");
+                    continue;
+                }
 
-
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("fuck you retard cant even input a number");
+            }
+        }
 
         int start = 1;
-        System.out.println("How many Fields (>= 10)? ");
-        int field_amount = Integer.parseInt(scanner.nextLine());
-        // int field_amount = 15;
-        System.out.println(field_amount);
 
         Field starter_field = new Field(0);
         for (int i=1; i<field_amount; i++) {

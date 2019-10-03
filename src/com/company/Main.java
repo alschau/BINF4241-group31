@@ -25,7 +25,7 @@ public class Main {
         System.out.println(field_amount);
 
         Field starter_field = new Field(0);
-        for (int i=1; i<field_amount; i++) {
+        for (int i=1; i< +1; i++) {
             Field f = new Field(i);
             fields.add(f);
         }
@@ -42,9 +42,30 @@ public class Main {
             System.out.println("Player: "+p.getName()+", Field: "+p.getField().getNumber()+", Turn: "+p.getTurn());
         }
 
+        /*
+
         //Game Loop
+        boolean running = true;
+        while (running){
+            int die = dice.roll();
+            for (Player p : player){
+                if (p.getTurn()){
+                    p.setField();
+                }
+            }
+        }
 
         //Game over as soon as one player.getField==field_amount
 
+
+        public Field getFieldByNumber(int n){
+            for (Field i : fields){
+                if (i.getNumber() == n){
+                    return i;
+                }
+            }
+        }
+        */
     }
+
 }

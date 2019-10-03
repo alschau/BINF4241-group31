@@ -15,6 +15,9 @@ public class Player {
     public Player(String name, int reihenfolge){
         this.name = name;
         this.reihenfolge = reihenfolge;
+        if (this.reihenfolge == 1){
+            turn = true;
+        }
     }
 
 
@@ -38,13 +41,21 @@ public class Player {
     }
 
 
-
     public String getName(){
         return this.name;
     }
 
     public void setName(String name){
         this.name = name;
+    }
+
+
+    public boolean getTurn(){
+        return this.turn;
+    }
+
+    public void setTurn(boolean b){
+        this.turn = b;
     }
 
 }

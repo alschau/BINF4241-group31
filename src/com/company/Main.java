@@ -17,6 +17,8 @@ public class Main {
         int number = Integer.parseInt(scanner.nextLine());
         int start = 1;
 
+        int field_amount = 15;
+
         while (number >= start) {
             System.out.println("Player "+(start)+": ");
             String name = scanner.nextLine();
@@ -24,9 +26,14 @@ public class Main {
             player.add(P);
             start++;
         }
-
+        System.out.println("Starting the Game!");
         for (Player p : player){
-            System.out.println(p.getName());
+            System.out.println("Player: "+p.getName()+", Field: "+p.getField()+", Turn: "+p.getTurn());
         }
+
+        //Game Loop
+
+        //Game over as soon as one player.getField==field_amount
+
     }
 }

@@ -10,7 +10,6 @@ public class Main {
     public static void main(String[] args) {
 
         Dice dice = new Dice();
-        System.out.println(dice.roll());
 
         ArrayList<Player> player = new ArrayList<>();
         ArrayList<Field> fields = new ArrayList<>();
@@ -72,6 +71,36 @@ public class Main {
         }
 
         //Game Loop
+
+        Player current_player = player.get(0);
+
+        while(current_player.getField().getNumber() != field_amount){
+
+            for(int i = 0; i < player.size();i++ ){
+
+                current_player = player.get(i);
+                int current_fieldnumber = current_player.getField().getNumber();
+
+                System.out.println("Its your turn, " + current_player.getName());
+
+                int roll = dice.roll();
+
+                System.out.println("You rolled a " + Integer.toString(roll) );
+
+                current_player.setField(fields.get(current_fieldnumber + roll));
+
+                System.out.println(current_player.getName() + ", du befindest dich nun auf dem Feld " + Integer.toString(current_fieldnumber) );
+
+
+
+            }
+
+
+        }
+
+
+
+
 
 
         //Game over as soon as one player.getField==field_amount

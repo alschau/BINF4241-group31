@@ -37,8 +37,8 @@ public class Player {
         return this.field;
     }
 
-    public void setField(Field field){
-        this.field = field;
+    public void setField(int die){
+        this.field.number = this.field.number + die;
     }
 
 

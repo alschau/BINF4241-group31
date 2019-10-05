@@ -1,38 +1,27 @@
 package com.company;
 
-public class Field {
-    int number;
-    Player player;
-    boolean free;
+import java.util.ArrayList;
 
-    public Field(int n){
-        this.number = n;
+public abstract class Field {
+    int number;
+    ArrayList<Player> players = new ArrayList<>();
+
+    public Field(int a){
+        this.number = a;
     }
 
     // Setter and Getter
 
-    public int getNumber(){
-        return this.number;
-    }
+    abstract public int getNumber();
 
-    public void setNumber(int n){
-        this.number = n;
-    }
+    abstract public String getTextNumber();
 
-    public boolean getFree(){
-        return this.free;
-    }
+    abstract public boolean getFree();
 
-    public void setFree(boolean f){
-        this.free = f;
-    }
+    abstract public ArrayList<Player> getPlayer();
 
-    public Player getPlayer(){
-        return this.player;
-    }
+    abstract public void setPlayer(Player p);
 
-    public void setPlayer(Player p){
-        this.player = p;
-    }
+    abstract public void removePlayer(Player p);
 
 }

@@ -94,6 +94,7 @@ public class Main {
 
                 current_player = player.get(i);
                 int current_fieldnumber = current_player.getField().getNumber();
+                System.out.println(String.valueOf(current_fieldnumber));
 
                 //System.out.println("Its your turn, " + current_player.getName());
 
@@ -103,7 +104,7 @@ public class Main {
 
                 current_player.setField(current_fieldnumber + roll);
 
-                System.out.println(current_player.getName() + ", du befindest dich nun auf dem Feld " + Integer.toString(current_fieldnumber) );
+                System.out.println(current_player.getName() + ", du befindest dich nun auf dem Feld " + current_fieldnumber );
 
                 //Print Fields
                 System.out.println(output(fields));

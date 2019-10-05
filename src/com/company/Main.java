@@ -49,10 +49,10 @@ public class Main {
 
         int start = 1;
 
-        Field starter_field = new Field(1);
+        Field starter_field = new NormalField(1);
         fields.add(starter_field);
         for (int i=2; i< field_amount+1; i++) {
-            Field f = new Field(i);
+            Field f = new NormalField(i);
             fields.add(f);
         }
 

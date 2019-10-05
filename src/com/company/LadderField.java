@@ -1,13 +1,15 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.Random;
 
-public class NormalField extends Field {
-
-    public NormalField(int number) {
+public class LadderField extends Field{
+    int target;
+    public LadderField(int number) {
         super(number);
+        Random rand = new Random();
+        target = (rand.nextInt(3) + 1);
     }
-
 
     @Override
     public int getNumber() {
@@ -16,27 +18,27 @@ public class NormalField extends Field {
 
     @Override
     public String getTextNumber() {
-        return number+"";
+        return number + "->" + (number+target);
     }
 
 
     @Override
     public boolean getFree() {
-        return players.size() == 0;
+        return true;
     }
 
     @Override
     public ArrayList<Player> getPlayer() {
-        return players;
+        return null;
     }
 
     @Override
     public void setPlayer(Player p) {
-        players.add(p);
+
     }
 
     @Override
     public void removePlayer(Player p) {
-        players.remove(p);
+
     }
 }

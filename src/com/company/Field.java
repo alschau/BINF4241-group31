@@ -14,7 +14,7 @@ public abstract class Field {
 
     abstract public int getNumber();
 
-    abstract public void setNumber(int n);
+    abstract public String getTextNumber();
 
     abstract public boolean getFree();
 

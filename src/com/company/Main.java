@@ -52,7 +52,11 @@ public class Main {
         Field starter_field = new NormalField(1);
         fields.add(starter_field);
         for (int i=2; i< field_amount+1; i++) {
-            Field f = new NormalField(i);
+            Field f;
+            if(i == 3)
+                f = new LadderField(i);
+            else
+                f = new NormalField(i);
             fields.add(f);
         }
 
@@ -111,10 +115,10 @@ public class Main {
     private static String output(ArrayList<Field> fields){
         String out = "";
         for(Field field : fields){
-            if(field.getPlayer().size() == 0)
-                out+="["+field.getNumber()+"]";
+            if(field.getFree())
+                out+="["+field.getTextNumber()+"]";
             else{
-                out+="["+field.getNumber();
+                out+="["+field.getTextNumber();
                 for(Player play : field.getPlayer()){
                     out+="<"+play.getName()+">";
                 }

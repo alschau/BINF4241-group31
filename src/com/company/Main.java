@@ -23,15 +23,13 @@ public class Main {
             try {
                 System.out.println("How many players? ");
                 number = Integer.parseInt(scanner.nextLine());
-                if(number<2) {
+                if (number < 2 || number > 4) {
                     System.out.println("you need some friends to play this you lonely fuck");
                 }
-                if (number>4) {
-                    System.out.println("Tryna flex with your many friends are you");
+                else {
+                    break;
                 }
-                    continue;
 
-                break;
             } catch (NumberFormatException e) {
                 System.out.println("fuck you retard cant even input a number");
             }

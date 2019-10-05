@@ -1,7 +1,6 @@
 package com.company;
 
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
@@ -16,9 +15,7 @@ public class Main {
 
         Scanner scanner= new Scanner(System.in);
         //System.out.println("How many players? ");
-        int number;
-
-
+        int number; // was ist das für eine number?
         while(true) {
             try {
                 System.out.println("How many players? ");
@@ -52,8 +49,9 @@ public class Main {
 
         int start = 1;
 
-        Field starter_field = new Field(0);
-        for (int i=1; i< +1; i++) {
+        Field starter_field = new Field(1);
+        fields.add(starter_field);
+        for (int i=2; i< field_amount+1; i++) {
             Field f = new Field(i);
             fields.add(f);
         }
@@ -63,6 +61,7 @@ public class Main {
             String name = scanner.nextLine();
             Player P = new Player(name, start, starter_field);
             player.add(P);
+            starter_field.setPlayer(P);
             start++;
         }
         System.out.println("Starting the Game!");
@@ -70,22 +69,22 @@ public class Main {
             System.out.println("Player: "+p.getName()+", Field: "+p.getField().getNumber()+", Turn: "+p.getTurn());
         }
 
-        /*
 
         //Game Loop
-        boolean running = true;
+    /*    boolean running = true;
         while (running){
             int die = dice.roll();
             for (Player p : player){
                 if (p.getTurn()){
-                    p.setField();
+                    p.setField(die);
                 }
             }
         }
-
+*/
         Player current_player = player.get(0);
+        System.out.println("Initial state: " + output(fields));
 
-        while(current_player.getField().getNumber() != field_amount){
+      /*  while(current_player.getField().getNumber() != field_amount){
 
             for(int i = 0; i < player.size();i++ ){
 
@@ -98,33 +97,35 @@ public class Main {
 
                 System.out.println("You rolled a " + Integer.toString(roll) );
 
-                current_player.setField(fields.get(current_fieldnumber + roll));
+                current_player.setField(current_fieldnumber + roll);
 
                 System.out.println(current_player.getName() + ", du befindest dich nun auf dem Feld " + Integer.toString(current_fieldnumber) );
 
 
 
             }
-
-
-        }
-
-
-
-
-
-
-        //Game over as soon as one player.getField==field_amount
-
-
-        public Field getFieldByNumber(int n){
-            for (Field i : fields){
-                if (i.getNumber() == n){
-                    return i;
-                }
-            }
         }
         */
     }
 
+    private static String output(ArrayList<Field> fields){
+        String out = "";
+        for(Field field : fields){
+            if(field.getPlayer().size() == 0)
+                out+="["+field.getNumber()+"]";
+            else{
+                out+="["+field.getNumber();
+                for(Player play : field.getPlayer()){
+                    out+="<"+play.getName()+">";
+                }
+                out+="]";
+
+            }
+
+        }
+
+        return out;
+    }
+
 }
+

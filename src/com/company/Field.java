@@ -1,8 +1,10 @@
 package com.company;
 
+import java.util.ArrayList;
+
 public class Field {
     int number;
-    Player player;
+    ArrayList<Player> players = new ArrayList<>();
     boolean free;
 
     public Field(int n){
@@ -27,12 +29,15 @@ public class Field {
         this.free = f;
     }
 
-    public Player getPlayer(){
-        return this.player;
+    public ArrayList<Player> getPlayer(){
+        return this.players;
     }
 
     public void setPlayer(Player p){
-        this.player = p;
+        this.players.add(p);
+    }
+    public void removePlayer(Player p){
+        this.players.remove(p);
     }
 
 }

@@ -88,14 +88,14 @@ public class Main {
         Player current_player = player.get(0);
         System.out.println("Initial state: " + output(fields));
 
-      /*  while(current_player.getField().getNumber() != field_amount){
+        while(current_player.getField().getNumber() != field_amount){
 
             for(int i = 0; i < player.size();i++ ){
 
                 current_player = player.get(i);
                 int current_fieldnumber = current_player.getField().getNumber();
 
-                System.out.println("Its your turn, " + current_player.getName());
+                //System.out.println("Its your turn, " + current_player.getName());
 
                 int roll = dice.roll();
 
@@ -105,11 +105,11 @@ public class Main {
 
                 System.out.println(current_player.getName() + ", du befindest dich nun auf dem Feld " + Integer.toString(current_fieldnumber) );
 
-
-
+                //Print Fields
+                System.out.println(output(fields));
             }
         }
-        */
+
     }
 
     private static String output(ArrayList<Field> fields){

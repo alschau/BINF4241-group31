@@ -8,7 +8,6 @@ public class Player {
     Field field;
     int reihenfolge;
     String name;
-    boolean turn = false;
 
 
 
@@ -16,9 +15,6 @@ public class Player {
         this.name = name;
         this.field = field;
         this.reihenfolge = reihenfolge;
-        if (this.reihenfolge == 1){
-            turn = true;
-        }
     }
 
 
@@ -37,8 +33,8 @@ public class Player {
         return this.field;
     }
 
-    public void setField(int die){
-        this.field.number = this.field.number + die;
+    public void setField(Field f){
+        this.field = f;
     }
 
 
@@ -48,15 +44,6 @@ public class Player {
 
     public void setName(String name){
         this.name = name;
-    }
-
-
-    public boolean getTurn(){
-        return this.turn;
-    }
-
-    public void setTurn(boolean b){
-        this.turn = b;
     }
 
 }

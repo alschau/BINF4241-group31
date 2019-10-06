@@ -70,47 +70,45 @@ public class Main {
         }
         System.out.println("Starting the Game!");
         for (Player p : player){
-            System.out.println("Player: "+p.getName()+", Field: "+p.getField().getNumber()+", Turn: "+p.getTurn());
+            System.out.println("Player: "+p.getName()+", Field: "+p.getField().getNumber());
         }
 
-
-        //Game Loop
-    /*    boolean running = true;
-        while (running){
-            int die = dice.roll();
-            for (Player p : player){
-                if (p.getTurn()){
-                    p.setField(die);
-                }
-            }
-        }
-*/
-        Player current_player = player.get(0);
+        // GAME LOOP
         System.out.println("Initial state: " + output(fields));
 
-        while(current_player.getField().getNumber() != field_amount){
-
-            for(int i = 0; i < player.size();i++ ){
-
-                current_player = player.get(i);
-                int current_fieldnumber = current_player.getField().getNumber();
-
-                //System.out.println("Its your turn, " + current_player.getName());
-
-                int roll = dice.roll();
-
-                System.out.println("You rolled a " + Integer.toString(roll) );
-
-                current_player.setField(current_fieldnumber + roll);
-
-                System.out.println(current_player.getName() + ", du befindest dich nun auf dem Feld " + Integer.toString(current_fieldnumber) );
-
-                //Print Fields
-                System.out.println(output(fields));
+        int turn = 0;
+        Player winner;
+        while(player.get(turn % number).getField().getNumber() < field_amount){
+            Player current_player = player.get(turn % number);
+            int roll = dice.roll();
+            System.out.println(current_player.getName() +" rolls "+roll);
+            if (current_player.getField().getNumber() + roll < field_amount) {
+                current_player.getField().removePlayer(current_player);
+                current_player.setField(fields.get(current_player.getField().getNumber() + roll -1));
+                current_player.getField().setPlayer(current_player);
+                turn++;
+            } else if (current_player.getField().getNumber() + roll == field_amount){
+                current_player.getField().removePlayer(current_player);
+                current_player.setField(fields.get(current_player.getField().getNumber() + roll -1));
+                current_player.getField().setPlayer(current_player);
+                winner = current_player;
+                break;
+            } else if (current_player.getField().getNumber() + roll > field_amount){
+                int minus = current_player.getField().getNumber() - field_amount;
+                current_player.getField().removePlayer(current_player);
+                current_player.setField(fields.get(field_amount - (roll - (field_amount - current_player.getField().getNumber()))-1));
+                current_player.getField().setPlayer(current_player);
+                turn++;
             }
+            //Print Fields
+            System.out.println(output(fields));
         }
+        System.out.println("Final state: " + output(fields));
+        System.out.println(player.get(turn % number) + " wins!");
 
     }
+
+    // PRINT OUTPUT
 
     private static String output(ArrayList<Field> fields){
         String out = "";

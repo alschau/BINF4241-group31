@@ -53,12 +53,14 @@ public class Main {
         fields.add(starter_field);
         for (int i=2; i< field_amount+1; i++) {
             Field f;
-            if(i == 4)
-                f = new NormalField(i);
-            else if(i == 3)
-                f = new NormalField(i);
-            else
+            if(i == 7)
                 f = new SnakeField(i);
+            else if(i == 4)
+                f = new LadderField(i);
+            else if(i == 3)
+                f = new LadderField(i);
+            else
+                f = new NormalField(i);
             fields.add(f);
         }
 
@@ -119,6 +121,7 @@ public class Main {
                 current_player.getField().removePlayer(current_player);
                 current_player.setField(fields.get(field_amount - (roll - (field_amount - current_player.getField().getNumber()))-1));
                 current_player.getField().setPlayer(current_player);
+
                 while(true) {
                     if (current_player.getField() instanceof LadderField) {
                         current_player.getField().removePlayer(current_player);

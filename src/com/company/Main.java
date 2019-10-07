@@ -20,7 +20,7 @@ public class Main {
             try {
                 System.out.println("How many players? ");
                 number = Integer.parseInt(scanner.nextLine());
-                if(number<2){
+                if(number<2 || number>4){
                     System.out.println("you need some friends to play this you lonely fuck");
                     continue;
                 }
@@ -53,8 +53,12 @@ public class Main {
         fields.add(starter_field);
         for (int i=2; i< field_amount+1; i++) {
             Field f;
-            if(i == 3)
+            if(i%3==0 && i%7==0)
                 f = new LadderField(i);
+            else if (i%3==0)
+                f = new LadderField(i);
+            else if (i%7==0)
+                f = new SnakeField;
             else
                 f = new NormalField(i);
             fields.add(f);
@@ -104,7 +108,7 @@ public class Main {
             System.out.println(output(fields));
         }
         System.out.println("Final state: " + output(fields));
-        System.out.println(player.get(turn % number) + " wins!");
+        System.out.println(player.get(turn % number).getName() + " wins!");
 
     }
 

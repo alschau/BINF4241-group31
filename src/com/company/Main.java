@@ -1,6 +1,7 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 
@@ -49,16 +50,49 @@ public class Main {
 
         int start = 1;
 
+
+
+
+
+
+
+
+        int obj_amount = Math.round(field_amount/4);
+        ArrayList<Integer> randoms = new ArrayList<>();
+        Random rend = new Random();
+
+        for (int i = 0; i < obj_amount;i++){
+            int r = rend.nextInt(field_amount - 8) + 4;
+            if (randoms.contains(r)){
+                i--;
+            }
+            randoms.add(r);
+        }
+
         Field starter_field = new NormalField(1);
         fields.add(starter_field);
+
+
+        ArrayList<Integer> Ladder_targets = new ArrayList<>();
+
         for (int i=2; i< field_amount+1; i++) {
             Field f;
-            if(i == 7)
-                f = new SnakeField(i);
-            else if(i == 4)
-                f = new LadderField(i);
-            else if(i == 3)
-                f = new LadderField(i);
+            if(randoms.contains(i)){
+                if((i%2)==0){
+                    f = new LadderField(i);
+                    Ladder_targets.add(f.getTarget());
+                }
+                else {
+                    if(Ladder_targets.contains(i)){
+                        int x=i;
+                        while(Ladder_targets.contains(i)) {
+                            x++;
+                        }
+                    }
+                    f = new SnakeField(i);
+
+                }
+            }
             else
                 f = new NormalField(i);
             fields.add(f);

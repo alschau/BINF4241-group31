@@ -2,7 +2,7 @@ package com.company;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
+import java.util.Random;
 
 public class Main {
 
@@ -51,18 +51,75 @@ public class Main {
 
         Field starter_field = new NormalField(1);
         fields.add(starter_field);
-        for (int i=2; i< field_amount+1; i++) {
-            Field f;
-            if(i%3==0 && i%7==0)
-                f = new LadderField(i);
-            else if (i%3==0)
-                f = new LadderField(i);
-            else if (i%7==0)
-                f = new SnakeField(i);
-            else
-                f = new NormalField(i);
-            fields.add(f);
+
+        //amount of snakes & ladders
+        double field_amount_double = field_amount;
+        int ladder_amount = (int) Math.floor(field_amount_double/8);
+        int snake_amount = (int) Math.floor(field_amount_double/7);
+        System.out.println(ladder_amount);
+        System.out.println(snake_amount);
+        Random r = new Random();
+
+        int k = 0;
+        int [] ladder_positions = new int[ladder_amount];
+        int [] snake_positions = new int[snake_amount];
+        int x;
+        while (k < ladder_amount) {
+            x = r.nextInt(field_amount +2);
+            int l = 0;
+            while (l < ladder_amount) {
+                if (x == ladder_positions[l]) {
+                    k--;
+                    break;
+                }
+                l++;
+            }
+            ladder_positions[k] = x;
+            k++;
         }
+
+        int u = 0;
+        while (u < snake_amount) {
+            x = r.nextInt(field_amount + 3) ;
+            int l = 0;
+
+            while (l < snake_amount) {
+                if (x == snake_positions[l]) {
+                    u--;
+                    break;
+                } else if (x == ladder_positions[l]) {
+                    u--;
+                    break;
+                }
+
+                l++;
+            }
+            snake_positions[u] = x;
+            u++;
+        }
+
+        for (int i = 2; i < field_amount + 1; i++) {
+            Field f;
+            int controlf = 0;
+            for (int h = 0; h < snake_amount; h++) {
+                if (ladder_positions[h] == i) {
+                    f = new LadderField(i);
+                    controlf = 1;
+                    fields.add(f);
+                } else if (snake_positions[h] == i) {
+                    f = new SnakeField(i);
+                    controlf = 1;
+                    fields.add(f);
+                }
+            }
+
+            if (controlf == 0) {
+                f = new NormalField(i);
+                fields.add(f);
+            }
+
+        }
+
 
         while (number >= start) {
             System.out.println("Player "+(start)+": ");
@@ -127,9 +184,7 @@ public class Main {
                 out+="]";
 
             }
-
         }
-
         return out;
     }
 

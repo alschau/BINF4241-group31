@@ -24,4 +24,5 @@ public abstract class Field {
 
     abstract public void removePlayer(Player p);
 
+    public abstract int getTarget();
 }

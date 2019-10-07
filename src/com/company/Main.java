@@ -56,7 +56,7 @@ public class Main {
             if(i == 6)
                 f = new SnakeField(i);
             else if(i == 3)
-                f = new LadderField(i);
+                f = new SnakeField(i);
             else
                 f = new NormalField(i);
             fields.add(f);
@@ -88,6 +88,21 @@ public class Main {
                 current_player.getField().removePlayer(current_player);
                 current_player.setField(fields.get(current_player.getField().getNumber() + roll -1));
                 current_player.getField().setPlayer(current_player);
+                if (current_player.getField() instanceof LadderField) {
+                    current_player.getField().removePlayer(current_player);
+                    System.out.println("Congratulations, you can climb a ladder here");
+                    current_player.setField(fields.get(current_player.getField().getTarget() - 1));
+                    current_player.getField().setPlayer(current_player);
+                    System.out.println("you are now on Field " + Integer.toString(current_player.getField().getNumber()));
+                }
+                else if (current_player.getField() instanceof SnakeField){
+                    current_player.getField().removePlayer(current_player);
+                    System.out.println("Woopsie, down you go");
+                    current_player.setField(fields.get(current_player.getField().getTarget() - 1));
+                    current_player.getField().setPlayer(current_player);
+                    System.out.println("you are now on Field " + Integer.toString(current_player.getField().getNumber()));
+                }
+
                 turn++;
             } else if (current_player.getField().getNumber() + roll == field_amount){
                 current_player.getField().removePlayer(current_player);
@@ -99,6 +114,20 @@ public class Main {
                 current_player.getField().removePlayer(current_player);
                 current_player.setField(fields.get(field_amount - (roll - (field_amount - current_player.getField().getNumber()))-1));
                 current_player.getField().setPlayer(current_player);
+                if (current_player.getField() instanceof LadderField) {
+                    current_player.getField().removePlayer(current_player);
+                    System.out.println("Congratulations, you can climb a ladder here");
+                    current_player.setField(fields.get(current_player.getField().getTarget() - 1));
+                    current_player.getField().setPlayer(current_player);
+                    System.out.println("you are now on Field " + Integer.toString(current_player.getField().getNumber()));
+                }
+                else if (current_player.getField() instanceof SnakeField){
+                    current_player.getField().removePlayer(current_player);
+                    System.out.println("Woopsie, down you go");
+                    current_player.setField(fields.get(current_player.getField().getTarget() - 1));
+                    current_player.getField().setPlayer(current_player);
+                    System.out.println("you are now on Field " + Integer.toString(current_player.getField().getNumber()));
+                }
                 turn++;
             }
             //Print Fields

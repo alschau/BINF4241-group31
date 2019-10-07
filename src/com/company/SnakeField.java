@@ -44,4 +44,10 @@ public class SnakeField extends Field {
     public void removePlayer(Player p) {
 
     }
+
+    @Override
+    public int getTarget() {
+        return target;
+    }
+
 }

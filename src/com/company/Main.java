@@ -102,10 +102,10 @@ public class Main {
                         current_player.getField().setPlayer(current_player);
                         System.out.println("you are now on Field " + Integer.toString(current_player.getField().getNumber()));
                     }
-                    if (!(current_player.getField() instanceof LadderField) || !(current_player.getField() instanceof SnakeField)){
+                    if (!(current_player.getField() instanceof LadderField) && !(current_player.getField() instanceof SnakeField)){
                         break;
                     }
-                    System.out.println(output(fields));
+
                 }
 
                 turn++;
@@ -133,9 +133,10 @@ public class Main {
                         current_player.getField().setPlayer(current_player);
                         System.out.println("you are now on Field " + Integer.toString(current_player.getField().getNumber()));
                     }
-                    if (!(current_player.getField() instanceof LadderField) || !(current_player.getField() instanceof SnakeField)){
+                    if (!(current_player.getField() instanceof LadderField) && !(current_player.getField() instanceof SnakeField)){
                         break;
                     }
+                    System.out.println(output(fields));
                 }
                 turn++;
             }

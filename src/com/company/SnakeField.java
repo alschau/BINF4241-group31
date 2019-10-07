@@ -18,7 +18,7 @@ public class SnakeField extends Field {
 
     @Override
     public String getTextNumber() {
-        return number + "<-" + (number+target);
+        return (number+target) + "<-" + number;
     }
 
 

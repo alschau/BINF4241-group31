@@ -56,18 +56,18 @@ public class Main {
         double field_amount_double = field_amount;
         int ladder_amount = (int) Math.floor(field_amount_double/8);
         int snake_amount = (int) Math.floor(field_amount_double/7);
-        System.out.println(ladder_amount);
-        System.out.println(snake_amount);
+        System.out.println("Ladder amount is " + ladder_amount);
+        System.out.println("Snake amount is " + snake_amount);
         Random r = new Random();
 
         int k = 0;
-        int [] ladder_positions = new int[ladder_amount];
+        int [] ladder_positions = new int[snake_amount];
         int [] snake_positions = new int[snake_amount];
         int x;
-        while (k < ladder_amount) {
+        while (k < ladder_positions.length) {
             x = r.nextInt(field_amount +2);
             int l = 0;
-            while (l < ladder_amount) {
+            while (l < ladder_amount-1) {
                 if (x == ladder_positions[l]) {
                     k--;
                     break;
@@ -80,10 +80,10 @@ public class Main {
 
         int u = 0;
         while (u < snake_amount) {
-            x = r.nextInt(field_amount + 3) ;
+            x = r.nextInt(field_amount - 4 ) + 4 ;
             int l = 0;
 
-            while (l < snake_amount) {
+            while (l < snake_amount ) {
                 if (x == snake_positions[l]) {
                     u--;
                     break;
@@ -91,7 +91,6 @@ public class Main {
                     u--;
                     break;
                 }
-
                 l++;
             }
             snake_positions[u] = x;

@@ -4,11 +4,14 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class SnakeField extends Field {
+    int height;
     int target;
     public SnakeField(int number) {
         super(number);
         Random rand = new Random();
-        target = (-rand.nextInt(3) - 1);
+        height = (-rand.nextInt(3) - 1);
+        target = number + height;
+
     }
 
     @Override
@@ -18,7 +21,7 @@ public class SnakeField extends Field {
 
     @Override
     public String getTextNumber() {
-        return (number+target) + "<-" + number;
+        return (number+height) + "<-" + number;
     }
 
 

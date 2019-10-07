@@ -4,12 +4,16 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class LadderField extends Field{
+    int height;
     int target;
     public LadderField(int number) {
         super(number);
         Random rand = new Random();
-        target = (rand.nextInt(3) + 1);
+        height = (rand.nextInt(3) + 1);
+        target = number + height;
     }
+
+    public int getTarget() {return target;}
 
     @Override
     public int getNumber() {
@@ -18,7 +22,7 @@ public class LadderField extends Field{
 
     @Override
     public String getTextNumber() {
-        return number + "->" + (number+target);
+        return number + "->" + (number+height);
     }
 
 

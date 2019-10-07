@@ -53,6 +53,8 @@ public class Main {
         fields.add(starter_field);
         for (int i=2; i< field_amount+1; i++) {
             Field f;
+            if(i == 9)
+                f = new SnakeField(i);
             if(i == 3)
                 f = new LadderField(i);
             else
@@ -94,7 +96,6 @@ public class Main {
                 winner = current_player;
                 break;
             } else if (current_player.getField().getNumber() + roll > field_amount){
-                int minus = current_player.getField().getNumber() - field_amount;
                 current_player.getField().removePlayer(current_player);
                 current_player.setField(fields.get(field_amount - (roll - (field_amount - current_player.getField().getNumber()))-1));
                 current_player.getField().setPlayer(current_player);

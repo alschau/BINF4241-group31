@@ -58,7 +58,7 @@ public class Main {
             else if (i%3==0)
                 f = new LadderField(i);
             else if (i%7==0)
-                f = new SnakeField;
+                f = new SnakeField(i);
             else
                 f = new NormalField(i);
             fields.add(f);

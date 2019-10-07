@@ -9,7 +9,7 @@ public class SnakeField extends Field {
     public SnakeField(int number) {
         super(number);
         Random rand = new Random();
-        height = (-rand.nextInt(3) - 1);
+        height = 3;
         target = number + height;
 
     }

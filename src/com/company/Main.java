@@ -73,24 +73,14 @@ public class Main {
         fields.add(starter_field);
 
 
-        ArrayList<Integer> Ladder_targets = new ArrayList<>();
-
         for (int i=2; i< field_amount+1; i++) {
             Field f;
             if(randoms.contains(i)){
                 if((i%2)==0){
                     f = new LadderField(i);
-                    Ladder_targets.add(f.getTarget());
                 }
                 else {
-                    if(Ladder_targets.contains(i)){
-                        int x=i;
-                        while(Ladder_targets.contains(i)) {
-                            x++;
-                        }
-                    }
                     f = new SnakeField(i);
-
                 }
             }
             else

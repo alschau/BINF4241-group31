@@ -53,9 +53,9 @@ public class Main {
         fields.add(starter_field);
         for (int i=2; i< field_amount+1; i++) {
             Field f;
-            if(i == 9)
+            if(i == 6)
                 f = new SnakeField(i);
-            if(i == 3)
+            else if(i == 3)
                 f = new LadderField(i);
             else
                 f = new NormalField(i);

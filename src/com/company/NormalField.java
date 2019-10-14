@@ -39,4 +39,10 @@ public class NormalField extends Field {
     public void removePlayer(Player p) {
         players.remove(p);
     }
+
+    @Override
+    public int getTarget() {
+        return 0;
+    }
+
 }

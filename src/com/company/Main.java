@@ -1,35 +1,31 @@
 package com.company;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.Random;
+import java.util.Scanner;
+
 
 public class Main {
-
     public static void main(String[] args) {
-
         Dice dice = new Dice();
-
         ArrayList<Player> player = new ArrayList<>();
         ArrayList<Field> fields = new ArrayList<>();
 
         Scanner scanner= new Scanner(System.in);
-        //System.out.println("How many players? ");
-        int number; // was ist das für eine number?
+        int number;
         while(true) {
             try {
                 System.out.println("How many players? ");
                 number = Integer.parseInt(scanner.nextLine());
                 if(number<2 || number>4){
-                    System.out.println("you need some friends to play this you lonely fuck");
+                    System.out.println("This game is only for 2-4 players, please try again.");
                     continue;
                 }
                 break;
             } catch (NumberFormatException e) {
-                System.out.println("fuck you retard cant even input a number");
+                System.out.println("Wrong format. Could you please input an integer number?");
             }
         }
-
 
         int field_amount;
         while(true) {
@@ -37,88 +33,48 @@ public class Main {
                 System.out.println("How many Fields (>= 10)? ");
                 field_amount = Integer.parseInt(scanner.nextLine());
                 if(field_amount<10){
-                    System.out.println("can you fucking read????");
+                    System.out.println("The fields need to be greater than 10. Please try again.");
                     continue;
                 }
 
                 break;
             } catch (NumberFormatException e) {
-                System.out.println("fuck you retard cant even input a number");
+                System.out.println("Wrong format. Could you please input an integer number?");
             }
         }
 
         int start = 1;
 
+        int obj_amount = Math.round(field_amount/4);
+        ArrayList<Integer> randoms = new ArrayList<>();
+        Random rend = new Random();
+
+        for (int i = 0; i < obj_amount;i++){
+            int r = rend.nextInt(field_amount - 8) + 4;
+            if (randoms.contains(r)){
+                i--;
+            }
+            randoms.add(r);
+        }
+
         Field starter_field = new NormalField(1);
         fields.add(starter_field);
 
-        //amount of snakes & ladders
-        double field_amount_double = field_amount;
-        int ladder_amount = (int) Math.floor(field_amount_double/8);
-        int snake_amount = (int) Math.floor(field_amount_double/7);
-        System.out.println("Ladder amount is " + ladder_amount);
-        System.out.println("Snake amount is " + snake_amount);
-        Random r = new Random();
 
-        int k = 0;
-        int [] ladder_positions = new int[snake_amount];
-        int [] snake_positions = new int[snake_amount];
-        int x;
-        while (k < ladder_positions.length) {
-            x = r.nextInt(field_amount +2);
-            int l = 0;
-            while (l < ladder_amount-1) {
-                if (x == ladder_positions[l]) {
-                    k--;
-                    break;
-                }
-                l++;
-            }
-            ladder_positions[k] = x;
-            k++;
-        }
-
-        int u = 0;
-        while (u < snake_amount) {
-            x = r.nextInt(field_amount - 4 ) + 4 ;
-            int l = 0;
-
-            while (l < snake_amount ) {
-                if (x == snake_positions[l]) {
-                    u--;
-                    break;
-                } else if (x == ladder_positions[l]) {
-                    u--;
-                    break;
-                }
-                l++;
-            }
-            snake_positions[u] = x;
-            u++;
-        }
-
-        for (int i = 2; i < field_amount + 1; i++) {
+        for (int i=2; i< field_amount+1; i++) {
             Field f;
-            int controlf = 0;
-            for (int h = 0; h < snake_amount; h++) {
-                if (ladder_positions[h] == i) {
+            if(randoms.contains(i)){
+                if((i%2)==0){
                     f = new LadderField(i);
-                    controlf = 1;
-                    fields.add(f);
-                } else if (snake_positions[h] == i) {
+                }
+                else {
                     f = new SnakeField(i);
-                    controlf = 1;
-                    fields.add(f);
                 }
             }
-
-            if (controlf == 0) {
+            else
                 f = new NormalField(i);
-                fields.add(f);
-            }
-
+            fields.add(f);
         }
-
 
         while (number >= start) {
             System.out.println("Player "+(start)+": ");
@@ -146,6 +102,26 @@ public class Main {
                 current_player.getField().removePlayer(current_player);
                 current_player.setField(fields.get(current_player.getField().getNumber() + roll -1));
                 current_player.getField().setPlayer(current_player);
+                while(true) {
+                    if (current_player.getField() instanceof LadderField) {
+                        current_player.getField().removePlayer(current_player);
+                        System.out.println("Congratulations, you can climb a ladder here");
+                        current_player.setField(fields.get(current_player.getField().getTarget() - 1));
+                        current_player.getField().setPlayer(current_player);
+                        System.out.println("you are now on Field " + Integer.toString(current_player.getField().getNumber()));
+                    } else if (current_player.getField() instanceof SnakeField) {
+                        current_player.getField().removePlayer(current_player);
+                        System.out.println("Woopsie, down you go");
+                        current_player.setField(fields.get(current_player.getField().getTarget() - 1));
+                        current_player.getField().setPlayer(current_player);
+                        System.out.println("you are now on Field " + Integer.toString(current_player.getField().getNumber()));
+                    }
+                    if (!(current_player.getField() instanceof LadderField) && !(current_player.getField() instanceof SnakeField)){
+                        break;
+                    }
+
+                }
+
                 turn++;
             } else if (current_player.getField().getNumber() + roll == field_amount){
                 current_player.getField().removePlayer(current_player);
@@ -154,10 +130,29 @@ public class Main {
                 winner = current_player;
                 break;
             } else if (current_player.getField().getNumber() + roll > field_amount){
-                int minus = current_player.getField().getNumber() - field_amount;
                 current_player.getField().removePlayer(current_player);
                 current_player.setField(fields.get(field_amount - (roll - (field_amount - current_player.getField().getNumber()))-1));
                 current_player.getField().setPlayer(current_player);
+
+                while(true) {
+                    if (current_player.getField() instanceof LadderField) {
+                        current_player.getField().removePlayer(current_player);
+                        System.out.println("Congratulations, you can climb a ladder here");
+                        current_player.setField(fields.get(current_player.getField().getTarget() - 1));
+                        current_player.getField().setPlayer(current_player);
+                        System.out.println("you are now on Field " + Integer.toString(current_player.getField().getNumber()));
+                    } else if (current_player.getField() instanceof SnakeField) {
+                        current_player.getField().removePlayer(current_player);
+                        System.out.println("Woopsie, down you go");
+                        current_player.setField(fields.get(current_player.getField().getTarget() - 1));
+                        current_player.getField().setPlayer(current_player);
+                        System.out.println("you are now on Field " + Integer.toString(current_player.getField().getNumber()));
+                    }
+                    if (!(current_player.getField() instanceof LadderField) && !(current_player.getField() instanceof SnakeField)){
+                        break;
+                    }
+                    System.out.println(output(fields));
+                }
                 turn++;
             }
             //Print Fields
@@ -183,8 +178,11 @@ public class Main {
                 out+="]";
 
             }
+
         }
+
         return out;
     }
 
 }
+

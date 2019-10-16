@@ -6,6 +6,14 @@ public class Bishop implements Schachfigur {
 
     public Bishop(String c){
         this.color = c;
-        this.name = color +"R";
+        this.name = color +"B";
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public String getName() {
+        return name;
     }
 }

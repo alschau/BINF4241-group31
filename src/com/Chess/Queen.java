@@ -6,6 +6,13 @@ public class Queen implements Schachfigur {
 
     public Queen(String c){
         this.color = c;
-        this.name = color +"R";
+        this.name = color +"Q";
+    }
+    public String getColor() {
+        return color;
+    }
+
+    public String getName() {
+        return name;
     }
 }

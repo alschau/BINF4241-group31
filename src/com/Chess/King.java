@@ -6,6 +6,13 @@ public class King implements Schachfigur {
 
     public King(String c){
         this.color = c;
-        this.name = color +"R";
+        this.name = color +"K";
+    }
+    public String getColor() {
+        return color;
+    }
+
+    public String getName() {
+        return name;
     }
 }

@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("hello");
+        /**System.out.println("hello");
         Scanner scanner = new Scanner(System.in);
         //player names
         System.out.println("Name of player 1: ");
@@ -16,6 +16,15 @@ public class Main {
 
         String color_name1 = "w";
         String color_name2 = "b";
+         */
+
+
+        Board board = new Board();
+
+
+
+
+        board.printboard();
 
 
 

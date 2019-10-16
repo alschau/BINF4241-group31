@@ -8,4 +8,11 @@ public class Rook implements Schachfigur {
         this.color = c;
         this.name = color +"R";
     }
+    public String getColor() {
+        return color;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

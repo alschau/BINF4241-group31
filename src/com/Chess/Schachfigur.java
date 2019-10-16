@@ -1,6 +1,6 @@
 package com.Chess;
 
-public class Schachfigur {
+public abstract class Schachfigur {
     int alive; //if it still exists or not
     String color;
 

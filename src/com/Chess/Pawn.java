@@ -1,17 +1,10 @@
 package com.Chess;
 
-public class Pawn extends Schachfigur {
+public class Pawn implements Schachfigur {
+    String color;
+    String name = "P";
 
-    public void whichcolor() {
-        if (color == "w") {
-            //initiate all white pawns from A7 to H7
-
-        }
-        else {
-            //initiate all black pawns from A2 to H2
-        }
-
+    public Pawn(String c){
+        this.color = c;
     }
-
-
 }

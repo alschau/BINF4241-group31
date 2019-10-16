@@ -24,26 +24,3 @@ public class Main {
 
 
 
-       /* System.out.println("Did you decide who wants to start? (yes or no)");
-                String decision = scanner.nextLine();
-
-        if (decision == "yes"){
-            System.out.println("Player 1 or Player 2?");
-            String which_player = scanner.nextLine();
-            if (which_player == "Player 1") {
-                player1_color = "w";
-                player2_color = "b";
-            }
-            else {
-                player1_color = "b";
-                player2_color = "w";
-            }
-        }
-        else {
-
-
-        }*/
-
-
-
-

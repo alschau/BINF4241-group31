@@ -12,12 +12,17 @@ public class Main {
         String name1 = scanner.nextLine();
         System.out.println("Name of player 2: ");
         String name2 = scanner.nextLine();
-        System.out.println(name1);
+        //System.out.println(name1);
 
-        String color_name1 = "w";
-        String color_name2 = "b";
+        /*for (int i = 1; i < 9; i++) {
 
+            Pawn x = new Pawn(1);
+        }
 
+        */
+        Pawn x = new Pawn(2);
+        System.out.println(x.color);
+        System.out.println(x);
 
     }
 }

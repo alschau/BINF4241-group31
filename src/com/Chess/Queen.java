@@ -20,13 +20,16 @@ public class Queen implements Schachfigur {
         return name;
     }
 
-    @Override
     public Boolean islegal(String a, String b) {
         int x1 = names.indexOf(String.valueOf(a.charAt(0))); //letter
         int y1 = Integer.parseInt(String.valueOf(a.charAt(1)))-1; //number
 
         int x2 = names.indexOf(String.valueOf(b.charAt(0)));
         int y2 = Integer.parseInt(String.valueOf(b.charAt(1)))-1;
+
+        if((!(x1-x2 == y1-y2)) || (!(x1 - x2 == 0 || y1 - y2 == 0))){
+            return false;
+        }
         return null;
     }
 

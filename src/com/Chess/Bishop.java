@@ -30,6 +30,12 @@ public class Bishop implements Schachfigur {
 
         int x2 = names.indexOf(String.valueOf(b.charAt(0)));
         int y2 = Integer.parseInt(String.valueOf(b.charAt(1)))-1;
+
+        if(!(x1-x2 == y1-y2)){
+            return false;
+        }
+
+
         return null;
 
 

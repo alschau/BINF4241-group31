@@ -20,7 +20,6 @@ public class Pawn implements Schachfigur {
         return name;
     }
 
-    @Override
     public Boolean islegal(String a, String b) {
         int x1 = names.indexOf(String.valueOf(a.charAt(0))); //letter
         int y1 = Integer.parseInt(String.valueOf(a.charAt(1)))-1; //number

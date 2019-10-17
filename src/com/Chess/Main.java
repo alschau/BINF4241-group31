@@ -36,6 +36,8 @@ public class Main {
 
         System.out.println(board.getBoard()[0][1].getName());
 
+        System.out.println(board.getBoard()[0][1].getColor());
+
 
 
     }

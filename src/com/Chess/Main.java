@@ -15,21 +15,6 @@ public class Main {
 
         Board board = new Board();
 
-
-
-
-
-
-
-
-
-        board.printboard();
-
-        board.move(1,1,3,3);
-        board.printboard();
-        board.move(2,2,3,3);
-        board.printboard();
-
         Game game =  new Game(board, name1, name2);
 
 

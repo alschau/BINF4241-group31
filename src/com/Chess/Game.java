@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Game {
     Board board;
     int turn = 1;
-    String currentcolor = "W";
+    String currentcolor;
     String player1;
     String player2;
     String player;
@@ -37,12 +37,16 @@ public class Game {
             }
 
             Scanner scanner = new Scanner(System.in);
+
+            int x1;
+            int y1;
+
             while(true){
-                while(from_check){
+                while(true){
                     System.out.println(player + ", choose a valid field of a figure ");
                     from = scanner.nextLine();
                     if(coordinates.contains(from)){
-                        from_check = false;
+                        break;
                     }
 
                     //TODO: Check if one of my figures is on that field
@@ -50,8 +54,8 @@ public class Game {
                     to_check = true;
                 }
 
-                int x1 = names.indexOf(String.valueOf(from.charAt(0))); //letter
-                int y1 = Integer.parseInt(String.valueOf(from.charAt(1)))-1; //number
+                x1 = names.indexOf(String.valueOf(from.charAt(0))); //letter
+                y1 = Integer.parseInt(String.valueOf(from.charAt(1)))-1; //number
 
                 if((board.getBoard()[x1][y1] == null) || !(board.getBoard()[x1][y1].getColor() == currentcolor)){
                     System.out.println("tut mir leid auf diesem feld befindet sich keine oder eine gegnerische figur");
@@ -65,21 +69,26 @@ public class Game {
 
 
 
-            while(to_check){
-                System.out.println(player + ", make your move: ");
+            while(true){
+                System.out.println(player + " Enter the field where you want to move your figure: ");
                 to = scanner.nextLine();
                 if(coordinates.contains(to)){
-                    to_check = false;
+                    break;
+                }
+                else{
+                    System.out.println("Please enter a valid field");
                 }
 
                 //TODO: Check if I can go to that field
 
-                from_check = true;
             }
 
 
             int x2 = names.indexOf(String.valueOf(to.charAt(0)));
             int y2 = Integer.parseInt(String.valueOf(to.charAt(1)))-1;
+
+
+            board.move(x1,y1,x2,y2);
 
 
 

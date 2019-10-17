@@ -96,14 +96,15 @@ public class Board {
         System.out.println("\n");
     }
 
-    public void move(String a,String b){
+    public void move(int x1, int y1, int x2, int y2){
 
 
-        int x1 = names.indexOf(String.valueOf(a.charAt(0))); //letter
+        /**int x1 = names.indexOf(String.valueOf(a.charAt(0))); //letter
         int y1 = Integer.parseInt(String.valueOf(a.charAt(1)))-1; //number
 
         int x2 = names.indexOf(String.valueOf(b.charAt(0)));
         int y2 = Integer.parseInt(String.valueOf(b.charAt(1)))-1;
+         */
 
         Schachfigur x = board[x1][y1];
         board[x1][y1] = null;

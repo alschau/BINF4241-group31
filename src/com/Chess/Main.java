@@ -1,25 +1,16 @@
 package com.Chess;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
-import java.util.Random;
 
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        /**System.out.println("hello");
+
         Scanner scanner = new Scanner(System.in);
         //player names
         System.out.println("Name of player 1: ");
         String name1 = scanner.nextLine();
         System.out.println("Name of player 2: ");
         String name2 = scanner.nextLine();
-        System.out.println(name1);
-
-        String color_name1 = "w";
-        String color_name2 = "b";
-
-        */
 
 
         Board board = new Board();
@@ -27,17 +18,19 @@ public class Main {
 
 
 
+
+
+
+
+
         board.printboard();
 
-        board.move("c1","h7");
+        board.move(1,1,3,3);
         board.printboard();
-        board.move("h7","d5");
+        board.move(2,2,3,3);
         board.printboard();
 
-        System.out.println(board.getBoard()[0][1].getName());
-
-        System.out.println(board.getBoard()[0][1].getColor());
-
+        Game game =  new Game(board, name1, name2);
 
 
     }

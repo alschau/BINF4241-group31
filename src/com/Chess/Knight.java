@@ -21,12 +21,7 @@ public class Knight implements Schachfigur {
     }
 
     @Override
-    public Boolean islegal(String a, String b) {
-        int x1 = names.indexOf(String.valueOf(a.charAt(0))); //letter
-        int y1 = Integer.parseInt(String.valueOf(a.charAt(1)))-1; //number
-
-        int x2 = names.indexOf(String.valueOf(b.charAt(0)));
-        int y2 = Integer.parseInt(String.valueOf(b.charAt(1)))-1;
+    public Boolean islegal(int x1, int y1, int x2, int y2) {
         return null;
     }
 

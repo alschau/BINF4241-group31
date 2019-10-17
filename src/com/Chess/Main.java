@@ -34,6 +34,8 @@ public class Main {
         board.move("h7","d5");
         board.printboard();
 
+        System.out.println(board.getBoard()[0][1].getName());
+
 
 
     }

@@ -117,7 +117,7 @@ public class Board {
 
     }
 
-
-
-
+    public Schachfigur[][] getBoard() {
+        return board;
+    }
 }

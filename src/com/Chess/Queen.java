@@ -15,4 +15,9 @@ public class Queen implements Schachfigur {
     public String getName() {
         return name;
     }
+
+    @Override
+    public Boolean islegal() {
+        return null;
+    }
 }

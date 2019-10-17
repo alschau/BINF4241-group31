@@ -6,7 +6,7 @@ public class Knight implements Schachfigur {
 
     public Knight(String c){
         this.color = c;
-        this.name = color +"k";
+        this.name = color +"N";
     }
     public String getColor() {
         return color;

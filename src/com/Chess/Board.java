@@ -117,6 +117,10 @@ public class Board {
 
     }
 
+    public void checkpath(String a, String b){
+
+    }
+
     public Schachfigur[][] getBoard() {
         return board;
     }

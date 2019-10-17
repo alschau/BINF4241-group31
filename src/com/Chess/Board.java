@@ -24,46 +24,46 @@ public class Board {
         for(int i = 0;i<8;i++){
             for(int j = 0; j<8;j++){
 
-                if(i == 0){
-                    if(j == 0 || j == 7){
+                if(j == 0){
+                    if(i == 0 || i == 7){
                         board[i][j] = new Rook("B");
                     }
-                    else if(j == 1 || j ==6){
+                    else if(i == 1 || i ==6){
                         board[i][j] = new Knight("B");
                     }
-                    else if(j == 2 || j ==5){
+                    else if(i == 2 || i ==5){
                         board[i][j] = new Bishop("B");
                     }
-                    else if(j == 3){
+                    else if(i == 3){
                         board[i][j] = new King("B");
                     }
-                    else if(j == 4){
+                    else if(i == 4){
                         board[i][j] = new Queen("B");
                     }
                 }
 
-                else if(i==1){
+                else if(j==1){
                     board[i][j] = new Pawn("B");
                 }
 
-                else if(i ==6){
+                else if(j ==6){
                     board[i][j] = new Pawn("W");
                 }
 
-                else if(i == 7){
-                    if(j == 0 || j == 7){
+                else if(j == 7){
+                    if(i == 0 || i == 7){
                         board[i][j] = new Rook("W");
                     }
-                    else if(j == 1 || j ==6){
+                    else if(i == 1 || i ==6){
                         board[i][j] = new Knight("W");
                     }
-                    else if(j == 2 || j ==5){
+                    else if(i == 2 || i ==5){
                         board[i][j] = new Bishop("W");
                     }
-                    else if(j == 3){
+                    else if(i == 3){
                         board[i][j] = new King("W");
                     }
-                    else if(j == 4){
+                    else if(i == 4){
                         board[i][j] = new Queen("W");
                     }
 
@@ -81,9 +81,9 @@ public class Board {
 
     public void printboard(){
         System.out.print("    a   b   c   d   e   f   g   h ");
-        for(int i=0; i<8;i++){
-            System.out.print("\n" + Integer.toString(i + 1)+ " ");
-            for(int j=0; j<8;j++){
+        for(int j=0; j<8;j++){
+            System.out.print("\n" + Integer.toString(j + 1)+ " ");
+            for(int i=0; i<8;i++){
                 if(board[i][j] != null){
                     System.out.print("["+board[i][j].getName()+"]");
                 }
@@ -99,14 +99,14 @@ public class Board {
     public void move(String a,String b){
 
 
-        int x1 = Integer.parseInt(String.valueOf(a.charAt(1)))-1;
-        int y1 = names.indexOf(String.valueOf(a.charAt(0)));
+        int x1 = names.indexOf(String.valueOf(a.charAt(0)));
+        int y1 = Integer.parseInt(String.valueOf(a.charAt(1)))-1;
 
         System.out.println(x1 + "" + y1);
 
 
-        int x2 = Integer.parseInt(String.valueOf(b.charAt(1)))-1;
-        int y2 = names.indexOf(String.valueOf(b.charAt(0)));
+        int x2 = names.indexOf(String.valueOf(b.charAt(0)));
+        int y2 = Integer.parseInt(String.valueOf(b.charAt(1)))-1;
 
         System.out.println(x2 + "" + y2);
 

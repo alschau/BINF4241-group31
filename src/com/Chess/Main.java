@@ -18,10 +18,8 @@ public class Main {
 
         String color_name1 = "w";
         String color_name2 = "b";
-         */
 
-        ArrayList<String> names = new ArrayList<String>( Arrays.asList("nigger", "a", "b", "c", "d", "e", "f", "g", "h") );
-        names.indexOf("Apple");
+        */
 
 
         Board board = new Board();
@@ -31,7 +29,9 @@ public class Main {
 
         board.printboard();
 
-        board.move("a2","c3");
+        board.move("c1","h7");
+        board.printboard();
+        board.move("h7","d5");
         board.printboard();
 
 

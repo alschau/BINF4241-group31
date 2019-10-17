@@ -22,7 +22,7 @@ public class King implements Schachfigur {
 
     @Override
     public Boolean islegal(int x1, int y1, int x2, int y2) {
-        return null;
+        return ((x1+1 == x1 || x1-1 == x1) || (y1+1 == y1 || y1-1 == y1));
     }
 
 }

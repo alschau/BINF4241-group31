@@ -22,7 +22,9 @@ public class Knight implements Schachfigur {
 
     @Override
     public Boolean islegal(int x1, int y1, int x2, int y2) {
-        return null;
+        int absX = Math.abs(x1-x2);
+        int absY = Math.abs(y1-y2);
+        return (((absX == 1)&&(absY ==2))||((absX == 2)&&(absY ==1)));
     }
 
 }

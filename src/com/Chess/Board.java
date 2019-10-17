@@ -1,8 +1,17 @@
 package com.Chess;
 
+
+
+import com.sun.nio.sctp.AbstractNotificationHandler;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Board {
 
     Schachfigur[][] board;
+    ArrayList<String> names = new ArrayList<String>( Arrays.asList("a", "b", "c", "d", "e", "f", "g", "h") );
 
 
 
@@ -84,7 +93,27 @@ public class Board {
 
             }
         }
+        System.out.println("\n");
+    }
 
+    public void move(String a,String b){
+
+
+        int x1 = Integer.parseInt(String.valueOf(a.charAt(1)))-1;
+        int y1 = names.indexOf(String.valueOf(a.charAt(0)));
+
+        System.out.println(x1 + "" + y1);
+
+
+        int x2 = Integer.parseInt(String.valueOf(b.charAt(1)))-1;
+        int y2 = names.indexOf(String.valueOf(b.charAt(0)));
+
+        System.out.println(x2 + "" + y2);
+
+
+        Schachfigur x = board[x1][y1];
+        board[x1][y1] = null;
+        board[x2][y2] = x;
 
     }
 

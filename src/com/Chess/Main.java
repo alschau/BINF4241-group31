@@ -1,4 +1,6 @@
 package com.Chess;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.Random;
 
@@ -18,12 +20,18 @@ public class Main {
         String color_name2 = "b";
          */
 
+        ArrayList<String> names = new ArrayList<String>( Arrays.asList("nigger", "a", "b", "c", "d", "e", "f", "g", "h") );
+        names.indexOf("Apple");
+
 
         Board board = new Board();
 
 
 
 
+        board.printboard();
+
+        board.move("a2","c3");
         board.printboard();
 
 

@@ -1,12 +1,12 @@
 package com.Chess;
 
-public class Knight implements Schachfigur {
+public class Rook implements Schachfigur {
     String color;
     String name;
 
-    public Knight(String c){
+    public Rook(String c){
         this.color = c;
-        this.name = color +"k";
+        this.name = color +"R";
     }
     public String getColor() {
         return color;

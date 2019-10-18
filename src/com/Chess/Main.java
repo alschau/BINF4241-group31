@@ -16,7 +16,6 @@ public class Main {
         Board board = new Board();
 
         Game game =  new Game(board, name1, name2);
-        System.out.println(game.getFields(board, 4, 3, 4, 6));
 
 
     }

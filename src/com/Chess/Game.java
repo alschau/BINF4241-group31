@@ -85,6 +85,9 @@ public class Game {
             int x2 = names.indexOf(String.valueOf(to.charAt(0)));
             int y2 = Integer.parseInt(String.valueOf(to.charAt(1)))-1;
 
+            ArrayList<int[]> betweens = getFields(x1, y1, x2, y2);
+            for(int[] a : betweens)
+                System.out.println(a[0] +" "+ a[1]);
 
             board.move(x1,y1,x2,y2);
 
@@ -103,38 +106,40 @@ public class Game {
     }
 
 
-    public ArrayList getFields(Board board, int x1, int y1, int x2, int y2){
+    public ArrayList getFields(int x1, int y1, int x2, int y2){
         ArrayList<int[]> path = new ArrayList<>();
         Arrays.asList();
 
         int delta;
         int sign;
 
+        //TODO öppis stimmt nöd mit x und y
+
         if((x1==x2) && (y1 -y2<0)){
-            for(int i =y1;i<y2;i++){
-                int[] x = new int[]{x1,i};
+            for(int i =y1+1;i<y2;i++){
+                int[] x = new int[]{i, x1};
                 path.add(x);
             }
 
         }
 
         else if((x1==x2) && (y1 -y2>0)){
-            for(int i =y1;i>y2;i--) {
-                int[] x = new int[]{x1, i};
+            for(int i =y1-1;i>y2;i--) {
+                int[] x = new int[]{i, x1};
                 path.add(x);
             }
         }
 
         else if((y1==y2) && (x1 -x2>0)){
-            for(int i =x1;i>x2;i--) {
-                int[] x = new int[]{i, y1};
+            for(int i =x1-1;i>x2;i--) {
+                int[] x = new int[]{y1, i};
                 path.add(x);
             }
         }
 
         else if((y1==y2) && (x1 -x2<0)){
-            for(int i =x1;i<x2;i++) {
-                int[] x = new int[]{i, y1};
+            for(int i =x1+1;i<x2;i++) {
+                int[] x = new int[]{y1, i};
                 path.add(x);
             }
         }
@@ -142,7 +147,7 @@ public class Game {
         else if((x1>x2)&&(y1>y2)){
             delta = Math.abs(x1-x2);
             for(int i=1; i<delta;i++){
-                int[] x = new int[]{x1-i, y1-i};
+                int[] x = new int[]{y1-i, x1-i};
                 path.add(x);
             }
         }
@@ -150,7 +155,7 @@ public class Game {
         else if((x1>x2)&&(y1<y2)){
             delta = Math.abs(x1-x2);
             for(int i=1; i<delta;i++){
-                int[] x = new int[]{x1-i, y1+i};
+                int[] x = new int[]{y1+i, x1-i};
                 path.add(x);
             }
         }
@@ -158,7 +163,7 @@ public class Game {
         else if((x1<x2)&&(y1>y2)){
             delta = Math.abs(x1-x2);
             for(int i=1; i<delta;i++){
-                int[] x = new int[]{x1+i, y1-i};
+                int[] x = new int[]{y1-i, x1+i};
                 path.add(x);
             }
         }
@@ -166,7 +171,7 @@ public class Game {
         else if((x1<x2)&&(y1<y2)){
             delta = Math.abs(x1-x2);
             for(int i=1; i<delta;i++){
-                int[] x = new int[]{x1+i, y1+i};
+                int[] x = new int[]{y1+i, x1+i};
                 path.add(x);
             }
         }

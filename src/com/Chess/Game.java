@@ -102,6 +102,7 @@ public class Game {
         board.printboard();
     }
 
+
     public ArrayList getFields(Board board, int x1, int y1, int x2, int y2){
         ArrayList<int[]> path = new ArrayList<>();
         Arrays.asList();
@@ -138,8 +139,40 @@ public class Game {
             }
         }
 
+        else if((x1>x2)&&(y1>y2)){
+            delta = Math.abs(x1-x2);
+            for(int i=1; i<delta;i++){
+                int[] x = new int[]{x1-i, y1-i};
+                path.add(x);
+            }
+        }
 
-        return null;
+        else if((x1>x2)&&(y1<y2)){
+            delta = Math.abs(x1-x2);
+            for(int i=1; i<delta;i++){
+                int[] x = new int[]{x1-i, y1+i};
+                path.add(x);
+            }
+        }
+
+        else if((x1<x2)&&(y1>y2)){
+            delta = Math.abs(x1-x2);
+            for(int i=1; i<delta;i++){
+                int[] x = new int[]{x1+i, y1-i};
+                path.add(x);
+            }
+        }
+
+        else if((x1<x2)&&(y1<y2)){
+            delta = Math.abs(x1-x2);
+            for(int i=1; i<delta;i++){
+                int[] x = new int[]{x1+i, y1+i};
+                path.add(x);
+            }
+        }
+
+
+        return path;
 
     }
 

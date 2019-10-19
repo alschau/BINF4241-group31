@@ -2,11 +2,8 @@ package com.Chess;
 
 
 
-import com.sun.nio.sctp.AbstractNotificationHandler;
-
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class Board {
 
@@ -35,10 +32,10 @@ public class Board {
                         board[i][j] = new Bishop("B");
                     }
                     else if(i == 3){
-                        board[i][j] = new King("B");
+                        board[i][j] = new Queen("B");
                     }
                     else if(i == 4){
-                        board[i][j] = new Queen("B");
+                        board[i][j] = new King("B");
                     }
                 }
 
@@ -61,10 +58,10 @@ public class Board {
                         board[i][j] = new Bishop("W");
                     }
                     else if(i == 3){
-                        board[i][j] = new King("W");
+                        board[i][j] = new Queen("W");
                     }
                     else if(i == 4){
-                        board[i][j] = new Queen("W");
+                        board[i][j] = new King("W");
                     }
 
                 }

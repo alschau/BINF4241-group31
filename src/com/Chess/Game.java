@@ -48,8 +48,6 @@ public class Game {
                         break;
                     }
 
-                    //TODO: Check if one of my figures is on that field
-
                 }
 
                 x1 = names.indexOf(String.valueOf(from.charAt(0))); //letter
@@ -80,25 +78,49 @@ public class Game {
 
             int x2 = names.indexOf(String.valueOf(to.charAt(0)));
             int y2 = Integer.parseInt(String.valueOf(to.charAt(1)))-1;
+            boolean rochade = false;
 
-            if(board.getBoard()[x1][y1].islegal(x1, y1, x2, y2)){
-                // i need to check the fields in between
-                if("QBR".contains(board.getBoard()[x1][y1].getCharacter())){
-                    // Check if the Path is empty
-                    if(isPathEmpty(board, x1, y1, x2, y2)){
-                        board.move(x1,y1,x2,y2);
+            // Rochade
+            if(board.getBoard()[x1][y1].getCharacter().equals("K") && board.getBoard()[x2][y2].getCharacter().equals("R")){
+                if(board.getBoard()[x1][y1].notMoved() && board.getBoard()[x2][y2].notMoved() && board.getBoard()[x1][y1].getColor().equals(currentcolor)){
+                    // Grosse Rochade (links)
+                    System.out.println("rochade");
+                    if(y2==0 && isPathEmpty(board, x1, y1, x2, y2)){
+                        System.out.println("gross");
+                        board.move(x1, y1, x1-2, y1);
+                        board.move(x2, y2, x2+3, y2);
+                    }
+                    // Kleine Rochade (rechts)
+                    else if(y2 == 7){
+                        System.out.println("chli");
+                        board.move(x1, y1, x1+2, y1);
+                        board.move(x2, y2, x2-2, y2);
+                    }
+                    rochade = true;
+                }
+            }
+
+            // Normaler Zug
+            if(!rochade) {
+                if (board.getBoard()[x1][y1].islegal(x1, y1, x2, y2)) {
+                    // i need to check the fields in between
+                    if ("QBR".contains(board.getBoard()[x1][y1].getCharacter())) {
+                        // Check if the Path is empty
+                        if (isPathEmpty(board, x1, y1, x2, y2)) {
+                            board.move(x1, y1, x2, y2);
+                        } else {
+                            // if not, start turn again
+                            System.out.println("you cant move there!");
+                            turn--;
+                        }
                     } else {
-                        // if not, start turn again
-                        System.out.println("you cant move there!");
-                        turn--;
+                        // no need to check fields in between
+                        board.move(x1, y1, x2, y2);
                     }
                 } else {
-                    // no need to check fields in between
-                    board.move(x1,y1,x2,y2);
+                    System.out.println("You can't move there with this figure");
+                    turn--;
                 }
-            } else {
-                System.out.println("You can't move there with this figure");
-                turn--;
             }
 
             printBoard();

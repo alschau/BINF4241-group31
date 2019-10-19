@@ -17,13 +17,16 @@ public class Knight implements Schachfigur {
         return color;
     }
 
+    @Override
+    public String getCaracter() {
+        return character;
+    }
+
     public String getName() {
         return name;
     }
 
-    public String getCharacter(){
-        return character;
-    }
+
 
     @Override
     public Boolean islegal(int x1, int y1, int x2, int y2) {

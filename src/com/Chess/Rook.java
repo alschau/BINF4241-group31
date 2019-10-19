@@ -19,12 +19,13 @@ public class Rook implements Schachfigur {
         return color;
     }
 
-    public String getName() {
-        return name;
+    @Override
+    public String getCaracter() {
+        return character;
     }
 
-    public String getCharacter(){
-        return character;
+    public String getName() {
+        return name;
     }
 
 

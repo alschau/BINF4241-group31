@@ -17,12 +17,13 @@ public class Queen implements Schachfigur {
         return color;
     }
 
-    public String getName() {
-        return name;
+    @Override
+    public String getCaracter() {
+        return character;
     }
 
-    public String getCharacter(){
-        return character;
+    public String getName() {
+        return name;
     }
 
     public Boolean islegal(int x1, int y1, int x2, int y2) {

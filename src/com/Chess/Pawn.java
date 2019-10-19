@@ -17,20 +17,21 @@ public class Pawn implements Schachfigur {
         return color;
     }
 
-    public String getName() {
-        return name;
+    @Override
+    public String getCaracter() {
+        return character;
     }
 
-    public String getCharacter(){
-        return character;
+    public String getName() {
+        return name;
     }
 
     public Boolean islegal(int x1, int y1, int x2, int y2) {
         //TODO 2 Felder wenn er auf Startposition ist & fressen einbauen
         if(this.color.equals("W")){
-            return(x2 == x1+1);
+            return(y2 == y1-1);
         } else {
-            return(x1 == x2+1);
+            return(y1 == y2-1);
         }
     }
 

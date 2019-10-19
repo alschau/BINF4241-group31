@@ -82,12 +82,23 @@ public class Game {
             int y2 = Integer.parseInt(String.valueOf(to.charAt(1)))-1;
 
             if(board.getBoard()[x1][y1].islegal(x1, y1, x2, y2)){
-
-                board.move(x1,y1,x2,y2);
+                // i need to check the fields in between
+                if("QBR".contains(board.getBoard()[x1][y1].getCaracter())){
+                    // Check if the Path is empty
+                    if(isPathEmpty(board, x1, y1, x2, y2)){
+                        board.move(x1,y1,x2,y2);
+                    } else {
+                        // if not, start turn again
+                        System.out.println("you cant move there!");
+                        turn--;
+                    }
+                } else {
+                    // no need to check fields in between
+                    board.move(x1,y1,x2,y2);
+                }
             }
-            //isPathEmpty(board, x1, y1, x2, y2)
 
-            b.printboard();
+            printBoard();
             this.turn++;
 
         }

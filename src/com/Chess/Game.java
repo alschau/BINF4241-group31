@@ -76,22 +76,16 @@ public class Game {
                 else{
                     System.out.println("Please enter a valid field");
                 }
-
-                //TODO: Check if I can go to that field
-
             }
-
 
             int x2 = names.indexOf(String.valueOf(to.charAt(0)));
             int y2 = Integer.parseInt(String.valueOf(to.charAt(1)))-1;
 
-            Boolean freePath = isPathEmpty(board, x1, y1, x2, y2);
-            System.out.println(freePath);
+            if(board.getBoard()[x1][y1].islegal(x1, y1, x2, y2)){
 
-            board.move(x1,y1,x2,y2);
-
-
-
+                board.move(x1,y1,x2,y2);
+            }
+            //isPathEmpty(board, x1, y1, x2, y2)
 
             b.printboard();
             this.turn++;

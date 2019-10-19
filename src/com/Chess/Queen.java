@@ -6,6 +6,7 @@ import java.util.Arrays;
 public class Queen implements Schachfigur {
     String color;
     String name;
+    String character = "Q";
     ArrayList<String> names = new ArrayList<String>( Arrays.asList("a", "b", "c", "d", "e", "f", "g", "h") );
 
     public Queen(String c){
@@ -18,6 +19,10 @@ public class Queen implements Schachfigur {
 
     public String getName() {
         return name;
+    }
+
+    public String getCharacter(){
+        return character;
     }
 
     public Boolean islegal(int x1, int y1, int x2, int y2) {

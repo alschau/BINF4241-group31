@@ -6,6 +6,7 @@ import java.util.Arrays;
 public class Bishop implements Schachfigur {
     String color;
     String name;
+    String character = "B";
     ArrayList<String> names = new ArrayList<String>( Arrays.asList("a", "b", "c", "d", "e", "f", "g", "h") );
 
 
@@ -20,6 +21,10 @@ public class Bishop implements Schachfigur {
 
     public String getName() {
         return name;
+    }
+
+    public String getCharacter(){
+        return character;
     }
 
     @Override

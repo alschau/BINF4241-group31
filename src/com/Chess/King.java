@@ -6,6 +6,7 @@ import java.util.Arrays;
 public class King implements Schachfigur {
     String color;
     String name;
+    String character = "K";
     ArrayList<String> names = new ArrayList<String>( Arrays.asList("a", "b", "c", "d", "e", "f", "g", "h") );
 
     public King(String c){
@@ -18,6 +19,10 @@ public class King implements Schachfigur {
 
     public String getName() {
         return name;
+    }
+
+    public String getCharacter(){
+        return character;
     }
 
     @Override

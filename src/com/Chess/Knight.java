@@ -6,6 +6,7 @@ import java.util.Arrays;
 public class Knight implements Schachfigur {
     String color;
     String name;
+    String character = "N";
     ArrayList<String> names = new ArrayList<String>( Arrays.asList("a", "b", "c", "d", "e", "f", "g", "h") );
 
     public Knight(String c){
@@ -18,6 +19,10 @@ public class Knight implements Schachfigur {
 
     public String getName() {
         return name;
+    }
+
+    public String getCharacter(){
+        return character;
     }
 
     @Override

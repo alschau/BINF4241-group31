@@ -29,11 +29,6 @@ public class Rook implements Schachfigur {
 
 
     public Boolean islegal(int x1, int y1, int x2, int y2) {
-
-        if(!(x1 - x2 == 0 || y1 - y2 == 0)){
-            return false;
-        }
-
-        return Boolean.TRUE;
+        return((x1 == x2 || y1 == y2) && !((x1==x2)&&(y1==y2)));
     }
 }

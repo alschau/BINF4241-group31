@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class King implements Schachfigur {
-    String color;
-    String name;
-    String character = "K";
+    private String color;
+    private String name;
+    Boolean notMoved = true;
     ArrayList<String> names = new ArrayList<String>( Arrays.asList("a", "b", "c", "d", "e", "f", "g", "h") );
 
     public King(String c){
@@ -18,18 +18,25 @@ public class King implements Schachfigur {
     }
 
     @Override
-    public String getCaracter() {
-        return character;
+    public String getCharacter() {
+        return "K";
     }
 
     public String getName() {
         return name;
     }
 
+    public Boolean notMoved() {
+        return notMoved;
+    }
+
+    public void setMoved() {
+        this.notMoved = false;
+    }
 
     @Override
     public Boolean islegal(int x1, int y1, int x2, int y2) {
-        return ((x1+1 == x1 || x1-1 == x1) || (y1+1 == y1 || y1-1 == y1));
+        return ((x1+1 == x2 || x1-1 == x2) || (y1+1 == y2 || y1-1 == y2));
     }
 
 }

@@ -5,14 +5,14 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Game {
-    Board board;
-    int turn = 1;
-    String currentcolor;
-    String player1;
-    String player2;
-    String player;
-    String from;
-    String to;
+    private Board board;
+    private int turn = 1;
+    private String currentcolor;
+    private String player1;
+    private String player2;
+    private String player;
+    private String from;
+    private String to;
     ArrayList<String> names = new ArrayList<String>( Arrays.asList("a", "b", "c", "d", "e", "f", "g", "h") );
 
 
@@ -83,7 +83,7 @@ public class Game {
 
             if(board.getBoard()[x1][y1].islegal(x1, y1, x2, y2)){
                 // i need to check the fields in between
-                if("QBR".contains(board.getBoard()[x1][y1].getCaracter())){
+                if("QBR".contains(board.getBoard()[x1][y1].getCharacter())){
                     // Check if the Path is empty
                     if(isPathEmpty(board, x1, y1, x2, y2)){
                         board.move(x1,y1,x2,y2);
@@ -96,6 +96,9 @@ public class Game {
                     // no need to check fields in between
                     board.move(x1,y1,x2,y2);
                 }
+            } else {
+                System.out.println("You can't move there with this figure");
+                turn--;
             }
 
             printBoard();

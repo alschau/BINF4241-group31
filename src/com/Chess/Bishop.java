@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Bishop implements Schachfigur {
-    String color;
-    String name;
-    String character = "B";
+    private String color;
+    private String name;
+    Boolean notMoved = true;
     ArrayList<String> names = new ArrayList<String>( Arrays.asList("a", "b", "c", "d", "e", "f", "g", "h") );
 
 
@@ -20,12 +20,20 @@ public class Bishop implements Schachfigur {
     }
 
     @Override
-    public String getCaracter() {
-        return character;
+    public String getCharacter() {
+        return "B";
     }
 
     public String getName() {
         return name;
+    }
+
+    public Boolean notMoved() {
+        return notMoved;
+    }
+
+    public void setMoved() {
+        this.notMoved = false;
     }
 
     @Override

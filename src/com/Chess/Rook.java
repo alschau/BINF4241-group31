@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Rook implements Schachfigur {
-
-
-    String color;
-    String name;
-    String character = "R";
+    private String color;
+    private String name;
+    Boolean notMoved = true;
     ArrayList<String> names = new ArrayList<String>( Arrays.asList("a", "b", "c", "d", "e", "f", "g", "h") );
 
     public Rook(String c){
@@ -20,12 +18,20 @@ public class Rook implements Schachfigur {
     }
 
     @Override
-    public String getCaracter() {
-        return character;
+    public String getCharacter() {
+        return "R";
     }
 
     public String getName() {
         return name;
+    }
+
+    public Boolean notMoved() {
+        return notMoved;
+    }
+
+    public void setMoved() {
+        this.notMoved = false;
     }
 
 

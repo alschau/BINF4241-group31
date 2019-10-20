@@ -50,8 +50,8 @@ public class Game {
 
                 }
 
-                x1 = names.indexOf(String.valueOf(from.charAt(0))); //letter
-                y1 = Integer.parseInt(String.valueOf(from.charAt(1)))-1; //number
+                y1 = names.indexOf(String.valueOf(from.charAt(0))); //letter
+                x1 = Integer.parseInt(String.valueOf(from.charAt(1)))-1; //number
 
                 if((board.getBoard()[x1][y1] == null) || !(board.getBoard()[x1][y1].getColor() == currentcolor)){
                     System.out.println("tut mir leid auf diesem feld befindet sich keine oder eine gegnerische figur");
@@ -76,8 +76,8 @@ public class Game {
                 }
             }
 
-            int x2 = names.indexOf(String.valueOf(to.charAt(0)));
-            int y2 = Integer.parseInt(String.valueOf(to.charAt(1)))-1;
+            int y2 = names.indexOf(String.valueOf(to.charAt(0)));
+            int x2 = Integer.parseInt(String.valueOf(to.charAt(1)))-1;
             boolean rochade = false;
 
             // Rochade
@@ -87,14 +87,14 @@ public class Game {
                     System.out.println("rochade");
                     if(y2==0 && isPathEmpty(board, x1, y1, x2, y2)){
                         System.out.println("gross");
-                        board.move(x1, y1, x1-2, y1);
-                        board.move(x2, y2, x2+3, y2);
+                        board.move(x1, y1, x1, y1-2);
+                        board.move(x2, y2, x2, y2+3);
                     }
                     // Kleine Rochade (rechts)
                     else if(y2 == 7){
                         System.out.println("chli");
-                        board.move(x1, y1, x1+2, y1);
-                        board.move(x2, y2, x2-2, y2);
+                        board.move(x1, y1, x1, y1+2);
+                        board.move(x2, y2, x2, y2-2);
                     }
                     rochade = true;
                 }

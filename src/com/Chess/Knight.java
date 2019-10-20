@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Knight implements Schachfigur {
-    String color;
-    String name;
+    private String color;
+    private String name;
+    Boolean notMoved = true;
     ArrayList<String> names = new ArrayList<String>( Arrays.asList("a", "b", "c", "d", "e", "f", "g", "h") );
 
     public Knight(String c){
@@ -16,9 +17,23 @@ public class Knight implements Schachfigur {
         return color;
     }
 
+    @Override
+    public String getCharacter() {
+        return "N";
+    }
+
     public String getName() {
         return name;
     }
+
+    public Boolean notMoved() {
+        return notMoved;
+    }
+
+    public void setMoved() {
+        this.notMoved = false;
+    }
+
 
     @Override
     public Boolean islegal(int x1, int y1, int x2, int y2) {

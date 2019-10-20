@@ -5,14 +5,14 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Game {
-    Board board;
-    int turn = 1;
-    String currentcolor;
-    String player1;
-    String player2;
-    String player;
-    String from;
-    String to;
+    private Board board;
+    private int turn = 1;
+    private String currentcolor;
+    private String player1;
+    private String player2;
+    private String player;
+    private String from;
+    private String to;
     ArrayList<String> names = new ArrayList<String>( Arrays.asList("a", "b", "c", "d", "e", "f", "g", "h") );
 
 
@@ -48,8 +48,6 @@ public class Game {
                         break;
                     }
 
-                    //TODO: Check if one of my figures is on that field
-
                 }
 
                 x1 = names.indexOf(String.valueOf(from.charAt(0))); //letter
@@ -76,22 +74,56 @@ public class Game {
                 else{
                     System.out.println("Please enter a valid field");
                 }
-
-                //TODO: Check if I can go to that field
-
             }
-
 
             int x2 = names.indexOf(String.valueOf(to.charAt(0)));
             int y2 = Integer.parseInt(String.valueOf(to.charAt(1)))-1;
+            boolean rochade = false;
 
+            // Rochade
+            if(board.getBoard()[x1][y1].getCharacter().equals("K") && board.getBoard()[x2][y2].getCharacter().equals("R")){
+                if(board.getBoard()[x1][y1].notMoved() && board.getBoard()[x2][y2].notMoved() && board.getBoard()[x1][y1].getColor().equals(currentcolor)){
+                    // Grosse Rochade (links)
+                    System.out.println("rochade");
+                    if(y2==0 && isPathEmpty(board, x1, y1, x2, y2)){
+                        System.out.println("gross");
+                        board.move(x1, y1, x1-2, y1);
+                        board.move(x2, y2, x2+3, y2);
+                    }
+                    // Kleine Rochade (rechts)
+                    else if(y2 == 7){
+                        System.out.println("chli");
+                        board.move(x1, y1, x1+2, y1);
+                        board.move(x2, y2, x2-2, y2);
+                    }
+                    rochade = true;
+                }
+            }
 
-            board.move(x1,y1,x2,y2);
+            // Normaler Zug
+            if(!rochade) {
+                if (board.getBoard()[x1][y1].islegal(x1, y1, x2, y2)) {
+                    // i need to check the fields in between
+                    if ("QBR".contains(board.getBoard()[x1][y1].getCharacter())) {
+                        // Check if the Path is empty
+                        if (isPathEmpty(board, x1, y1, x2, y2)) {
+                            board.move(x1, y1, x2, y2);
+                        } else {
+                            // if not, start turn again
+                            System.out.println("you cant move there!");
+                            turn--;
+                        }
+                    } else {
+                        // no need to check fields in between
+                        board.move(x1, y1, x2, y2);
+                    }
+                } else {
+                    System.out.println("You can't move there with this figure");
+                    turn--;
+                }
+            }
 
-
-
-
-            b.printboard();
+            printBoard();
             this.turn++;
 
         }
@@ -102,5 +134,83 @@ public class Game {
         board.printboard();
     }
 
+
+    private Boolean isPathEmpty(Board board, int x1, int y1, int x2, int y2){
+        ArrayList<int[]> path = new ArrayList<>();
+        int delta;
+
+        if((x1==x2) && (y1 -y2<0)){
+            for(int i =y1+1;i<y2;i++){
+                int[] x = new int[]{x1, i};
+                path.add(x);
+            }
+
+        }
+
+        else if((x1==x2) && (y1 -y2>0)){
+            for(int i =y1-1;i>y2;i--) {
+                int[] x = new int[]{x1, i};
+                path.add(x);
+            }
+        }
+
+        else if((y1==y2) && (x1 -x2>0)){
+            for(int i =x1-1;i>x2;i--) {
+                int[] x = new int[]{i, y1};
+                path.add(x);
+            }
+        }
+
+        else if((y1==y2) && (x1 -x2<0)){
+            for(int i =x1+1;i<x2;i++) {
+                int[] x = new int[]{i, y1};
+                path.add(x);
+            }
+        }
+
+        else if((x1>x2)&&(y1>y2)){
+            delta = Math.abs(x1-x2);
+            for(int i=1; i<delta;i++){
+                int[] x = new int[]{x1-i, y1-i};
+                path.add(x);
+            }
+        }
+
+        else if((x1>x2)&&(y1<y2)){
+            delta = Math.abs(x1-x2);
+            for(int i=1; i<delta;i++){
+                int[] x = new int[]{x1-i, y1+i};
+                path.add(x);
+            }
+        }
+
+        else if((x1<x2)&&(y1>y2)){
+            delta = Math.abs(x1-x2);
+            for(int i=1; i<delta;i++){
+                int[] x = new int[]{x1+i, y1-i};
+                path.add(x);
+            }
+        }
+
+        else if((x1<x2)&&(y1<y2)){
+            delta = Math.abs(x1-x2);
+            for(int i=1; i<delta;i++){
+                int[] x = new int[]{x1+i, y1+i};
+                path.add(x);
+            }
+        }
+
+        // Return True if all Fields between are empty, else return False
+        for(int[] i : path){
+            System.out.println(i[0]);
+            System.out.println(i[1]);
+            if(board.getBoard()[i[0]][i[1]] != null){
+                return false;
+            }
+        }
+
+        return true;
+
+    }
 
 }

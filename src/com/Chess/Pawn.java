@@ -35,7 +35,18 @@ public class Pawn implements Schachfigur {
     }
 
     public Boolean islegal(int x1, int y1, int x2, int y2) {
-        //TODO 2 Felder wenn er auf Startposition ist & fressen einbauen
+        //TODO fressen einbauen
+        if (notMoved == true) {
+            if(this.color.equals("W")){
+                notMoved = false;
+                return((y2 == y1-1) || (y2 == y1-2));
+            } else {
+                notMoved = false;
+                return((y1 == y2-1) || (y1 == y2-2));
+            }
+
+        }
+
         if(this.color.equals("W")){
             return(y2 == y1-1);
         } else {

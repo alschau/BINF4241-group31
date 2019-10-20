@@ -54,7 +54,7 @@ public class Game {
                 y1 = Integer.parseInt(String.valueOf(from.charAt(1)))-1; //number
 
                 if((board.getBoard()[x1][y1] == null) || !(board.getBoard()[x1][y1].getColor() == currentcolor)){
-                    System.out.println("tut mir leid auf diesem feld befindet sich keine oder eine gegnerische figur");
+                    System.out.println("I'm sorry on this field is either no piece or one from your opponent");
                     continue;
                 }
                 else{

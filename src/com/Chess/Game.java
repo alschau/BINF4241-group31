@@ -36,22 +36,71 @@ public class Game {
             }
 
             Scanner scanner = new Scanner(System.in);
+            String x2string;
 
-            int x1;
-            int y1;
+            int x2;
+            int y2;
+            int x1 = 4;
+            int y1 = 4;
+            String hh;
 
             while(true){
                 while(true){
-                    System.out.println(player + ", choose a valid field of a figure ");
+                    System.out.println(player + ", make your move ");
                     from = scanner.nextLine();
-                    if(coordinates.contains(from)){
-                        break;
+                    if (from.contains("x")) {
+                        StringBuilder kk = new StringBuilder(from);
+                        int v = from.indexOf("x");
+                        from = kk.deleteCharAt(v).toString();
                     }
 
-                }
+                    if (Character.isUpperCase(from.indexOf(0))){
 
-                y1 = names.indexOf(String.valueOf(from.charAt(0))); //letter
-                x1 = Integer.parseInt(String.valueOf(from.charAt(1)))-1; //number
+                        y2 = names.indexOf(String.valueOf(from.charAt(from.length() - 2 ))); //letter
+                        x2 = Integer.parseInt(String.valueOf(from.charAt(from.length() - 1 )))-1; //number
+                        System.out.println(x2);
+                        System.out.println(y2);
+                        break;
+                    }
+                    else if(Character.isLowerCase(from.indexOf(0))) {
+                        if(from.substring(from.length()-1) == ".") {
+                            x2 = Integer.parseInt(String.valueOf(from.charAt(from.length() -5 )))-1; //number
+                            y2 = names.indexOf(String.valueOf(from.charAt(from.length() -6 ))); //letter
+                            System.out.println(x2);
+                            System.out.println(y2);
+                            break;
+                        }
+                        //promotion
+                        else if(from.contains("=")) {
+                            x2 = Integer.parseInt(String.valueOf(from.charAt(1)))-1; //number
+                            y2 = names.indexOf(String.valueOf(from.charAt(0 ))); //letter
+
+                        }
+                    }
+
+                    else {
+                        //error
+                    }
+
+
+                    /*if(from.length() == 2){
+                        y2 = names.indexOf(String.valueOf(from.charAt(0))); //letter
+                        x2 = Integer.parseInt(String.valueOf(from.charAt(1)))-1; //number
+                        break;
+                    }
+                    if(from.length() == 3) {
+                        hh = from.substring(0,1);
+                        from = from.substring(1);
+                        y2 = names.indexOf(String.valueOf(from.charAt(0))); //letter
+                        x2 = Integer.parseInt(String.valueOf(from.charAt(1)))-1; //number
+                    }
+                    if(from.contains("x")) {
+
+                    }*/
+
+                }
+               // y1 = names.indexOf(String.valueOf(from.charAt(0))); //letter
+                //  x1 = Integer.parseInt(String.valueOf(from.charAt(1)))-1; //number
 
                 if((board.getBoard()[x1][y1] == null) || !(board.getBoard()[x1][y1].getColor() == currentcolor)){
                     System.out.println("I'm sorry on this field is either no piece or one from your opponent");
@@ -63,7 +112,8 @@ public class Game {
 
             }
 
-
+            System.out.println(x2);
+            System.out.println(y2);
 
             while(true){
                 System.out.println(player + " Enter the field where you want to move your figure: ");
@@ -75,9 +125,9 @@ public class Game {
                     System.out.println("Please enter a valid field");
                 }
             }
-
+            /*
             int y2 = names.indexOf(String.valueOf(to.charAt(0)));
-            int x2 = Integer.parseInt(String.valueOf(to.charAt(1)))-1;
+            int x2 = Integer.parseInt(String.valueOf(to.charAt(1)))-1; */
             boolean rochade = false;
 
             // Rochade

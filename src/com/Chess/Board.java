@@ -118,12 +118,25 @@ public class Board {
         System.out.println("\n");
     }
 
-    public void move(int x1, int y1, int x2, int y2){
+    public void move(int x1, int y1, int x2, int y2, boolean muchosimportantes){
+        if(muchosimportantes) {
+            if (board[x1][y1].getColor() == "W") {
+                if (board[(x2+1)][y2] != null) {
+                    graveyard1.add(board[(x2+1)][y2]);
+                }
+            }
+            else {
+                if (board[(x2-1)][y2] != null) {
+                    graveyard2.add(board[(x2-1)][y2]);
+                }
+            }
+        }
 
         if (board[x2][y2] != null){
             if(board[x2][y2].getColor()=="W"){
                 graveyard1.add(board[x2][y2]);
-            } else {
+            }
+            else {
                 graveyard2.add(board[x2][y2]);
             }
 

@@ -9,7 +9,8 @@ public class Board {
 
     private Schachfigur[][] board;
     ArrayList<String> names = new ArrayList<String>( Arrays.asList("a", "b", "c", "d", "e", "f", "g", "h") );
-    ArrayList<Schachfigur> graveyard = new ArrayList<>();
+    ArrayList<Schachfigur> graveyard1 = new ArrayList<>();
+    ArrayList<Schachfigur> graveyard2 = new ArrayList<>();
 
 
     public Board(){
@@ -120,7 +121,12 @@ public class Board {
     public void move(int x1, int y1, int x2, int y2){
 
         if (board[x2][y2] != null){
-            graveyard.add(board[x2][y2]);
+            if(board[x2][y2].getColor()=="W"){
+                graveyard1.add(board[x2][y2]);
+            } else {
+                graveyard2.add(board[x2][y2]);
+            }
+
         }
         Schachfigur x = board[x1][y1];
         board[x1][y1] = null;

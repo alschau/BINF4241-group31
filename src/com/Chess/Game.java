@@ -8,9 +8,9 @@ public class Game {
     private Board board;
     private int turn = 1;
     private String currentcolor;
-    private String player1;
-    private String player2;
-    private String player;
+    private Player player1;
+    private Player player2;
+    private Player player;
     private String from;
     private String to;
     ArrayList<String> names = new ArrayList<String>( Arrays.asList("a", "b", "c", "d", "e", "f", "g", "h") );
@@ -18,8 +18,8 @@ public class Game {
 
     public Game(Board b, String p1, String p2){
         this.board = b;
-        this.player1 = p1;
-        this.player2 = p2;
+        Player player1 = new Player(p1, "W");
+        Player player2 = new Player(p2, "B");
         b.printboard();
         System.out.println("The Game starts!");
 
@@ -29,89 +29,31 @@ public class Game {
         while(true){
             if(this.turn%2 == 1){
                 this.player = player1;
-                this.currentcolor = "W";
             } else {
                 this.player = player2;
-                this.currentcolor = "B";
             }
+            this.currentcolor = player.getColor();
 
             Scanner scanner = new Scanner(System.in);
-            String x2string;
 
-            int x2;
-            int y2;
-            int x1 = 4;
-            int y1 = 4;
-            String hh;
+            int x1;
+            int y1;
 
             while(true){
                 while(true){
-                    System.out.println(player + ", make your move ");
+                    System.out.println(player.getName() + ", choose a valid field of a figure ");
                     from = scanner.nextLine();
-                    if (from.contains("x")) {
-                        StringBuilder kk = new StringBuilder(from);
-                        int v = from.indexOf("x");
-                        from = kk.deleteCharAt(v).toString();
-                    }
-
-                    if (Character.isUpperCase(from.indexOf(0))){
-
-                        y2 = names.indexOf(String.valueOf(from.charAt(from.length() - 2 ))); //letter
-                        x2 = Integer.parseInt(String.valueOf(from.charAt(from.length() - 1 )))-1; //number
-                        System.out.println(x2);
-                        System.out.println(y2);
-
-                        if(from.length() == 3){
-                            name = from.charAt(0)
-
-
-                        }
-
-                        break;
-
-                    }
-                    else if(Character.isLowerCase(from.indexOf(0))) {
-                        if(from.substring(from.length()-1) == ".") {
-                            x2 = Integer.parseInt(String.valueOf(from.charAt(from.length() -5 )))-1; //number
-                            y2 = names.indexOf(String.valueOf(from.charAt(from.length() -6 ))); //letter
-                            System.out.println(x2);
-                            System.out.println(y2);
-                            break;
-                        }
-                        //promotion
-                        else if(from.contains("=")) {
-                            x2 = Integer.parseInt(String.valueOf(from.charAt(1)))-1; //number
-                            y2 = names.indexOf(String.valueOf(from.charAt(0 ))); //letter
-
-                        }
-                    }
-
-                    else {
-                        //error
-                    }
-
-
-                    /*if(from.length() == 2){
-                        y2 = names.indexOf(String.valueOf(from.charAt(0))); //letter
-                        x2 = Integer.parseInt(String.valueOf(from.charAt(1)))-1; //number
+                    if(coordinates.contains(from)){
                         break;
                     }
-                    if(from.length() == 3) {
-                        hh = from.substring(0,1);
-                        from = from.substring(1);
-                        y2 = names.indexOf(String.valueOf(from.charAt(0))); //letter
-                        x2 = Integer.parseInt(String.valueOf(from.charAt(1)))-1; //number
-                    }
-                    if(from.contains("x")) {
-
-                    }*/
 
                 }
-               // y1 = names.indexOf(String.valueOf(from.charAt(0))); //letter
-                //  x1 = Integer.parseInt(String.valueOf(from.charAt(1)))-1; //number
+
+                y1 = names.indexOf(String.valueOf(from.charAt(0))); //letter
+                x1 = Integer.parseInt(String.valueOf(from.charAt(1)))-1; //number
 
                 if((board.getBoard()[x1][y1] == null) || !(board.getBoard()[x1][y1].getColor() == currentcolor)){
-                    System.out.println("I'm sorry on this field is either no piece or one from your opponent");
+                    System.out.println("tut mir leid auf diesem feld befindet sich keine oder eine gegnerische figur");
                     continue;
                 }
                 else{
@@ -120,11 +62,10 @@ public class Game {
 
             }
 
-            System.out.println(x2);
-            System.out.println(y2);
+
 
             while(true){
-                System.out.println(player + " Enter the field where you want to move your figure: ");
+                System.out.println(player.getName() + " Enter the field where you want to move your figure: ");
                 to = scanner.nextLine();
                 if(coordinates.contains(to)){
                     break;
@@ -133,9 +74,9 @@ public class Game {
                     System.out.println("Please enter a valid field");
                 }
             }
-            /*
+
             int y2 = names.indexOf(String.valueOf(to.charAt(0)));
-            int x2 = Integer.parseInt(String.valueOf(to.charAt(1)))-1; */
+            int x2 = Integer.parseInt(String.valueOf(to.charAt(1)))-1;
             boolean rochade = false;
 
             // Rochade
@@ -184,7 +125,20 @@ public class Game {
             //Todo check if king (enemy or own) is in danger
 
             printBoard();
-            System.out.println(b.graveyard);
+            if(player.getColor().equals("W")){
+                String grave = "Graveyard of " + player.getName() + ": ";
+                for(Schachfigur a: b.graveyard1){
+                    grave = grave + a.getCharacter();
+                }
+                System.out.println(grave);
+            } else {
+                String grave = "Graveyard of " + player.getName() + ": ";
+                for(Schachfigur a: b.graveyard2){
+                    grave = grave + a.getCharacter();
+                }
+                System.out.println(grave);
+            }
+
             this.turn++;
 
         }

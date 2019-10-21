@@ -35,7 +35,7 @@ public class Rook implements Schachfigur {
     }
 
 
-    public Boolean islegal(int x1, int y1, int x2, int y2) {
+    public Boolean islegal(Board board, int x1, int y1, int x2, int y2) {
         return((x1 == x2 || y1 == y2) && !((x1==x2)&&(y1==y2)));
     }
 }

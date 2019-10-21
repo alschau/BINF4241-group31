@@ -8,9 +8,9 @@ public class Game {
     private Board board;
     private int turn = 1;
     private String currentcolor;
-    private String player1;
-    private String player2;
-    private String player;
+    private Player player1;
+    private Player player2;
+    private Player player;
     private String from;
     private String to;
     ArrayList<String> names = new ArrayList<String>( Arrays.asList("a", "b", "c", "d", "e", "f", "g", "h") );
@@ -18,8 +18,8 @@ public class Game {
 
     public Game(Board b, String p1, String p2){
         this.board = b;
-        this.player1 = p1;
-        this.player2 = p2;
+        Player player1 = new Player(p1, "W");
+        Player player2 = new Player(p2, "B");
         b.printboard();
         System.out.println("The Game starts!");
 
@@ -29,11 +29,10 @@ public class Game {
         while(true){
             if(this.turn%2 == 1){
                 this.player = player1;
-                this.currentcolor = "W";
             } else {
                 this.player = player2;
-                this.currentcolor = "B";
             }
+            this.currentcolor = player.getColor();
 
             Scanner scanner = new Scanner(System.in);
 
@@ -42,7 +41,7 @@ public class Game {
 
             while(true){
                 while(true){
-                    System.out.println(player + ", choose a valid field of a figure ");
+                    System.out.println(player.getName() + ", choose a valid field of a figure ");
                     from = scanner.nextLine();
                     if(coordinates.contains(from)){
                         break;
@@ -66,7 +65,7 @@ public class Game {
 
 
             while(true){
-                System.out.println(player + " Enter the field where you want to move your figure: ");
+                System.out.println(player.getName() + " Enter the field where you want to move your figure: ");
                 to = scanner.nextLine();
                 if(coordinates.contains(to)){
                     break;
@@ -126,7 +125,20 @@ public class Game {
             //Todo check if king (enemy or own) is in danger
 
             printBoard();
-            System.out.println(b.graveyard);
+            if(player.getColor().equals("W")){
+                String grave = "Graveyard of " + player.getName() + ": ";
+                for(Schachfigur a: b.graveyard1){
+                    grave = grave + a.getCharacter();
+                }
+                System.out.println(grave);
+            } else {
+                String grave = "Graveyard of " + player.getName() + ": ";
+                for(Schachfigur a: b.graveyard2){
+                    grave = grave + a.getCharacter();
+                }
+                System.out.println(grave);
+            }
+
             this.turn++;
 
         }

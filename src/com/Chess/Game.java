@@ -60,7 +60,15 @@ public class Game {
                         x2 = Integer.parseInt(String.valueOf(from.charAt(from.length() - 1 )))-1; //number
                         System.out.println(x2);
                         System.out.println(y2);
+
+                        if(from.length() == 3){
+                            name = from.charAt(0)
+
+
+                        }
+
                         break;
+
                     }
                     else if(Character.isLowerCase(from.indexOf(0))) {
                         if(from.substring(from.length()-1) == ".") {

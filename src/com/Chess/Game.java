@@ -123,7 +123,10 @@ public class Game {
                 }
             }
 
+            //Todo check if king (enemy or own) is in danger
+
             printBoard();
+            System.out.println(b.graveyard);
             this.turn++;
 
         }

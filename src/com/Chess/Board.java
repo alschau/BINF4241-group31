@@ -7,20 +7,18 @@ import java.util.Arrays;
 
 public class Board {
 
-    Schachfigur[][] board;
+    private Schachfigur[][] board;
     ArrayList<String> names = new ArrayList<String>( Arrays.asList("a", "b", "c", "d", "e", "f", "g", "h") );
-
+    ArrayList<Schachfigur> graveyard = new ArrayList<>();
 
 
     public Board(){
 
-
-
-        this.board = new Schachfigur[8][8];
+        board = new Schachfigur[8][8];
 
         board[0][0] = new Rook("B");
-        board[0][1] = new Knight("B");
         board[0][2] = new Bishop("B");
+        board[0][1] = new Knight("B");
         board[0][3] = new Queen("B");
         board[0][4] = new King("B");
         board[0][5] = new Bishop("B");
@@ -121,8 +119,9 @@ public class Board {
 
     public void move(int x1, int y1, int x2, int y2){
 
-        //TODO if enemy figure on x1y2 --> add it to graveyard
-
+        if (board[x2][y2] != null){
+            graveyard.add(board[x2][y2]);
+        }
         Schachfigur x = board[x1][y1];
         board[x1][y1] = null;
         board[x2][y2] = x;

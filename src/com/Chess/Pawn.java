@@ -34,18 +34,26 @@ public class Pawn implements Schachfigur {
         this.notMoved = false;
     }
 
-    public Boolean islegal(int x1, int y1, int x2, int y2) {
-        //TODO: fressen einbauen
+    public Boolean islegal(Board board, int x1, int y1, int x2, int y2) {
+
+        // White Pawn
         if(this.color.equals("W")){
-            if(x1==6){
+            if(x1==6 && board.getBoard()[x2][y2]==null){
                 return((x2 == x1-1 && y1==y2)||(y1==y2 && x2 == x1-2));
                 //TODO: en passant
-            } else {
-                return (x2 == x1 - 1);
+            } else if(board.getBoard()[x2][y2]!=null){
+                return((x1-1==x2 && y1-1==y2) || (x1-1==x2 && y1+1==y2));
+            }else {
+                return (x2 == x1-1);
             }
+
+        // Black Pawn
         } else {
-            if(x1==1){
-                return(x2 == x1+1 && y1==y2)||(y1==y2 && x2 == x1+2);
+            if(x1==1 && board.getBoard()[x2][y2]==null) {
+                return (x2 == x1 + 1 && y1 == y2) || (y1 == y2 && x2 == x1 + 2);
+                // En Passant here as well
+            }else if(board.getBoard()[x2][y2]!=null){
+                return((x1+1==x2 && y1-1==y2) || (x1+1==x2 && y1+1==y2));
             } else {
                 return (x1 == x2 - 1);
             }

@@ -101,7 +101,7 @@ public class Game {
 
             // Normaler Zug
             if(!rochade) {
-                if (board.getBoard()[x1][y1].islegal(x1, y1, x2, y2)) {
+                if (board.getBoard()[x1][y1].islegal(b, x1, y1, x2, y2)) {
                     // i need to check the fields in between
                     if ("QBR".contains(board.getBoard()[x1][y1].getCharacter())) {
                         // Check if the Path is empty

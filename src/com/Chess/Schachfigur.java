@@ -8,5 +8,5 @@ interface Schachfigur {
     void setMoved();
     String getColor();
     String getCharacter();
-    public Boolean islegal(int x1, int y1, int x2, int y2);
+    public Boolean islegal(Board b, int x1, int y1, int x2, int y2);
 }

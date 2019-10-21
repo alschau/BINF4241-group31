@@ -47,7 +47,7 @@ public class Pawn implements Schachfigur {
                 return (x2 == x1-1);
             }
 
-        // Black Pawn
+            // Black Pawn
         } else {
             if(x1==1 && board.getBoard()[x2][y2]==null) {
                 return (x2 == x1 + 1 && y1 == y2) || (y1 == y2 && x2 == x1 + 2);

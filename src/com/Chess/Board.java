@@ -7,19 +7,42 @@ import java.util.Arrays;
 
 public class Board {
 
-    Schachfigur[][] board;
+    private Schachfigur[][] board;
     ArrayList<String> names = new ArrayList<String>( Arrays.asList("a", "b", "c", "d", "e", "f", "g", "h") );
-
+    ArrayList<Schachfigur> graveyard = new ArrayList<>();
 
 
     public Board(){
 
+        board = new Schachfigur[8][8];
 
+        board[0][0] = new Rook("B");
+        board[0][2] = new Bishop("B");
+        board[0][1] = new Knight("B");
+        board[0][3] = new Queen("B");
+        board[0][4] = new King("B");
+        board[0][5] = new Bishop("B");
+        board[0][6] = new Knight("B");
+        board[0][7] = new Rook("B");
 
-        this.board = new Schachfigur[8][8];
+        board[7][0] = new Rook("W");
+        board[7][1] = new Knight("W");
+        board[7][2] = new Bishop("W");
+        board[7][3] = new Queen("W");
+        board[7][4] = new King("W");
+        board[7][5] = new Bishop("W");
+        board[7][6] = new Knight("W");
+        board[7][7] = new Rook("W");
 
+        for(int i=0; i<8; i++){
+            board[1][i] = new Pawn("B");
+            board[6][i] = new Pawn("W");
+        }
+
+        /*
         for(int i = 0;i<8;i++){
             for(int j = 0; j<8;j++){
+
 
                 if(j == 0){
                     if(i == 0 || i == 7){
@@ -64,13 +87,14 @@ public class Board {
                         board[i][j] = new King("W");
                     }
 
-                }
+
 
                 else{
                     board[i][j] = null;
                 }
             }
-        }
+
+        }*/
     }
 
 
@@ -78,9 +102,9 @@ public class Board {
 
     public void printboard(){
         System.out.print("    a   b   c   d   e   f   g   h ");
-        for(int j=0; j<8;j++){
-            System.out.print("\n" + Integer.toString(j + 1)+ " ");
-            for(int i=0; i<8;i++){
+        for(int i=0; i<8;i++){
+            System.out.print("\n" + Integer.toString(i + 1)+ " ");
+            for(int j=0; j<8;j++){
                 if(board[i][j] != null){
                     System.out.print("["+board[i][j].getName()+"]");
                 }
@@ -95,31 +119,15 @@ public class Board {
 
     public void move(int x1, int y1, int x2, int y2){
 
-
-        /**int x1 = names.indexOf(String.valueOf(a.charAt(0))); //letter
-        int y1 = Integer.parseInt(String.valueOf(a.charAt(1)))-1; //number
-
-        int x2 = names.indexOf(String.valueOf(b.charAt(0)));
-        int y2 = Integer.parseInt(String.valueOf(b.charAt(1)))-1;
-         */
-
+        if (board[x2][y2] != null){
+            graveyard.add(board[x2][y2]);
+        }
         Schachfigur x = board[x1][y1];
         board[x1][y1] = null;
         board[x2][y2] = x;
 
     }
 
-    public void checkpath(String a, String b){
-        int x1 = names.indexOf(String.valueOf(a.charAt(0))); //letter
-        int y1 = Integer.parseInt(String.valueOf(a.charAt(1)))-1; //number
-
-        int x2 = names.indexOf(String.valueOf(b.charAt(0)));
-        int y2 = Integer.parseInt(String.valueOf(b.charAt(1)))-1;
-
-
-
-
-    }
 
     public Schachfigur[][] getBoard() {
         return board;

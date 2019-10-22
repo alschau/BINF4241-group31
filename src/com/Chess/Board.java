@@ -20,10 +20,10 @@ public class Board {
 
         board[0][0] = new Rook("B");
         board[0][1] = new Knight("B");
-        //board[0][2] = new Bishop("B");
+        board[0][2] = new Bishop("B");
         board[1][3] = new Pawn("W");
-        //board[0][3] = new Queen("B");
-        //board[0][4] = new King("B");
+        board[0][3] = new Queen("B");
+        board[0][4] = new King("B");
         board[0][5] = new Bishop("B");
         board[0][6] = new Knight("B");
         board[0][7] = new Rook("B");
@@ -38,7 +38,7 @@ public class Board {
         board[7][7] = new Rook("W");
 
         for(int i=0; i<8; i++){
-            //board[1][i] = new Pawn("B");
+            board[1][i] = new Pawn("B");
             board[6][i] = new Pawn("W");
         }
 
@@ -126,7 +126,6 @@ public class Board {
             if (board[x1][y1].getColor() == "W") {
                 if (board[(x2+1)][y2] != null && (y1 != y2)) {
                     graveyard1.add(board[(x2+1)][y2]);
-                    System.out.println("wieso gaht das ned");
                     board[(x2+1)][y2] = null;
                 }
             }

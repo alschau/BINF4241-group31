@@ -41,67 +41,7 @@ public class Board {
             board[1][i] = new Pawn("B");
             board[6][i] = new Pawn("W");
         }
-
-        /*
-        for(int i = 0;i<8;i++){
-            for(int j = 0; j<8;j++){
-
-
-                if(j == 0){
-                    if(i == 0 || i == 7){
-                        board[i][j] = new Rook("B");
-                    }
-                    else if(i == 1 || i ==6){
-                        board[i][j] = new Knight("B");
-                    }
-                    else if(i == 2 || i ==5){
-                        board[i][j] = new Bishop("B");
-                    }
-                    else if(i == 3){
-                        board[i][j] = new Queen("B");
-                    }
-                    else if(i == 4){
-                        board[i][j] = new King("B");
-                    }
-                }
-
-                else if(j==1){
-                    board[i][j] = new Pawn("B");
-                }
-
-                else if(j ==6){
-                    board[i][j] = new Pawn("W");
-                }
-
-                else if(j == 7){
-                    if(i == 0 || i == 7){
-                        board[i][j] = new Rook("W");
-                    }
-                    else if(i == 1 || i ==6){
-                        board[i][j] = new Knight("W");
-                    }
-                    else if(i == 2 || i ==5){
-                        board[i][j] = new Bishop("W");
-                    }
-                    else if(i == 3){
-                        board[i][j] = new Queen("W");
-                    }
-                    else if(i == 4){
-                        board[i][j] = new King("W");
-                    }
-
-
-
-                else{
-                    board[i][j] = null;
-                }
-            }
-
-        }*/
     }
-
-
-
 
     public void printboard(){
         System.out.print("    a   b   c   d   e   f   g   h ");
@@ -120,9 +60,9 @@ public class Board {
         System.out.println("\n");
     }
 
-    public void move(int x1, int y1, int x2, int y2, boolean muchosimportantes){
-        System.out.println(muchosimportantes);
-        if(muchosimportantes) {
+    public void move(int x1, int y1, int x2, int y2, boolean doublemoved){
+        System.out.println(doublemoved);
+        if(doublemoved) {
             if (board[x1][y1].getColor() == "W") {
                 if (board[(x2+1)][y2] != null && (y1 != y2)) {
                     graveyard1.add(board[(x2+1)][y2]);
@@ -160,7 +100,7 @@ public class Board {
     public void promotion(int x1,int y1){
 
         Scanner s = new Scanner(System.in);
-        System.out.println("congratulations, you can promote a Pawn. Enter the character of the figure you want (R,N,B,Q):");
+        System.out.println("Congratulations, you can promote a Pawn. Enter the character of the figure you want (R,N,B,Q):");
         String figure = s.nextLine();
 
         Schachfigur f;

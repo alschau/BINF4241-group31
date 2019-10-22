@@ -14,8 +14,8 @@ public class Game {
     private String from;
     private String to;
     ArrayList<String> names = new ArrayList<String>( Arrays.asList("a", "b", "c", "d", "e", "f", "g", "h") );
-    public Boolean muchosimportantes = false;
-    public Boolean muchosimportantes2 = false;
+    public Boolean doublemovedbefore = false;
+    public Boolean doublemoved = false;
 
 
     public Game(Board b, String p1, String p2){
@@ -56,7 +56,7 @@ public class Game {
                 x1 = Integer.parseInt(String.valueOf(from.charAt(1)))-1; //number
 
                 if((board.getBoard()[x1][y1] == null) || !(board.getBoard()[x1][y1].getColor() == currentcolor)){
-                    System.out.println("tut mir leid auf diesem feld befindet sich keine oder eine gegnerische figur");
+                    System.out.println("I'm sorry this on this field is either no piece or one of your opponent's");
                     continue;
                 }
                 else{
@@ -103,19 +103,15 @@ public class Game {
             }
             // Normaler Zug
             if(!rochade) {
-                //System.out.println(board.getBoard()[x1][y1].islegal(b, x1, y1, x2, y2, muchosimportantes));
-                if (board.getBoard()[x1][y1].islegal(b, x1, y1, x2, y2, muchosimportantes)) {
+                if (board.getBoard()[x1][y1].islegal(b, x1, y1, x2, y2, doublemovedbefore)) {
                     if (board.getBoard()[x1][y1] instanceof Pawn) {
-                        muchosimportantes2 = board.getBoard()[x1][y1].doublemoved();
-                        System.out.println(muchosimportantes2);
-                        if(muchosimportantes2){System.out.println("it double moved");}
+                        doublemoved = board.getBoard()[x1][y1].doublemoved();
                     }
-
                     // i need to check the fields in between
                     if ("QBR".contains(board.getBoard()[x1][y1].getCharacter())) {
                         // Check if the Path is empty
                         if (isPathEmpty(board, x1, y1, x2, y2)) {
-                            board.move(x1, y1, x2, y2, muchosimportantes);
+                            board.move(x1, y1, x2, y2, doublemovedbefore);
                         }
                         else {
                             // if not, start turn again
@@ -124,7 +120,7 @@ public class Game {
                         }
                     } else {
                         // no need to check fields in between
-                        board.move(x1, y1, x2, y2, muchosimportantes);
+                        board.move(x1, y1, x2, y2, doublemovedbefore);
                     }
                 }
                 else {
@@ -132,7 +128,7 @@ public class Game {
                     turn--;
                 }
             }
-            muchosimportantes = muchosimportantes2;
+            doublemovedbefore = doublemoved;
             //Todo check if king (enemy or own) is in danger
 
 

@@ -37,7 +37,7 @@ public class Pawn implements Schachfigur {
         this.notMoved = false;
     }
 
-    public Boolean islegal(Board board, int x1, int y1, int x2, int y2, boolean muchosimportantes) {
+    public Boolean islegal(Board board, int x1, int y1, int x2, int y2, boolean doublemovedbefore) {
 
         // White Pawn
         if(this.color.equals("W")){
@@ -51,7 +51,7 @@ public class Pawn implements Schachfigur {
                     return((x2 == x1-1) && (y1==y2));
                 }
             }
-            else if (x1==3 && muchosimportantes) {
+            else if (x1==3 && doublemovedbefore) {
                 doublemoved = false;
                 if(board.getBoard()[x2+1][y1-1] != null){
                     return ((x1-1 == x2) && (y1-1 == y2));
@@ -82,7 +82,7 @@ public class Pawn implements Schachfigur {
                 }
 
             }
-            else if (x1==4 && muchosimportantes) {
+            else if (x1==4 && doublemovedbefore) {
                 doublemoved = false;
                 if(board.getBoard()[x2-1][y1-1] != null){
                     return ((x1+1 == x2) && (y1-1 == y2));

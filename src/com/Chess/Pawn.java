@@ -53,31 +53,51 @@ public class Pawn implements Schachfigur {
             }
             else if (x1==3 && muchosimportantes) {
                 doublemoved = false;
-                return(((x1-1 == x2) && (y1-1 == y2)) ||((x1-1==x2) && (y1+1==y2)));
+                if(board.getBoard()[x2+1][y1-1] != null){
+                    return ((x1-1 == x2) && (y1-1 == y2));
+                }
+                else {
+                    return(((x1-1==x2) && (y1+1==y2)));
+                }
+
             }
             else if(board.getBoard()[x2][y2]!=null){
                 doublemoved = false;
                 return(((x1-1==x2) && (y1-1==y2)) || ((x1-1==x2) && (y1+1==y2)));
             }else {
                 doublemoved = false;
-                return (x2 == x1-1);
+                return (x2 == x1-1 && y1==y2);
             }
 
             // Black Pawn
         }
         else {
             if(x1==1 && board.getBoard()[x2][y2]==null) {
-                if((y1 == y2) && (x2 == (x1 +2))) {
+                if((y1 == y2) && (x2 == (x1+2))) {
                     doublemoved = true;
                     return true;
                 }
                 else {
-                    return ((x2 == x1 + 1) && (y1 == y2));
+                    return ((x2 == x1+1) && (y1 == y2));
                 }
 
-            }else if(board.getBoard()[x2][y2]!=null){
+            }
+            else if (x1==4 && muchosimportantes) {
+                doublemoved = false;
+                if(board.getBoard()[x2-1][y1-1] != null){
+                    return ((x1+1 == x2) && (y1-1 == y2));
+                }
+                else {
+                    return(((x1+1==x2) && (y1+1==y2)));
+                }
+
+            }
+            else if(board.getBoard()[x2][y2]!=null){
+                doublemoved = false;
                 return(((x1+1==x2) && (y1-1==y2)) || ((x1+1==x2) && (y1+1==y2)));
-            } else {
+            }
+            else {
+                doublemoved = false;
                 return (x1 == (x2 - 1));
             }
         }

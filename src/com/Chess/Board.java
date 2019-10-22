@@ -119,15 +119,19 @@ public class Board {
     }
 
     public void move(int x1, int y1, int x2, int y2, boolean muchosimportantes){
+        System.out.println(muchosimportantes);
         if(muchosimportantes) {
             if (board[x1][y1].getColor() == "W") {
-                if (board[(x2+1)][y2] != null) {
+                if (board[(x2+1)][y2] != null && (y1 != y2)) {
                     graveyard1.add(board[(x2+1)][y2]);
+                    System.out.println("wieso gaht das ned");
+                    board[(x2+1)][y2] = null;
                 }
             }
             else {
                 if (board[(x2-1)][y2] != null) {
                     graveyard2.add(board[(x2-1)][y2]);
+                    board[(x2-1)][y2] = null;
                 }
             }
         }

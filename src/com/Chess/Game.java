@@ -15,6 +15,7 @@ public class Game {
     private String to;
     ArrayList<String> names = new ArrayList<String>( Arrays.asList("a", "b", "c", "d", "e", "f", "g", "h") );
     public Boolean muchosimportantes = false;
+    public Boolean muchosimportantes2 = false;
 
 
     public Game(Board b, String p1, String p2){
@@ -77,8 +78,8 @@ public class Game {
                 }
             }
 
-            int y2 = names.indexOf(String.valueOf(to.charAt(0)));
-            int x2 = Integer.parseInt(String.valueOf(to.charAt(1)))-1;
+            int y2 = names.indexOf(String.valueOf(to.charAt(0))); //letter
+            int x2 = Integer.parseInt(String.valueOf(to.charAt(1)))-1; //number
             boolean rochade = false;
 
             // Rochade
@@ -100,36 +101,41 @@ public class Game {
                     rochade = true;
                 }
             }
-
             // Normaler Zug
             if(!rochade) {
-                System.out.println(board.getBoard()[x1][y1].islegal(b, x1, y1, x2, y2, muchosimportantes));
+                //System.out.println(board.getBoard()[x1][y1].islegal(b, x1, y1, x2, y2, muchosimportantes));
                 if (board.getBoard()[x1][y1].islegal(b, x1, y1, x2, y2, muchosimportantes)) {
+                    if (board.getBoard()[x1][y1] instanceof Pawn) {
+                        muchosimportantes2 = board.getBoard()[x1][y1].doublemoved();
+                        System.out.println(muchosimportantes2);
+                        if(muchosimportantes2){System.out.println("it double moved");}
+                    }
+
                     // i need to check the fields in between
                     if ("QBR".contains(board.getBoard()[x1][y1].getCharacter())) {
                         // Check if the Path is empty
                         if (isPathEmpty(board, x1, y1, x2, y2)) {
                             board.move(x1, y1, x2, y2, muchosimportantes);
-                        } else {
+                        }
+                        else {
                             // if not, start turn again
                             System.out.println("you cant move there!");
                             turn--;
                         }
                     } else {
                         // no need to check fields in between
-                        board.move(x1, y1, x2, y2, false);
+                        board.move(x1, y1, x2, y2, muchosimportantes);
                     }
-                } else {
+                }
+                else {
                     System.out.println("You can't move there with this figure");
                     turn--;
                 }
             }
-
+            muchosimportantes = muchosimportantes2;
             //Todo check if king (enemy or own) is in danger
 
-            if (board.getBoard()[x1][y1] instanceof Pawn) {
-                muchosimportantes = board.getBoard()[x1][y1].doublemoved();
-            }
+
             printBoard();
             if(player.getColor().equals("W")){
                 String grave = "Graveyard of " + player.getName() + ": ";

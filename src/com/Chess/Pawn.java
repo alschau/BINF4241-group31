@@ -7,6 +7,7 @@ public class Pawn implements Schachfigur {
     private String color;
     private String name;
     Boolean notMoved = true;
+    Boolean doublemoved = false;
     ArrayList<String> names = new ArrayList<String>( Arrays.asList("a", "b", "c", "d", "e", "f", "g", "h") );
 
     public Pawn(String c){
@@ -30,32 +31,74 @@ public class Pawn implements Schachfigur {
         return notMoved;
     }
 
+    public Boolean doublemoved() { return doublemoved; }
+
     public void setMoved() {
         this.notMoved = false;
     }
 
-    public Boolean islegal(Board board, int x1, int y1, int x2, int y2) {
+    public Boolean islegal(Board board, int x1, int y1, int x2, int y2, boolean muchosimportantes) {
 
         // White Pawn
         if(this.color.equals("W")){
-            if(x1==6 && board.getBoard()[x2][y2]==null){
-                return((x2 == x1-1 && y1==y2)||(y1==y2 && x2 == x1-2));
-                //TODO: en passant
-            } else if(board.getBoard()[x2][y2]!=null){
-                return((x1-1==x2 && y1-1==y2) || (x1-1==x2 && y1+1==y2));
+            if(x1==6 && board.getBoard()[x2][y2] == null){
+                if (y1==y2 && x2 == x1-2) {
+                    doublemoved = true;
+                    return true;
+                }
+                else {
+                    doublemoved = false;
+                    return((x2 == x1-1) && (y1==y2));
+                }
+            }
+            else if (x1==3 && muchosimportantes) {
+                doublemoved = false;
+                if(board.getBoard()[x2+1][y1-1] != null){
+                    return ((x1-1 == x2) && (y1-1 == y2));
+                }
+                else {
+                    return(((x1-1==x2) && (y1+1==y2)));
+                }
+
+            }
+            else if(board.getBoard()[x2][y2]!=null){
+                doublemoved = false;
+                return(((x1-1==x2) && (y1-1==y2)) || ((x1-1==x2) && (y1+1==y2)));
             }else {
-                return (x2 == x1-1);
+                doublemoved = false;
+                return (x2 == x1-1 && y1==y2);
             }
 
-        // Black Pawn
-        } else {
+            // Black Pawn
+        }
+        else {
             if(x1==1 && board.getBoard()[x2][y2]==null) {
-                return (x2 == x1 + 1 && y1 == y2) || (y1 == y2 && x2 == x1 + 2);
-                // En Passant here as well
-            }else if(board.getBoard()[x2][y2]!=null){
-                return((x1+1==x2 && y1-1==y2) || (x1+1==x2 && y1+1==y2));
-            } else {
-                return (x1 == x2 - 1);
+                if((y1 == y2) && (x2 == (x1+2))) {
+                    doublemoved = true;
+                    return true;
+                }
+                else {
+                    return ((x2 == x1+1) && (y1 == y2));
+                }
+
+            }
+            else if (x1==4 && muchosimportantes) {
+                doublemoved = false;
+                if(board.getBoard()[x2-1][y1-1] != null){
+                    return ((x1+1 == x2) && (y1-1 == y2));
+                }
+                else {
+                    return(((x1+1==x2) && (y1+1==y2)));
+                }
+
+            }
+            else if(board.getBoard()[x2][y2]!=null){
+                doublemoved = false;
+                return(((x1+1==x2) && (y1-1==y2)) || ((x1+1==x2) && (y1+1==y2)));
+            }
+            else {
+                doublemoved = false;
+                return (x1 == (x2 - 1));
             }
         }
     }

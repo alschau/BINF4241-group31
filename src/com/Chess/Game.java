@@ -8,8 +8,6 @@ public class Game {
     private Board board;
     private int turn = 1;
     private String currentcolor;
-    private Player player1;
-    private Player player2;
     private Player player;
     private String from;
     private String to;
@@ -55,7 +53,7 @@ public class Game {
                 y1 = names.indexOf(String.valueOf(from.charAt(0))); //letter
                 x1 = Integer.parseInt(String.valueOf(from.charAt(1)))-1; //number
 
-                if((board.getBoard()[x1][y1] == null) || !(board.getBoard()[x1][y1].getColor() == currentcolor)){
+                if((board.getBoard()[x1][y1] == null) || !(board.getBoard()[x1][y1].getColor().equals(currentcolor))){
                     System.out.println("I'm sorry this on this field is either no piece or one of your opponent's");
                     continue;
                 }
@@ -112,6 +110,11 @@ public class Game {
                         // Check if the Path is empty
                         if (isPathEmpty(board, x1, y1, x2, y2)) {
                             board.move(x1, y1, x2, y2, doublemovedbefore);
+                            if(isCheck(player)){
+                                board.move(x2, y2, x1, y1, doublemovedbefore);
+                                System.out.println("you cant move there!");
+                                turn--;
+                            }
                         }
                         else {
                             // if not, start turn again
@@ -121,6 +124,11 @@ public class Game {
                     } else {
                         // no need to check fields in between
                         board.move(x1, y1, x2, y2, doublemovedbefore);
+                        if(isCheck(player)){
+                            board.move(x2, y2, x1, y1, doublemovedbefore);
+                            System.out.println("you cant move there!");
+                            turn--;
+                        }
                     }
                 }
                 else {
@@ -133,6 +141,9 @@ public class Game {
 
 
             printBoard();
+            if(isCheck(player) || isCheckOtherPlayer(player)){
+                System.out.println("Schach!");
+            }
             if(player.getColor().equals("W")){
                 String grave = "Graveyard of " + player.getName() + ": ";
                 for(Schachfigur a: b.graveyard1){

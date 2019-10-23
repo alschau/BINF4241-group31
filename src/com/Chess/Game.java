@@ -225,15 +225,84 @@ public class Game {
 
         // Return True if all Fields between are empty, else return False
         for(int[] i : path){
-            System.out.println(i[0]);
-            System.out.println(i[1]);
             if(board.getBoard()[i[0]][i[1]] != null){
                 return false;
             }
         }
 
         return true;
+    }
 
+    public Boolean isCheck(Player player){
+        Boolean check = false;
+        int x=-1;
+        int y=-1;
+        for(int i=0; i<8; i++){
+            for(int j=0; j<8; j++){
+                if(board.getBoard()[i][j]!= null) {
+                    if (board.getBoard()[i][j].getCharacter().equals("K")) {
+                        if (board.getBoard()[i][j].getColor().equals(player.getColor())) {
+                            x = i;
+                            y = j;
+
+                        }
+                    }
+                }
+            }
+        }
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if(board.getBoard()[i][j] != null) {
+                    if (board.getBoard()[i][j].islegal(board, i, j, x, y, false)) {
+                        if (!board.getBoard()[i][j].getColor().equals(player.getColor())) {
+                            if (isPathEmpty(board, i, j, x, y)) {
+                                check = true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return check;
+    }
+
+    public Boolean isCheckOtherPlayer(Player player) {
+        Boolean check = false;
+        int x = -1;
+        int y = -1;
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (board.getBoard()[i][j] != null) {
+                    if (player.getColor().equals("W")) {
+                        if (board.getBoard()[i][j].getCharacter().equals("K") && board.getBoard()[i][j].getColor().equals("B")) {
+                            x = i;
+                            y = j;
+                        }
+                    } else {
+                        if (board.getBoard()[i][j].getCharacter().equals("K") && board.getBoard()[i][j].getColor().equals("W")) {
+                            x = i;
+                            y = j;
+                        }
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (board.getBoard()[i][j] != null) {
+                    if (board.getBoard()[i][j].getColor().equals(player.getColor())) {
+                        if (board.getBoard()[i][j].islegal(board, i, j, x, y, false)) {
+                            if ("KN".contains(board.getBoard()[i][j].getCharacter()) || isPathEmpty(board, i, j, x, y)){
+                                check = true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return check;
     }
 
 }

@@ -45,64 +45,19 @@ public class Pawn implements Schachfigur {
 
         // White Pawn
         if(this.color.equals("W")){
-            if(x1==6 && board.getBoard()[x2][y2] == null){
-                if (y1==y2 && x2 == x1-2) {
-                    doublemoved = true;
-                    return true;
-                }
-                else {
-                    doublemoved = false;
-                    return((x2 == x1-1) && (y1==y2));
-                }
-            }
-            else if (x1==3 && doublemovedbefore) {
-                doublemoved = false;
-                if(board.getBoard()[x2+1][y1-1] != null){
-                    return ((x1-1 == x2) && (y1-1 == y2));
-                }
-                else {
-                    return(((x1-1==x2) && (y1+1==y2)));
-                }
-
-            }
-            else if(board.getBoard()[x2][y2]!=null){
-                doublemoved = false;
-                return(((x1-1==x2) && (y1-1==y2)) || ((x1-1==x2) && (y1+1==y2)));
-            }else {
-                doublemoved = false;
-                return (x2 == x1-1 && y1==y2);
+            if(x1==6){
+                return((x2 == x1-1 && y1==y2)||(y1==y2 && x2 == x1-2));
+            } else {
+                return (x2 == x1 - 1);
             }
 
             // Black Pawn
         }
         else {
-            if(x1==1 && board.getBoard()[x2][y2]==null) {
-                if((y1 == y2) && (x2 == (x1+2))) {
-                    doublemoved = true;
-                    return true;
-                }
-                else {
-                    return ((x2 == x1+1) && (y1 == y2));
-                }
-
-            }
-            else if (x1==4 && doublemovedbefore) {
-                doublemoved = false;
-                if(board.getBoard()[x2-1][y1-1] != null){
-                    return ((x1+1 == x2) && (y1-1 == y2));
-                }
-                else {
-                    return(((x1+1==x2) && (y1+1==y2)));
-                }
-
-            }
-            else if(board.getBoard()[x2][y2]!=null){
-                doublemoved = false;
-                return(((x1+1==x2) && (y1-1==y2)) || ((x1+1==x2) && (y1+1==y2)));
-            }
-            else {
-                doublemoved = false;
-                return (x1 == (x2 - 1));
+            if (x1 == 1) {
+                return (x2 == x1 + 1 && y1 == y2) || (y1 == y2 && x2 == x1 + 2);
+            } else {
+                return (x1 == x2 - 1);
             }
         }
     }

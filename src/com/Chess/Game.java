@@ -67,7 +67,7 @@ public class Game {
             }
 
             while(true){
-                System.out.println(player.getName() + " Enter the field where you want to move your figure: ");
+                System.out.println(player.getName() + " , enter the field where you want to move your figure: ");
                 to = scanner.nextLine();
                 if(coordinates.contains(to)){
                     break;

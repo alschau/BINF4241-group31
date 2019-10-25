@@ -27,7 +27,7 @@ public class Game {
 
 
 
-        while(true){
+        while(player1.kingalive&&player2.kingalive){
             if(this.turn%2 == 1){
                 this.player = player1;
             } else {
@@ -39,6 +39,8 @@ public class Game {
 
             int x1;
             int y1;
+            int x2;
+            int y2;
 
             while(true){
                 while(true){
@@ -47,7 +49,6 @@ public class Game {
                     if(coordinates.contains(from)){
                         break;
                     }
-
                 }
 
                 y1 = names.indexOf(String.valueOf(from.charAt(0))); //letter
@@ -63,8 +64,6 @@ public class Game {
 
             }
 
-
-
             while(true){
                 System.out.println(player.getName() + " Enter the field where you want to move your figure: ");
                 to = scanner.nextLine();
@@ -76,8 +75,8 @@ public class Game {
                 }
             }
 
-            int y2 = names.indexOf(String.valueOf(to.charAt(0))); //letter
-            int x2 = Integer.parseInt(String.valueOf(to.charAt(1)))-1; //number
+            y2 = names.indexOf(String.valueOf(to.charAt(0))); //letter
+            x2 = Integer.parseInt(String.valueOf(to.charAt(1)))-1; //number
             boolean rochade = false;
 
             // Rochade
@@ -111,9 +110,12 @@ public class Game {
                         if (isPathEmpty(board, x1, y1, x2, y2)) {
                             board.move(x1, y1, x2, y2, doublemovedbefore);
                             if(isCheck(player)){
-                                board.move(x2, y2, x1, y1, doublemovedbefore);
-                                System.out.println("you cant move there!");
-                                turn--;
+                                System.out.println("It's check if you move there. Still move? y/n ");
+                                String check = scanner.nextLine();
+                                if (check.equals("n")){
+                                    board.move(x2, y2, x1, y1, doublemovedbefore);
+                                    turn--;
+                                }
                             }
                         }
                         else {
@@ -125,9 +127,12 @@ public class Game {
                         // no need to check fields in between
                         board.move(x1, y1, x2, y2, doublemovedbefore);
                         if(isCheck(player)){
-                            board.move(x2, y2, x1, y1, doublemovedbefore);
-                            System.out.println("you cant move there!");
-                            turn--;
+                            System.out.println("It's check if you move there. Still move? y/n ");
+                            String check = scanner.nextLine();
+                            if (check.equals("n")){
+                                board.move(x2, y2, x1, y1, doublemovedbefore);
+                                turn--;
+                            }
                         }
                     }
                 }
@@ -137,30 +142,36 @@ public class Game {
                 }
             }
             doublemovedbefore = doublemoved;
-            //Todo check if king (enemy or own) is in danger
-
 
             printBoard();
             if(isCheck(player) || isCheckOtherPlayer(player)){
                 System.out.println("Schach!");
             }
-            if(player.getColor().equals("W")){
-                String grave = "Graveyard of " + player.getName() + ": ";
-                for(Schachfigur a: b.graveyard1){
-                    grave = grave + a.getCharacter();
-                }
-                System.out.println(grave);
-            } else {
-                String grave = "Graveyard of " + player.getName() + ": ";
-                for(Schachfigur a: b.graveyard2){
-                    grave = grave + a.getCharacter();
-                }
-                System.out.println(grave);
+
+            String grave1 = "Graveyard of "+player1.getName()+": ";
+            String grave2 = "Graveyard of "+player2.getName()+": ";
+
+            for(Schachfigur a: b.graveyard1){
+                grave1 = grave1 + a.getCharacter();
+                if(a.getCharacter().equals("K")){
+                    System.out.println("White King dead");
+                    player1.kingalive = false;                }
             }
+            for(Schachfigur a: b.graveyard2){
+                grave2 = grave2 + a.getCharacter();
+                if(a.getCharacter().equals("K")){
+                    System.out.println("Black King dead");
+                    player2.kingalive = false;
+                }
+            }
+
+            System.out.println(grave1);
+            System.out.println(grave2);
 
             this.turn++;
 
         }
+        System.out.println("Winner is "+player.getName()+"!!");
     }
 
 

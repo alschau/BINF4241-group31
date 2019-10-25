@@ -3,6 +3,7 @@ package com.Chess;
 public class Player {
     private String color;
     private String name;
+    public Boolean kingalive = true;
 
     public Player(String name, String color){
         this.color = color;

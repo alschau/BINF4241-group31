@@ -37,8 +37,8 @@ public class Board {
         board[7][7] = new Rook("W");
 
         for(int i=0; i<8; i++){
-            //board[1][i] = new Pawn("B");
-            //board[6][i] = new Pawn("W");
+            board[1][i] = new Pawn("B");
+            board[6][i] = new Pawn("W");
         }
     }
 

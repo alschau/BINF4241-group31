@@ -109,6 +109,7 @@ public class Game {
                         // Check if the Path is empty
                         if (isPathEmpty(board, x1, y1, x2, y2)) {
                             board.move(x1, y1, x2, y2, doublemovedbefore);
+                            board.getBoard()[x2][y2].setMoved();
                             if(isCheck(player)){
                                 System.out.println("It's check if you move there. Still move? y/n ");
                                 String check = scanner.nextLine();
@@ -126,6 +127,7 @@ public class Game {
                     } else {
                         // no need to check fields in between
                         board.move(x1, y1, x2, y2, doublemovedbefore);
+                        board.getBoard()[x2][y2].setMoved();
                         if(isCheck(player)){
                             System.out.println("It's check if you move there. Still move? y/n ");
                             String check = scanner.nextLine();

@@ -48,6 +48,8 @@ public class Game {
                     from = scanner.nextLine();
                     if(coordinates.contains(from)){
                         break;
+                    } else {
+                        System.out.println("The field you entered is not valid, please try again:");
                     }
                 }
 
@@ -80,18 +82,15 @@ public class Game {
             boolean rochade = false;
 
             // Rochade
-            if(board.getBoard()[x1][y1].getCharacter().equals("K") && board.getBoard()[x2][y2].getCharacter().equals("R")){
+            if((board.getBoard()[x1][y1] != null && board.getBoard()[x1][y1].getCharacter().equals("K") )&&(board.getBoard()[x2][y2] != null && board.getBoard()[x2][y2].getCharacter().equals("R"))){
                 if(board.getBoard()[x1][y1].notMoved() && board.getBoard()[x2][y2].notMoved() && board.getBoard()[x1][y1].getColor().equals(currentcolor)){
                     // Grosse Rochade (links)
-                    System.out.println("rochade");
                     if(y2==0 && isPathEmpty(board, x1, y1, x2, y2)){
-                        System.out.println("gross");
                         board.move(x1, y1, x1, y1-2, false);
                         board.move(x2, y2, x2, y2+3, false);
                     }
                     // Kleine Rochade (rechts)
                     else if(y2 == 7){
-                        System.out.println("chli");
                         board.move(x1, y1, x1, y1+2, false);
                         board.move(x2, y2, x2, y2-2, false);
                     }
@@ -105,18 +104,23 @@ public class Game {
                         doublemoved = board.getBoard()[x1][y1].doublemoved();
                     }
                     // i need to check the fields in between
-                    if ("QBR".contains(board.getBoard()[x1][y1].getCharacter())) {
+                    if ("QBRP".contains(board.getBoard()[x1][y1].getCharacter())) {
                         // Check if the Path is empty
                         if (isPathEmpty(board, x1, y1, x2, y2)) {
-                            board.move(x1, y1, x2, y2, doublemovedbefore);
-                            board.getBoard()[x2][y2].setMoved();
+                            board.move(x1, y1, x2, y2, false);
+                            if(board.getBoard()[x2][y2].getCharacter().equals("R") || board.getBoard()[x2][y2].getCharacter().equals("K")){
+                                board.getBoard()[x2][y2].setMoved();
+                            }
                             if(isCheck(player)){
-                                System.out.println("It's check if you move there. Still move? y/n ");
+                                System.out.println("It's check or check mate if you move there. Still move? y/n ");
                                 String check = scanner.nextLine();
                                 if (check.equals("n")){
-                                    board.move(x2, y2, x1, y1, doublemovedbefore);
+                                    board.move(x2, y2, x1, y1, false);
                                     turn--;
                                 }
+                            }
+                            if (board.getBoard()[x2][y2].getCharacter().equals("P") && (x2==0 || x2==7)){
+                                board.promotion(x2, y2);
                             }
                         }
                         else {
@@ -126,13 +130,13 @@ public class Game {
                         }
                     } else {
                         // no need to check fields in between
-                        board.move(x1, y1, x2, y2, doublemovedbefore);
-                        board.getBoard()[x2][y2].setMoved();
+                        board.move(x1, y1, x2, y2, false);
+                        //board.getBoard()[x2][y2].setMoved();
                         if(isCheck(player)){
-                            System.out.println("It's check if you move there. Still move? y/n ");
+                            System.out.println("It's check or check mate if you move there. Still move? y/n ");
                             String check = scanner.nextLine();
                             if (check.equals("n")){
-                                board.move(x2, y2, x1, y1, doublemovedbefore);
+                                board.move(x2, y2, x1, y1, false);
                                 turn--;
                             }
                         }
@@ -145,6 +149,8 @@ public class Game {
             }
             doublemovedbefore = doublemoved;
 
+
+
             printBoard();
             if(isCheck(player) || isCheckOtherPlayer(player)){
                 System.out.println("Schach!");
@@ -154,7 +160,7 @@ public class Game {
             String grave2 = "Graveyard of "+player2.getName()+": ";
 
             for(Schachfigur a: b.graveyard1){
-                grave1 = grave1 + a.getCharacter();
+                grave1 = grave1 + a.getCharacter()+", ";
                 if(a.getCharacter().equals("K")){
                     System.out.println("White King dead");
                     player1.kingalive = false;                }
@@ -248,6 +254,10 @@ public class Game {
         }
 
         // Return True if all Fields between are empty, else return False
+        if(path.size()==0){
+            return true;
+        }
+
         for(int[] i : path){
             if(board.getBoard()[i[0]][i[1]] != null){
                 return false;

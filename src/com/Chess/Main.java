@@ -5,6 +5,10 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
+
+
+        //todo exception handling
+
         Scanner scanner = new Scanner(System.in);
         //player names
         System.out.println("Name of player 1: ");

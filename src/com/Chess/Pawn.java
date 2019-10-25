@@ -37,6 +37,10 @@ public class Pawn implements Schachfigur {
         this.notMoved = false;
     }
 
+
+
+
+
     public Boolean islegal(Board board, int x1, int y1, int x2, int y2, boolean doublemovedbefore) {
 
         // White Pawn

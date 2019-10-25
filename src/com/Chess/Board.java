@@ -60,9 +60,8 @@ public class Board {
     }
 
     public void move(int x1, int y1, int x2, int y2, boolean doublemoved){
-        System.out.println(doublemoved);
         if(doublemoved) {
-            if (board[x1][y1].getColor() == "W") {
+            if (board[x1][y1].getColor().equals("W")) {
                 if (board[(x2+1)][y2] != null && (y1 != y2)) {
                     graveyard1.add(board[(x2+1)][y2]);
                     board[(x2+1)][y2] = null;
@@ -77,7 +76,7 @@ public class Board {
         }
 
         if (board[x2][y2] != null){
-            if(board[x2][y2].getColor()=="W"){
+            if(board[x2][y2].getColor().equals("W")){
                 graveyard1.add(board[x2][y2]);
             }
             else {
@@ -99,7 +98,7 @@ public class Board {
     public void promotion(int x1,int y1){
 
         Scanner s = new Scanner(System.in);
-        System.out.println("Congratulations, you can promote a Pawn. Enter the character of the figure you want (R,N,B,Q):");
+        System.out.println("Congratulations, you can promote a Pawn. Enter the character of the figure you want :R,N,B,Q. Other inputs will resolve in a Queen:");
         String figure = s.nextLine();
 
         Schachfigur f;

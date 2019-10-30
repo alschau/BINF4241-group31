@@ -11,7 +11,7 @@ public class SuperQueen implements SpecialSchachfigur {
 
     public SuperQueen(String c){
         this.color = c;
-        this.name = color +"Q";
+        this.name = color +"S";
     }
     public String getColor() {
         return color;
@@ -19,7 +19,7 @@ public class SuperQueen implements SpecialSchachfigur {
 
     @Override
     public String getCharacter() {
-        return "Q";
+        return "S";
     }
 
     public String getName() {
@@ -37,6 +37,6 @@ public class SuperQueen implements SpecialSchachfigur {
     public Boolean doublemoved() {return false;}
 
     public Boolean islegal(Board board, int x1, int y1, int x2, int y2, boolean g) {
-        return(true);
+        return(board.getBoard()[x2][y2]==null);
     }
 }

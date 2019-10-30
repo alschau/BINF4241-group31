@@ -18,21 +18,35 @@ public class Board {
 
         board = new Schachfigur[8][8];
 
+        // Black SuperQueen
+        SuperQueen superQB = new SuperQueen("B");
+        Schachfigur queenAdapterB = new QueenAdapter(superQB);
+        // White SuperQueen
+        SuperQueen superQW = new SuperQueen("W");
+        Schachfigur queenAdapterW = new QueenAdapter(superQW);
+        // Black ArchBishop
+        ArchBishop archBB = new ArchBishop("B");
+        Schachfigur bishopAdapterB = new BishopAdapter(archBB);
+        // White ArchBishop
+        ArchBishop archBW = new ArchBishop("W");
+        Schachfigur bishopAdapterW = new BishopAdapter(archBW);
+
+
         board[0][0] = new Rook("B");
         board[0][1] = new Knight("B");
-        board[0][2] = new Bishop("B");
-        board[0][3] = new Queen("B");
+        board[0][2] = bishopAdapterB;
+        board[0][3] = queenAdapterB;
         board[0][4] = new King("B");
-        board[0][5] = new Bishop("B");
+        board[0][5] = bishopAdapterB;
         board[0][6] = new Knight("B");
         board[0][7] = new Rook("B");
 
         board[7][0] = new Rook("W");
         board[7][1] = new Knight("W");
-        board[7][2] = new Bishop("W");
-        board[7][3] = new Queen("W");
+        board[7][2] = bishopAdapterW;
+        board[7][3] = queenAdapterW;
         board[7][4] = new King("W");
-        board[7][5] = new Bishop("W");
+        board[7][5] = bishopAdapterW;
         board[7][6] = new Knight("W");
         board[7][7] = new Rook("W");
 

@@ -12,7 +12,7 @@ public class ArchBishop implements Schachfigur {
 
     public ArchBishop(String c){
         this.color = c;
-        this.name = color +"B";
+        this.name = color +"A";
     }
 
     public String getColor() {
@@ -21,7 +21,7 @@ public class ArchBishop implements Schachfigur {
 
     @Override
     public String getCharacter() {
-        return "B";
+        return "A";
     }
 
     public Boolean doublemoved() {return false;}

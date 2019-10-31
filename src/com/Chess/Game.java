@@ -101,12 +101,16 @@ public class Game {
 
             // Normaler Zug
             if(!rochade) {
-                if (board.getBoard()[x1][y1].islegal(b, x1, y1, x2, y2)) {
+                if (board.getBoard()[x1][y1].islegal(board, x1, y1, x2, y2)) {
                     // i need to check the fields in between
-                    if ("QBR".contains(board.getBoard()[x1][y1].getCharacter())) {
+                    if ("QBRP".contains(board.getBoard()[x1][y1].getCharacter())) {
                         // Check if the Path is empty
                         if (isPathEmpty(board, x1, y1, x2, y2)) {
                             board.move(x1, y1, x2, y2);
+                            if (board.getBoard()[x2][y2].getCharacter().equals("P") && (x2==0 || x2==7)){
+                                board.promotion(x2, y2);
+                            }
+
                         } else {
                             // if not, start turn again
                             System.out.println("you cant move there!");
@@ -121,8 +125,38 @@ public class Game {
                     turn--;
                 }
             }
+            /*
+            // is check
+            Boolean check = false;
+            Boolean othercheck = false;
+            int kingx=0;
+            int kingy=0;
+            int otherkingx=0;
+            int otherkingy=0;
 
-            //Todo check if king (enemy or own) is in danger
+            for(int i=0; i<8; i++){
+                for(int j=0; j<8; j++){
+                    if(board.getBoard()[i][j].getCharacter().equals("K") && board.getBoard()[i][j].getColor().equals(player.getColor())){
+                        kingx = i;
+                        kingy = j;
+                    } else if (board.getBoard()[i][j].getCharacter().equals("K") && !board.getBoard()[i][j].getColor().equals(player.getColor())){
+                        otherkingx = i;
+                        otherkingy = j;
+                    }
+                }
+            }
+            for(int i=0; i<8; i++){
+                for(int j=0; j<8; j++){
+                    if((board.getBoard()[i][j].islegal(board, i, j, kingx, kingy))&& isPathEmpty(board, i, j, kingx, kingy)){
+                        check = true;
+                    } else if((board.getBoard()[i][j].islegal(board, i, j, otherkingx, otherkingy))&& isPathEmpty(board, i, j, otherkingx, otherkingy)){
+                        othercheck = true;
+                    }
+                }
+            }
+            */
+
+
 
             printBoard();
             if(player.getColor().equals("W")){

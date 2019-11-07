@@ -158,30 +158,38 @@ public class Game {
                 System.out.println("Schach!");
             }
 
-            String grave1 = "Graveyard of "+player1.getName()+": ";
-            String grave2 = "Graveyard of "+player2.getName()+": ";
+            printGrave(player1, player2);
 
-            for(Schachfigur a: b.graveyard1){
-                grave1 = grave1 + a.getCharacter()+", ";
-                if(a.getCharacter().equals("K")){
-                    System.out.println("White King dead");
-                    player1.kingalive = false;                }
-            }
-            for(Schachfigur a: b.graveyard2){
-                grave2 = grave2 + a.getCharacter();
-                if(a.getCharacter().equals("K")){
-                    System.out.println("Black King dead");
-                    player2.kingalive = false;
-                }
-            }
-
-            System.out.println(grave1);
-            System.out.println(grave2);
 
             this.turn++;
 
         }
         System.out.println("Winner is "+player.getName()+"!!");
+    }
+
+    public void printGrave(Player player1, Player player2){
+
+        // CREATE ITERATORS
+        Iterator grave1_Iterator = board.createIterator(board.graveyard1);
+        Iterator grave2_Iterator = board.createIterator(board.graveyard2);
+
+
+        // Create Iterater and
+        System.out.println(gravePrinting(grave1_Iterator, player1));
+        System.out.println(gravePrinting(grave2_Iterator, player2));
+    }
+
+    public String gravePrinting(Iterator iterator, Player p){
+        String grave = "Graveyard of "+player.getName()+": ";
+        while (iterator.hasNext()){
+            Schachfigur current = (Schachfigur)iterator.next();
+            if (current.getCharacter().equals("K")){
+                player.kingalive = false;
+            }
+            grave = grave + iterator.toString();
+            iterator.next();
+        }
+        return grave;
     }
 
     public static Game getInstance(Board b, String name1, String name2) {

@@ -34,7 +34,9 @@ public class Queen implements Schachfigur {
         this.notMoved = false;
     }
 
-    public Boolean islegal(Board board, int x1, int y1, int x2, int y2) {
+    public Boolean doublemoved() {return false;}
+
+    public Boolean islegal(Board board, int x1, int y1, int x2, int y2, boolean g) {
         return(((x1 == x2 || y1 == y2)||(Math.abs(x1-x2) == Math.abs(y1-y2)))&& !((x1==x2)&&(y1==y2)));
     }
 }

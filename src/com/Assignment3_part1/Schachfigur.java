@@ -1,4 +1,4 @@
-package com.Chess;
+package com.Assignment3_part1;
 
 
 interface Schachfigur {

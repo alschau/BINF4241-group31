@@ -21,6 +21,7 @@ public class King implements Schachfigur {
     public String getCharacter() {
         return "K";
     }
+    public Boolean doublemoved() {return false;}
 
     public String getName() {
         return name;
@@ -35,7 +36,7 @@ public class King implements Schachfigur {
     }
 
     @Override
-    public Boolean islegal(Board board, int x1, int y1, int x2, int y2) {
+    public Boolean islegal(Board board, int x1, int y1, int x2, int y2, boolean g) {
         return ((x1+1 == x2 || x1-1 == x2) || (y1+1 == y2 || y1-1 == y2));
     }
 

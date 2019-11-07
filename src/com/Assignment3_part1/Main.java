@@ -1,4 +1,4 @@
-package com.Chess;
+package com.Assignment3_part1;
 
 import java.util.Scanner;
 
@@ -35,11 +35,8 @@ public class Main {
 
         }
 
-
-        Board board = new Board();
-
-        Game game =  new Game(board, name1, name2);
-
+        Board board = Board.getInstance();
+        Game game = Game.getInstance(board, name1, name2);
 
     }
 }

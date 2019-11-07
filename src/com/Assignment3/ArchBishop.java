@@ -1,16 +1,16 @@
-package com.Chess;
+package com.Assignment3;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Bishop implements Schachfigur {
+public class ArchBishop implements SpecialSchachfigur {
     private String color;
     private String name;
     Boolean notMoved = true;
     ArrayList<String> names = new ArrayList<String>( Arrays.asList("a", "b", "c", "d", "e", "f", "g", "h") );
 
 
-    public Bishop(String c){
+    public ArchBishop(String c){
         this.color = c;
         this.name = color +"B";
     }
@@ -39,6 +39,8 @@ public class Bishop implements Schachfigur {
     }
 
     public Boolean islegal(Board board, int x1, int y1, int x2, int y2, boolean g) {
-        return ((Math.abs(x1-x2) == Math.abs(y1-y2)) && !((x1==x2)&&(y1==y2)));
+        int absX = Math.abs(x1-x2);
+        int absY = Math.abs(y1-y2);
+        return (((absX == absY) || ((absX == 1)&&(absY ==2))||((absX == 2)&&(absY ==1))) && !((x1==x2)&&(y1==y2)));
     }
 }

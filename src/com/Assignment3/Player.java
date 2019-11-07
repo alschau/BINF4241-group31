@@ -1,4 +1,4 @@
-package com.Chess;
+package com.Assignment3;
 
 public class Player {
     private String color;

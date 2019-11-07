@@ -1,4 +1,4 @@
-package com.Chess;
+package com.Assignment3_part1;
 
 
 
@@ -8,13 +8,14 @@ import java.util.Scanner;
 
 public class Board {
 
+    private static Board uniqueinstance;
     private Schachfigur[][] board;
     ArrayList<String> names = new ArrayList<String>( Arrays.asList("a", "b", "c", "d", "e", "f", "g", "h") );
     ArrayList<Schachfigur> graveyard1 = new ArrayList<>();
     ArrayList<Schachfigur> graveyard2 = new ArrayList<>();
 
 
-    public Board(){
+    private Board(){
 
         board = new Schachfigur[8][8];
 
@@ -40,6 +41,13 @@ public class Board {
             board[1][i] = new Pawn("B");
             board[6][i] = new Pawn("W");
         }
+    }
+
+    public static Board getInstance() {
+        if (uniqueinstance == null) {
+            uniqueinstance = new Board();
+        }
+        return uniqueinstance;
     }
 
     public void printboard(){

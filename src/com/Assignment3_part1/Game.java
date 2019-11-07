@@ -1,10 +1,12 @@
-package com.Chess;
+package com.Assignment3_part1;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class Game {
+
+    private static Game uniqueinstance;
     private Board board;
     private int turn = 1;
     private String currentcolor;
@@ -16,7 +18,7 @@ public class Game {
     public Boolean doublemoved = false;
 
 
-    public Game(Board b, String p1, String p2){
+    private Game(Board b, String p1, String p2){
         this.board = b;
         Player player1 = new Player(p1, "W");
         Player player2 = new Player(p2, "B");
@@ -182,6 +184,12 @@ public class Game {
         System.out.println("Winner is "+player.getName()+"!!");
     }
 
+    public static Game getInstance(Board b, String name1, String name2) {
+        if (uniqueinstance == null) {
+            uniqueinstance = new Game(b, name1, name2);
+        }
+        return uniqueinstance;
+    }
 
     public void printBoard(){
         board.printboard();

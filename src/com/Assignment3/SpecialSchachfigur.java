@@ -1,7 +1,7 @@
-package com.Chess;
+package com.Assignment3;
 
 
-interface Schachfigur {
+interface SpecialSchachfigur {
 
     String getName();
     Boolean notMoved();

@@ -22,9 +22,13 @@ We decided to implement the archbishop and superqueen structure using an adapter
 
 We prompt the user twice for input per turn. Example:
 
+
 [Player], choose a valid field of a figure 
+
 b2
+
 [Player], Enter the field where you want to move your figure: 
+
 b4
 
 

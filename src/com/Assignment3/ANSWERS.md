@@ -15,6 +15,7 @@ Sequence diagram
 ![sequence diagram assignment 3](https://user-images.githubusercontent.com/45588658/68402967-7c3a7600-017c-11ea-8294-d08d16e087c7.png)
 
 **Part 3**
+
 We decided to implement the archbishop and superqueen structure using an adapter since it made the most sense to us to use this example. Using the adapter we could simply use the precoded functionalities of the normal queen and bishop and add new functions to the "special figures".
 
 **INPUT**:

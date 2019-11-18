@@ -3,9 +3,11 @@ package com.Assignment4;
 import com.Assignment4.Commands.Dishwasher.*;
 import com.Assignment4.Commands.Microwave.*;
 import com.Assignment4.Commands.Oven.*;
+import com.Assignment4.Commands.WashingMachine.*;
 import com.Assignment4.Devices.Dishwasher;
 import com.Assignment4.Devices.Microwave;
 import com.Assignment4.Devices.Oven;
+import com.Assignment4.Devices.WashingMachine;
 
 public class Main {
     public static void main(String[] args) {
@@ -16,6 +18,7 @@ public class Main {
         Oven o = new Oven();
         Microwave m = new Microwave();
         Dishwasher d = new Dishwasher();
+        WashingMachine w = new WashingMachine();
 
         // INITIALIZING COMMANDS OVEN
         OvenCommandOn oven_on = new OvenCommandOn(o);
@@ -38,13 +41,21 @@ public class Main {
         MicrowaveCommandInterrupt microwave_interrupt = new MicrowaveCommandInterrupt(m);
         MicrowaveCommandOff microwave_off = new MicrowaveCommandOff(m);
 
-        // INITIALIZING COMMANDS MICROWAVE
+        // INITIALIZING COMMANDS DISHWASHER
         DishwasherCommandOn dishwasher_on = new DishwasherCommandOn(d);
         DishwasherCommandStart dishwasher_start = new DishwasherCommandStart(d);
         DishwasherCommandProgram dishwasher_program = new DishwasherCommandProgram(d,"MYPROGRAM_DISHWASHER");
         DishwasherCommandCheck dishwasher_check = new DishwasherCommandCheck(d);
         DishwasherCommandStop dishwasher_stop = new DishwasherCommandStop(d);
         DishwasherCommandOff dishwasher_off = new DishwasherCommandOff(d);
+
+        // INITIALIZING COMMANDS WASHING MACHINE
+        WashingMachineCommandOn washing_on = new WashingMachineCommandOn(w);
+        WashingMachineCommandTemp washing_temp = new WashingMachineCommandTemp(w, 60);
+        WashingMachineCommandProgram washing_program = new WashingMachineCommandProgram(w, "MYPROGRAM_WASHINGMACHINE");
+        WashingMachineCommandStop washing_stop = new WashingMachineCommandStop(w);
+        WashingMachineCommandOff washing_off = new WashingMachineCommandOff(w);
+
 
 
         // TESTING COMMANDS FOR OVEN
@@ -96,6 +107,19 @@ public class Main {
         p.setCommand(dishwasher_stop);
         p.pressButton();
         p.setCommand(dishwasher_off);
+        p.pressButton();
+
+        // TESTING COMMANDS FOR WASHING MACHINE
+        System.out.println("\nTESTS FOR WASHING MACHINE");
+        p.setCommand(washing_on);
+        p.pressButton();
+        p.setCommand(washing_temp);
+        p.pressButton();
+        p.setCommand(washing_program);
+        p.pressButton();
+        p.setCommand(washing_stop);
+        p.pressButton();
+        p.setCommand(washing_off);
         p.pressButton();
 
     }

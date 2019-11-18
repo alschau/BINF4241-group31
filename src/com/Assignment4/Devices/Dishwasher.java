@@ -3,36 +3,38 @@ package com.Assignment4.Devices;
 public class Dishwasher {
     public Dishwasher(){}
 
-    public void timer(int t){
-        System.out.println("Setting cleaning robot timer to "+t+" seconds.");
-    }
-
-    public void auto_return_time(){
-        System.out.println("Going back to base when time expires");
+    public void on(){
+        System.out.println("Turning dishwasher on.");
     }
 
     public void start(){
-        System.out.println("Starting cleaning robot!");
+        //only if parameters are set
+        System.out.println("Starting dishwasher!");
     }
 
-    public void check_cleaning(){
-        System.out.println("Check cleaning percentage of cleaning robot");
+    public void program(String program){
+        System.out.println("Setting dishwasher program to "+program+".");
     }
 
-    public void check_battery(){
-        System.out.println("Check battery of cleaning robot");
+    public void timer(){
+        //Automatically depending on the current program!!
+        System.out.println(":)");
     }
 
-    public void check_time(){
-        System.out.println("Check timer for cleaning robot...");
+    public void check_timer(){
+        //only if dishwasher is running
+        System.out.println("Checking timer for dishwasher...");
     }
 
-    public void complete_cleaning(){
-        System.out.println("Cleaning robot completes outstanding cleaning");
+    public void stop(){
+        //only if microwave is in operation
+        System.out.println("Stop current dishwasher program");
     }
 
-    public void end_cleaning(){
-        System.out.println("Cleaning robot end cleaning and returns to base");
+    public void off(){
+        System.out.println("Turning dishwasher off.");
     }
+
+
 
 }

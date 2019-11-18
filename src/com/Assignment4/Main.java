@@ -1,15 +1,20 @@
 package com.Assignment4;
 
+import com.Assignment4.Commands.Microwave.*;
 import com.Assignment4.Commands.Oven.*;
+import com.Assignment4.Devices.Microwave;
 import com.Assignment4.Devices.Oven;
 
 public class Main {
     public static void main(String[] args) {
 
         Phone p = new Phone();
-        Oven o = new Oven();
 
-        // INITIALIZING COMMANDS
+        // INITIALIZING DEVICES
+        Oven o = new Oven();
+        Microwave m = new Microwave();
+
+        // INITIALIZING COMMANDS OVEN
         OvenCommandOn oven_on = new OvenCommandOn(o);
         //TODO wie chan in d Ziit/Temp erst später mitgeh?
         OvenCommandTimer oven_timer = new OvenCommandTimer(o, 20);
@@ -21,8 +26,19 @@ public class Main {
         OvenCommandInterrupt oven_interrupt = new OvenCommandInterrupt(o);
         OvenCommandOff oven_off = new OvenCommandOff(o);
 
+        // INITIALIZING COMMANDS MICROWAVE
+        MicrowaveCommandOn microwave_on = new MicrowaveCommandOn(m);
+        MicrowaveCommandTimer microwave_timer = new MicrowaveCommandTimer(m, 30);
+        MicrowaveCommandTemp microwave_temp = new MicrowaveCommandTemp(m, 220);
+        MicrowaveCommandStart microwave_start = new MicrowaveCommandStart(m);
+        MicrowaveCommandCheck microwave_check = new MicrowaveCommandCheck(m);
+        MicrowaveCommandInterrupt microwave_interrupt = new MicrowaveCommandInterrupt(m);
+        MicrowaveCommandOff microwave_off = new MicrowaveCommandOff(m);
+
+
 
         // TESTING COMMANDS FOR OVEN
+        System.out.println("TESTS FOR OVEN");
         p.setCommand(oven_on);
         p.pressButton();
         p.setCommand(oven_timer);
@@ -38,6 +54,23 @@ public class Main {
         p.setCommand(oven_interrupt);
         p.pressButton();
         p.setCommand(oven_off);
+        p.pressButton();
+
+        // TESTING COMMANDS FOR MICROWAVE
+        System.out.println("\nTESTS FOR MICROWAVE");
+        p.setCommand(microwave_on);
+        p.pressButton();
+        p.setCommand(microwave_timer);
+        p.pressButton();
+        p.setCommand(microwave_temp);
+        p.pressButton();
+        p.setCommand(microwave_start);
+        p.pressButton();
+        p.setCommand(microwave_check);
+        p.pressButton();
+        p.setCommand(microwave_interrupt);
+        p.pressButton();
+        p.setCommand(microwave_off);
         p.pressButton();
 
     }

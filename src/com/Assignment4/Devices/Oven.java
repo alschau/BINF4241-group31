@@ -10,7 +10,7 @@ public class Oven {
     }
 
     public void timer(int t){
-        System.out.println("Setting oven timer to "+t+" minutes.");
+        System.out.println("Setting oven timer to "+t+" seconds.");
     }
 
     public void temp(int t){
@@ -28,12 +28,12 @@ public class Oven {
 
     public void check_timer(){
         //only if oven is running
-        System.out.println("Checking timer for Oven...");
+        System.out.println("Checking timer for oven...");
     }
 
     public void interrupt(){
         //only if oven is in operation
-        System.out.println("Stops current program");
+        System.out.println("Stop current oven program");
     }
 
     public void off(){

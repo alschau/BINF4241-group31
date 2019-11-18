@@ -1,13 +1,11 @@
 package com.Assignment4;
 
+import com.Assignment4.Commands.CleaningRobot.*;
 import com.Assignment4.Commands.Dishwasher.*;
 import com.Assignment4.Commands.Microwave.*;
 import com.Assignment4.Commands.Oven.*;
 import com.Assignment4.Commands.WashingMachine.*;
-import com.Assignment4.Devices.Dishwasher;
-import com.Assignment4.Devices.Microwave;
-import com.Assignment4.Devices.Oven;
-import com.Assignment4.Devices.WashingMachine;
+import com.Assignment4.Devices.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -19,6 +17,7 @@ public class Main {
         Microwave m = new Microwave();
         Dishwasher d = new Dishwasher();
         WashingMachine w = new WashingMachine();
+        CleaningRobot b = new CleaningRobot();
 
         // INITIALIZING COMMANDS OVEN
         OvenCommandOn oven_on = new OvenCommandOn(o);
@@ -56,6 +55,14 @@ public class Main {
         WashingMachineCommandStop washing_stop = new WashingMachineCommandStop(w);
         WashingMachineCommandOff washing_off = new WashingMachineCommandOff(w);
 
+        // INITIALIZING COMMANDS CLEANING ROBOT
+        CleaningRobotCommandTimer robot_timer = new CleaningRobotCommandTimer(b, 600);
+        CleaningRobotCommandStart robot_start = new CleaningRobotCommandStart(b);
+        CleaningRobotCommandCheckCleaning robot_check_cleaning = new CleaningRobotCommandCheckCleaning(b);
+        CleaningRobotCommandCheckBattery robot_check_battery = new CleaningRobotCommandCheckBattery(b);
+        CleaningRobotCommandCheckCharging robot_check_charging = new CleaningRobotCommandCheckCharging(b);
+        CleaningRobotCommandComplete robot_complete = new CleaningRobotCommandComplete(b);
+        CleaningRobotCommandEnd robot_end = new CleaningRobotCommandEnd(b);
 
 
         // TESTING COMMANDS FOR OVEN
@@ -120,6 +127,23 @@ public class Main {
         p.setCommand(washing_stop);
         p.pressButton();
         p.setCommand(washing_off);
+        p.pressButton();
+
+        // TESTING COMMANDS FOR CLEANING ROBOT
+        System.out.println("\nTESTS FOR CLEANING ROBOT");
+        p.setCommand(robot_timer);
+        p.pressButton();
+        p.setCommand(robot_start);
+        p.pressButton();
+        p.setCommand(robot_check_cleaning);
+        p.pressButton();
+        p.setCommand(robot_check_battery);
+        p.pressButton();
+        p.setCommand(robot_check_charging);
+        p.pressButton();
+        p.setCommand(robot_complete);
+        p.pressButton();
+        p.setCommand(robot_end);
         p.pressButton();
 
     }

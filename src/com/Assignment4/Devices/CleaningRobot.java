@@ -21,8 +21,8 @@ public class CleaningRobot {
         System.out.println("Check battery of cleaning robot");
     }
 
-    public void check_time(){
-        System.out.println("Check timer for cleaning robot...");
+    public void check_charging(){
+        System.out.println("Check charging status of cleaning robot");
     }
 
     public void complete_cleaning(){

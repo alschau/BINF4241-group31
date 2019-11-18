@@ -10,7 +10,7 @@ We used the Singleton pattern to make sure that only one instance of our Board c
 The second pattern we used is the Iterator. We decided to use it to iterate through the graveyards of player1 and player2 (both saved in board class). To do so, we first hat to create the Iterator Interface and our Grave_Iterator with the fuctions next() and hasNext(). Then we had to make our create_Iterator class (in the Board class) to be able to initialize/use it in the Game class. Finally we created our printing function in the Game class which first creates 2 iterators for the graveyards and then iterates through both.
 
 Java Class diagram:
-![Package Assignment3](https://user-images.githubusercontent.com/45588658/68379640-8ba2ca80-014e-11ea-9625-aa333dd1cbe2.png)
+
 
 Sequence diagram
 ![sequence diagram assignment 3 1](https://user-images.githubusercontent.com/45588658/68469048-a2622380-0219-11ea-83ad-603464bff1f1.png)

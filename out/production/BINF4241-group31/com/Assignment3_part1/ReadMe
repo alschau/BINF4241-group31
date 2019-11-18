@@ -1,8 +1,8 @@
-We slightly modified our input, since we tought it would be more user friendly to just type in
-the fileds (which are still in the algebraic chess notation). There was a question in the forum
+We slightly modified our input, since we thought it would be more user friendly to just type in
+the fields (which are still in the algebraic chess notation). There was a question in the forum
 regarding using different input methods and it said as long as we add a read me to the project it would be fine.
 
-We promp the user twice for input per turn. Example:
+We prompt the user twice for input per turn. Example:
 
 [Player], choose a valid field of a figure 
 b2

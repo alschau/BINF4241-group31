@@ -1,0 +1,16 @@
+package com.Assignment4.Commands.Oven;
+
+import com.Assignment4.Commands.Command;
+import com.Assignment4.Devices.Oven;
+
+public class OvenCommandInterrupt implements Command {
+    Oven oven;
+
+    public OvenCommandInterrupt(Oven o){
+        this.oven = o;
+    }
+
+    public void execute(){
+        oven.interrupt();
+    }
+}

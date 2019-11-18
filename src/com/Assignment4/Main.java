@@ -1,7 +1,9 @@
 package com.Assignment4;
 
+import com.Assignment4.Commands.Dishwasher.*;
 import com.Assignment4.Commands.Microwave.*;
 import com.Assignment4.Commands.Oven.*;
+import com.Assignment4.Devices.Dishwasher;
 import com.Assignment4.Devices.Microwave;
 import com.Assignment4.Devices.Oven;
 
@@ -13,6 +15,7 @@ public class Main {
         // INITIALIZING DEVICES
         Oven o = new Oven();
         Microwave m = new Microwave();
+        Dishwasher d = new Dishwasher();
 
         // INITIALIZING COMMANDS OVEN
         OvenCommandOn oven_on = new OvenCommandOn(o);
@@ -20,7 +23,7 @@ public class Main {
         OvenCommandTimer oven_timer = new OvenCommandTimer(o, 20);
         OvenCommandTemp oven_temp = new OvenCommandTemp(o, 180);
         //TODO string später mitgeh?
-        OvenCommandProgram oven_program = new OvenCommandProgram(o, "MYPROGRAM");
+        OvenCommandProgram oven_program = new OvenCommandProgram(o, "MYPROGRAM_OVEN");
         OvenCommandStart oven_start = new OvenCommandStart(o);
         OvenCommandCheck oven_check = new OvenCommandCheck(o);
         OvenCommandInterrupt oven_interrupt = new OvenCommandInterrupt(o);
@@ -35,6 +38,13 @@ public class Main {
         MicrowaveCommandInterrupt microwave_interrupt = new MicrowaveCommandInterrupt(m);
         MicrowaveCommandOff microwave_off = new MicrowaveCommandOff(m);
 
+        // INITIALIZING COMMANDS MICROWAVE
+        DishwasherCommandOn dishwasher_on = new DishwasherCommandOn(d);
+        DishwasherCommandStart dishwasher_start = new DishwasherCommandStart(d);
+        DishwasherCommandProgram dishwasher_program = new DishwasherCommandProgram(d,"MYPROGRAM_DISHWASHER");
+        DishwasherCommandCheck dishwasher_check = new DishwasherCommandCheck(d);
+        DishwasherCommandStop dishwasher_stop = new DishwasherCommandStop(d);
+        DishwasherCommandOff dishwasher_off = new DishwasherCommandOff(d);
 
 
         // TESTING COMMANDS FOR OVEN
@@ -71,6 +81,21 @@ public class Main {
         p.setCommand(microwave_interrupt);
         p.pressButton();
         p.setCommand(microwave_off);
+        p.pressButton();
+
+        // TESTING COMMANDS FOR DISHWASHER
+        System.out.println("\nTESTS FOR DISHWASHER");
+        p.setCommand(dishwasher_on);
+        p.pressButton();
+        p.setCommand(dishwasher_start);
+        p.pressButton();
+        p.setCommand(dishwasher_program);
+        p.pressButton();
+        p.setCommand(dishwasher_check);
+        p.pressButton();
+        p.setCommand(dishwasher_stop);
+        p.pressButton();
+        p.setCommand(dishwasher_off);
         p.pressButton();
 
     }

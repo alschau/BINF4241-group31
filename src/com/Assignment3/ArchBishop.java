@@ -3,7 +3,7 @@ package com.Assignment3;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class ArchBishop implements Schachfigur {
+public class ArchBishop implements SpecialSchachfigur {
     private String color;
     private String name;
     Boolean notMoved = true;

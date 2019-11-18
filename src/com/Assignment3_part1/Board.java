@@ -137,4 +137,8 @@ public class Board {
         }
 
     }
+
+    public Iterator createIterator(ArrayList grave){
+        return new Grave_Iterator(grave);
+    }
 }

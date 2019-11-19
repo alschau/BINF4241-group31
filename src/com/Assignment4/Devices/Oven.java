@@ -1,6 +1,8 @@
 package com.Assignment4.Devices;
 
+import com.Assignment4.Commands.Oven.*;
 import com.Assignment4.MyThread;
+import com.Assignment4.Phone;
 
 public class Oven extends Devices{
     public Boolean on = false;
@@ -72,8 +74,10 @@ public class Oven extends Devices{
     public void check_timer(){
         if(running){
             System.out.println(my_oven_thread.getTime());
+        } else  {
+            System.out.println("Oven not running.");
         }
-        System.out.println("Checking timer for oven...");
+
     }
 
     public void interrupt(){
@@ -94,4 +98,49 @@ public class Oven extends Devices{
             System.out.println("Turning oven off.");
         }
     }
+
+    public void menu(Phone p){
+        String command2 = "";
+        while(!command2.equals("exit")) {
+            System.out.println("on, timer, temp, program, start, check, interrupt, off, exit");
+            command2 = scanner.nextLine();
+            if (command2.equals("on")) {
+                OvenCommandOn oven_on = new OvenCommandOn(this);
+                p.setCommand(oven_on);
+            } else if (command2.equals("timer")) {
+                System.out.println("How long? enter in seconds: ");
+                String command3 = scanner.nextLine();
+                OvenCommandTimer oven_timer = new OvenCommandTimer(this, Integer.parseInt(command3));
+                p.setCommand(oven_timer);
+            } else if (command2.equals("temp")) {
+                System.out.println("Enter temperature: ");
+                String command3 = scanner.nextLine();
+                OvenCommandTemp oven_temp = new OvenCommandTemp(this, Integer.parseInt(command3));
+                p.setCommand(oven_temp);
+            } else if (command2.equals("program")) {
+                System.out.println("Enter program: ");
+                String command3 = scanner.nextLine();
+                OvenCommandProgram oven_program = new OvenCommandProgram(this, command3);
+                p.setCommand(oven_program);
+            } else if (command2.equals("start")) {
+                OvenCommandStart oven_start = new OvenCommandStart(this);
+                p.setCommand(oven_start);
+            } else if (command2.equals("check")) {
+                OvenCommandCheck oven_check = new OvenCommandCheck(this);
+                p.setCommand(oven_check);
+            } else if (command2.equals("interrupt")) {
+                OvenCommandInterrupt oven_interrupt = new OvenCommandInterrupt(this);
+                p.setCommand(oven_interrupt);
+            } else if (command2.equals("off")) {
+                OvenCommandOff oven_off = new OvenCommandOff(this);
+                p.setCommand(oven_off);
+            } else if (command2.equals("exit")) {
+                break;
+            } else {
+                System.out.println("Please enter a valid command");
+            }
+            p.pressButton();
+        }
+    }
+
 }

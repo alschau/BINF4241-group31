@@ -16,7 +16,6 @@ public class Oven extends Devices{
     }
 
     public void on(){
-        //TODO if oven on already
         if(!on){
             this.on = true;
             System.out.println("Turning oven on.");

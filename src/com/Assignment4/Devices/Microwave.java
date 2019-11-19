@@ -1,36 +1,121 @@
 package com.Assignment4.Devices;
 
+import com.Assignment4.Commands.Microwave.*;
+import com.Assignment4.MyThread;
+import com.Assignment4.Phone;
+
 public class Microwave extends Devices {
+    public Boolean on = false;
+    public Boolean running = false;
+    public String program;
+    public MyThread my_oven_thread;
+    public Thread oven_thread;
+
     public Microwave(){}
 
     public void on(){
-        System.out.println("Turning microwave on.");
+        if(!on){
+            this.on = true;
+            System.out.println("Turning oven on.");
+        } else {
+            System.out.println("already on");
+        }
+
     }
 
     public void timer(int t){
-        System.out.println("Setting microwave timer to "+t+" seconds.");
+        if(on){
+            this.my_oven_thread = new MyThread(t*1000);
+            System.out.println("Setting microwave timer to "+t+" seconds.");
+        } else {
+            System.out.println("not on");
+        }
+
     }
 
     public void temp(int t){
-        System.out.println("Setting microwave temperature to "+t+" degrees.");
+        if(on){
+            System.out.println("Setting oven temperature to "+t+" degrees.");
+        } else {
+            System.out.println("not on");
+        }
     }
 
+
     public void start(){
-        //only if parameters are set
-        System.out.println("Starting microwave!");
+        this.running = true;
+        System.out.println("Starting Microwave!");
+        if(my_oven_thread==null){
+            my_oven_thread = new MyThread();
+        }
+        this.oven_thread = new Thread(my_oven_thread, "MicroThread");
+        oven_thread.start();
     }
 
     public void check_timer(){
-        //only if microwave is running
-        System.out.println("Checking timer for microwave...");
+        if(running){
+            System.out.println(my_oven_thread.getTime());
+        } else  {
+            System.out.println("Microwave not running.");
+        }
+
     }
 
     public void interrupt(){
-        //only if microwave is in operation
-        System.out.println("Stop current microwave program");
+        if(running){
+            this.running = false;
+            my_oven_thread.setTime(0);
+            System.out.println("Stop current oven program");
+        } else {
+            System.out.println("You can't interrupt if its not running");
+        }
+
     }
 
     public void off(){
-        System.out.println("Turning microwave off.");
+        //TODO reset states
+        if(!running) {
+            this.on = false;
+            System.out.println("Turning oven off.");
+        }
+    }
+
+    public void menu(Phone p){
+        String command2 = "";
+        while(!command2.equals("exit")) {
+            System.out.println("on, timer, temp, start, check, interrupt, off, exit");
+            command2 = scanner.nextLine();
+            if (command2.equals("on")) {
+                MicrowaveCommandOn microwave_on = new MicrowaveCommandOn(this);
+                p.setCommand(microwave_on);
+            } else if (command2.equals("timer")) {
+                System.out.println("How long? enter in seconds: ");
+                String command3 = scanner.nextLine();
+                MicrowaveCommandTimer microwave_timer = new MicrowaveCommandTimer(this, Integer.parseInt(command3));
+                p.setCommand(microwave_timer);
+            } else if (command2.equals("temp")) {
+                System.out.println("Enter temperature: ");
+                String command3 = scanner.nextLine();
+                MicrowaveCommandTemp microwave_temp = new MicrowaveCommandTemp(this, Integer.parseInt(command3));
+                p.setCommand(microwave_temp);
+            } else if (command2.equals("start")) {
+                MicrowaveCommandStart microwave_start = new MicrowaveCommandStart(this);
+                p.setCommand(microwave_start);
+            } else if (command2.equals("check")) {
+                MicrowaveCommandCheck microwave_check = new MicrowaveCommandCheck(this);
+                p.setCommand(microwave_check);
+            } else if (command2.equals("interrupt")) {
+                MicrowaveCommandInterrupt microwave_interrupt = new MicrowaveCommandInterrupt(this);
+                p.setCommand(microwave_interrupt);
+            } else if (command2.equals("off")) {
+                MicrowaveCommandOff microwave_off = new MicrowaveCommandOff(this);
+                p.setCommand(microwave_off);
+            } else if (command2.equals("exit")){
+                break;
+            } else {
+                System.out.println("Please enter a valid command");
+            }
+            p.pressButton();
+        }
     }
 }

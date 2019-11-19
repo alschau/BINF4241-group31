@@ -1,6 +1,6 @@
 package com.Assignment4.Devices;
 
-public class WashingMachine {
+public class WashingMachine extends Devices {
     public WashingMachine(){}
 
     public void on(){

@@ -1,6 +1,6 @@
 package com.Assignment4.Devices;
 
-public class Microwave {
+public class Microwave extends Devices {
     public Microwave(){}
 
     public void on(){

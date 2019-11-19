@@ -25,16 +25,8 @@ public class Main {
         CleaningRobot b = new CleaningRobot();
 
         // INITIALIZING COMMANDS OVEN
-        OvenCommandOn oven_on = new OvenCommandOn(o);
-        //TODO wie chan in d Ziit/Temp erst später mitgeh?
-        OvenCommandTimer oven_timer = new OvenCommandTimer(o, 20);
-        OvenCommandTemp oven_temp = new OvenCommandTemp(o, 180);
-        //TODO string später mitgeh?
-        OvenCommandProgram oven_program = new OvenCommandProgram(o, "MYPROGRAM_OVEN");
-        OvenCommandStart oven_start = new OvenCommandStart(o);
-        OvenCommandCheck oven_check = new OvenCommandCheck(o);
-        OvenCommandInterrupt oven_interrupt = new OvenCommandInterrupt(o);
-        OvenCommandOff oven_off = new OvenCommandOff(o);
+        // In Loop
+
 
         // INITIALIZING COMMANDS MICROWAVE
         MicrowaveCommandOn microwave_on = new MicrowaveCommandOn(m);
@@ -76,48 +68,64 @@ public class Main {
         //##############################################################################################################
 
         // INITIALIZING THREAD
-        MyThread T_one = new MyThread(3000);
+        MyThread T_one = new MyThread();
         MyThread T_two = new MyThread(1000);
 
         Thread one = new Thread(T_one, "FirstThread");
-        // one.start();
+        //one.start();
 
 
+        /*
         ArrayList<Devices> devices = new ArrayList<Devices>(Arrays.asList(o, m, d, w, b));
         ArrayList<Command> oven_commands = new ArrayList<Command>(Arrays.asList(oven_on, oven_timer, oven_temp, oven_program, oven_start, oven_check, oven_interrupt, oven_off));
         ArrayList<Command> microwave_commands = new ArrayList<Command>(Arrays.asList(microwave_on, microwave_timer, microwave_temp, microwave_start, microwave_check, microwave_interrupt, microwave_off));
         ArrayList<Command> dishwasher_commands = new ArrayList<Command>(Arrays.asList(dishwasher_on, dishwasher_start, dishwasher_program, dishwasher_check, dishwasher_stop, dishwasher_off));
         ArrayList<Command> washing_commands = new ArrayList<Command>(Arrays.asList(washing_on, washing_temp, washing_program, washing_stop, washing_off));
         ArrayList<Command> robot_commands = new ArrayList<Command>(Arrays.asList(robot_timer, robot_start, robot_check_cleaning, robot_check_battery,  robot_check_charging, robot_complete, robot_end));
-
+        */
 
 
         while(true){
-            System.out.println("Whitch Thread do you want to start?");
+            System.out.println("Which Thread do you want to start?");
             System.out.println("Choice: oven, microwave, dishwasher, washing machine, cleaning robot");
             Scanner scanner = new Scanner(System.in);
             String command = scanner.nextLine();
 
             if (command.equals("oven")){
+                //TODO Create a function that does this
                 String command2 = "";
                 while(!command2.equals("exit")) {
                     System.out.println("on, timer, temp, program, start, check, interrupt, off, exit");
                     command2 = scanner.nextLine();
                     if (command2.equals("on")) {
+                        OvenCommandOn oven_on = new OvenCommandOn(o);
                         p.setCommand(oven_on);
                     } else if (command2.equals("timer")) {
+                        System.out.println("How long? enter in seconds: ");
+                        String command3 = scanner.nextLine();
+                        OvenCommandTimer oven_timer = new OvenCommandTimer(o, Integer.parseInt(command3));
                         p.setCommand(oven_timer);
                     } else if (command2.equals("temp")) {
-                        p.setCommand(oven_timer);
+                        System.out.println("Enter temperature: ");
+                        String command3 = scanner.nextLine();
+                        OvenCommandTemp oven_temp = new OvenCommandTemp(o, Integer.parseInt(command3));
+                        p.setCommand(oven_temp);
                     } else if (command2.equals("program")) {
+                        System.out.println("Enter program: ");
+                        String command3 = scanner.nextLine();
+                        OvenCommandProgram oven_program = new OvenCommandProgram(o, command3);
                         p.setCommand(oven_program);
                     } else if (command2.equals("start")) {
+                        OvenCommandStart oven_start = new OvenCommandStart(o);
                         p.setCommand(oven_start);
                     } else if (command2.equals("check")) {
+                        OvenCommandCheck oven_check = new OvenCommandCheck(o);
                         p.setCommand(oven_check);
                     } else if (command2.equals("interrupt")) {
+                        OvenCommandInterrupt oven_interrupt = new OvenCommandInterrupt(o);
                         p.setCommand(oven_interrupt);
                     } else if (command2.equals("off")) {
+                        OvenCommandOff oven_off = new OvenCommandOff(o);
                         p.setCommand(oven_off);
                     } else if (command2.equals("exit")){
                         break;

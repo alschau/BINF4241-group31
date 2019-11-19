@@ -7,16 +7,15 @@ import com.Assignment4.Phone;
 public class Microwave extends Devices {
     public Boolean on = false;
     public Boolean running = false;
-    public String program;
-    public MyThread my_oven_thread;
-    public Thread oven_thread;
+    public MyThread my_micro_thread;
+    public Thread micro_thread;
 
     public Microwave(){}
 
     public void on(){
         if(!on){
             this.on = true;
-            System.out.println("Turning oven on.");
+            System.out.println("Turning Microwave on.");
         } else {
             System.out.println("already on");
         }
@@ -25,7 +24,7 @@ public class Microwave extends Devices {
 
     public void timer(int t){
         if(on){
-            this.my_oven_thread = new MyThread(t*1000);
+            this.my_micro_thread = new MyThread(t*1000);
             System.out.println("Setting microwave timer to "+t+" seconds.");
         } else {
             System.out.println("not on");
@@ -43,18 +42,21 @@ public class Microwave extends Devices {
 
 
     public void start(){
-        this.running = true;
-        System.out.println("Starting Microwave!");
-        if(my_oven_thread==null){
-            my_oven_thread = new MyThread();
+        if(on && my_micro_thread !=null){
+            this.running = true;
+            System.out.println("Starting Microwave!");
+            this.micro_thread = new Thread(my_micro_thread, "MicroThread");
+            micro_thread.start();
+
+        } else {
+            System.out.println("before starting you must add all other parameters");
         }
-        this.oven_thread = new Thread(my_oven_thread, "MicroThread");
-        oven_thread.start();
+
     }
 
     public void check_timer(){
         if(running){
-            System.out.println(my_oven_thread.getTime());
+            System.out.println(my_micro_thread.getTime());
         } else  {
             System.out.println("Microwave not running.");
         }
@@ -64,7 +66,7 @@ public class Microwave extends Devices {
     public void interrupt(){
         if(running){
             this.running = false;
-            my_oven_thread.setTime(0);
+            my_micro_thread.setTime(0);
             System.out.println("Stop current oven program");
         } else {
             System.out.println("You can't interrupt if its not running");

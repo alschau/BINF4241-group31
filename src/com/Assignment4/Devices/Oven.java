@@ -55,17 +55,14 @@ public class Oven extends Devices{
     }
 
     public void start(){
-        if(on && program!= null){
+        if(on && program!= null && my_oven_thread !=null){
             this.running = true;
             System.out.println("Starting oven!");
-            if(my_oven_thread==null){
-                my_oven_thread = new MyThread();
-            }
             this.oven_thread = new Thread(my_oven_thread, "OvenThread");
             oven_thread.start();
 
         } else {
-            System.out.println("Choose a program first!");
+            System.out.println("before starting you must add all other parameters");
         }
 
     }

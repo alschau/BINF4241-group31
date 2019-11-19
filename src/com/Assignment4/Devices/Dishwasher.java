@@ -1,6 +1,6 @@
 package com.Assignment4.Devices;
 
-public class Dishwasher {
+public class Dishwasher extends Devices{
     public Dishwasher(){}
 
     public void on(){

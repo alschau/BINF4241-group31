@@ -1,6 +1,6 @@
 package com.Assignment4.Devices;
 
-public class Oven {
+public class Oven extends Devices{
 
     public Oven(){
     }

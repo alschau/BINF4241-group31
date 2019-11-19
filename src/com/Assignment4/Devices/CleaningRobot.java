@@ -1,6 +1,6 @@
 package com.Assignment4.Devices;
 
-public class CleaningRobot {
+public class CleaningRobot extends Devices {
     public void timer(int t){
         System.out.println("Setting cleaning robot timer to "+t+" seconds.");
     }

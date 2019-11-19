@@ -1,15 +1,11 @@
 package com.Assignment4;
 
 import com.Assignment4.Commands.CleaningRobot.*;
-import com.Assignment4.Commands.Command;
 import com.Assignment4.Commands.Dishwasher.*;
 import com.Assignment4.Commands.Microwave.*;
-import com.Assignment4.Commands.Oven.*;
 import com.Assignment4.Commands.WashingMachine.*;
 import com.Assignment4.Devices.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -25,16 +21,8 @@ public class Main {
         CleaningRobot b = new CleaningRobot();
 
         // INITIALIZING COMMANDS OVEN
-        OvenCommandOn oven_on = new OvenCommandOn(o);
-        //TODO wie chan in d Ziit/Temp erst später mitgeh?
-        OvenCommandTimer oven_timer = new OvenCommandTimer(o, 20);
-        OvenCommandTemp oven_temp = new OvenCommandTemp(o, 180);
-        //TODO string später mitgeh?
-        OvenCommandProgram oven_program = new OvenCommandProgram(o, "MYPROGRAM_OVEN");
-        OvenCommandStart oven_start = new OvenCommandStart(o);
-        OvenCommandCheck oven_check = new OvenCommandCheck(o);
-        OvenCommandInterrupt oven_interrupt = new OvenCommandInterrupt(o);
-        OvenCommandOff oven_off = new OvenCommandOff(o);
+        // In Loop
+
 
         // INITIALIZING COMMANDS MICROWAVE
         MicrowaveCommandOn microwave_on = new MicrowaveCommandOn(m);
@@ -69,65 +57,33 @@ public class Main {
         CleaningRobotCommandComplete robot_complete = new CleaningRobotCommandComplete(b);
         CleaningRobotCommandEnd robot_end = new CleaningRobotCommandEnd(b);
 
-        //##############################################################################################################
-
-        // testing_threads(p, o, m, d, w, b);
-
-        //##############################################################################################################
-
-        // INITIALIZING THREAD
-        MyThread T_one = new MyThread(3000);
-        MyThread T_two = new MyThread(1000);
-
-        Thread one = new Thread(T_one, "FirstThread");
-        // one.start();
 
 
+        /*
         ArrayList<Devices> devices = new ArrayList<Devices>(Arrays.asList(o, m, d, w, b));
         ArrayList<Command> oven_commands = new ArrayList<Command>(Arrays.asList(oven_on, oven_timer, oven_temp, oven_program, oven_start, oven_check, oven_interrupt, oven_off));
         ArrayList<Command> microwave_commands = new ArrayList<Command>(Arrays.asList(microwave_on, microwave_timer, microwave_temp, microwave_start, microwave_check, microwave_interrupt, microwave_off));
         ArrayList<Command> dishwasher_commands = new ArrayList<Command>(Arrays.asList(dishwasher_on, dishwasher_start, dishwasher_program, dishwasher_check, dishwasher_stop, dishwasher_off));
         ArrayList<Command> washing_commands = new ArrayList<Command>(Arrays.asList(washing_on, washing_temp, washing_program, washing_stop, washing_off));
         ArrayList<Command> robot_commands = new ArrayList<Command>(Arrays.asList(robot_timer, robot_start, robot_check_cleaning, robot_check_battery,  robot_check_charging, robot_complete, robot_end));
-
+        */
 
 
         while(true){
-            System.out.println("Whitch Thread do you want to start?");
+            System.out.println("Which Thread do you want to start?");
             System.out.println("Choice: oven, microwave, dishwasher, washing machine, cleaning robot");
             Scanner scanner = new Scanner(System.in);
-            String command = scanner.nextLine();
+            String device = scanner.nextLine();
 
-            if (command.equals("oven")){
-                String command2 = "";
-                while(!command2.equals("exit")) {
-                    System.out.println("on, timer, temp, program, start, check, interrupt, off, exit");
-                    command2 = scanner.nextLine();
-                    if (command2.equals("on")) {
-                        p.setCommand(oven_on);
-                    } else if (command2.equals("timer")) {
-                        p.setCommand(oven_timer);
-                    } else if (command2.equals("temp")) {
-                        p.setCommand(oven_timer);
-                    } else if (command2.equals("program")) {
-                        p.setCommand(oven_program);
-                    } else if (command2.equals("start")) {
-                        p.setCommand(oven_start);
-                    } else if (command2.equals("check")) {
-                        p.setCommand(oven_check);
-                    } else if (command2.equals("interrupt")) {
-                        p.setCommand(oven_interrupt);
-                    } else if (command2.equals("off")) {
-                        p.setCommand(oven_off);
-                    } else if (command2.equals("exit")){
-                        break;
-                    } else {
-                        System.out.println("Please enter a valid command");
-                    }
-                    p.pressButton();
-                }
 
-            } else if (command.equals("microwave")){
+            if (device.equals("oven")){
+                //TODO Create a function that does this
+
+                o.menu(p);
+
+
+
+            } else if (device.equals("microwave")){
                 String command2 = "";
                 while(!command2.equals("exit")) {
                     System.out.println("on, timer, temp, start, check, interrupt, off, exit");
@@ -154,7 +110,7 @@ public class Main {
                     p.pressButton();
                 }
 
-            } else if (command.equals("dishwasher")){
+            } else if (device.equals("dishwasher")){
                 String command2 = "";
                 while(!command2.equals("exit")) {
                     System.out.println("on, start, program, , check, stop, off, exit");
@@ -179,7 +135,7 @@ public class Main {
                     p.pressButton();
                 }
 
-            } else if (command.equals("washing")){
+            } else if (device.equals("washing")){
                 String command2 = "";
                 while(!command2.equals("exit")) {
                     System.out.println("on, temp, program, off, exit");
@@ -200,7 +156,7 @@ public class Main {
                     p.pressButton();
                 }
 
-            } else if (command.equals("cleaning robot")){
+            } else if (device.equals("cleaning robot")){
                 String command2 = "";
                 while(!command2.equals("exit")) {
                     System.out.println("timer, start, check cleaning, check battery, check charging, complete, end, exit");
@@ -238,138 +194,4 @@ public class Main {
 
     }
 
-    public static ArrayList testing_threads(Phone p, Oven o, Microwave m, Dishwasher d, WashingMachine w, CleaningRobot b){
-
-        // INITIALIZING COMMANDS OVEN
-        OvenCommandOn oven_on = new OvenCommandOn(o);
-        //TODO wie chan in d Ziit/Temp erst später mitgeh?
-        OvenCommandTimer oven_timer = new OvenCommandTimer(o, 20);
-        OvenCommandTemp oven_temp = new OvenCommandTemp(o, 180);
-        //TODO string später mitgeh?
-        OvenCommandProgram oven_program = new OvenCommandProgram(o, "MYPROGRAM_OVEN");
-        OvenCommandStart oven_start = new OvenCommandStart(o);
-        OvenCommandCheck oven_check = new OvenCommandCheck(o);
-        OvenCommandInterrupt oven_interrupt = new OvenCommandInterrupt(o);
-        OvenCommandOff oven_off = new OvenCommandOff(o);
-
-        // INITIALIZING COMMANDS MICROWAVE
-        MicrowaveCommandOn microwave_on = new MicrowaveCommandOn(m);
-        MicrowaveCommandTimer microwave_timer = new MicrowaveCommandTimer(m, 30);
-        MicrowaveCommandTemp microwave_temp = new MicrowaveCommandTemp(m, 220);
-        MicrowaveCommandStart microwave_start = new MicrowaveCommandStart(m);
-        MicrowaveCommandCheck microwave_check = new MicrowaveCommandCheck(m);
-        MicrowaveCommandInterrupt microwave_interrupt = new MicrowaveCommandInterrupt(m);
-        MicrowaveCommandOff microwave_off = new MicrowaveCommandOff(m);
-
-        // INITIALIZING COMMANDS DISHWASHER
-        DishwasherCommandOn dishwasher_on = new DishwasherCommandOn(d);
-        DishwasherCommandStart dishwasher_start = new DishwasherCommandStart(d);
-        DishwasherCommandProgram dishwasher_program = new DishwasherCommandProgram(d,"MYPROGRAM_DISHWASHER");
-        DishwasherCommandCheck dishwasher_check = new DishwasherCommandCheck(d);
-        DishwasherCommandStop dishwasher_stop = new DishwasherCommandStop(d);
-        DishwasherCommandOff dishwasher_off = new DishwasherCommandOff(d);
-
-        // INITIALIZING COMMANDS WASHING MACHINE
-        WashingMachineCommandOn washing_on = new WashingMachineCommandOn(w);
-        WashingMachineCommandTemp washing_temp = new WashingMachineCommandTemp(w, 60);
-        WashingMachineCommandProgram washing_program = new WashingMachineCommandProgram(w, "MYPROGRAM_WASHINGMACHINE");
-        WashingMachineCommandStop washing_stop = new WashingMachineCommandStop(w);
-        WashingMachineCommandOff washing_off = new WashingMachineCommandOff(w);
-
-        // INITIALIZING COMMANDS CLEANING ROBOT
-        CleaningRobotCommandTimer robot_timer = new CleaningRobotCommandTimer(b, 600);
-        CleaningRobotCommandStart robot_start = new CleaningRobotCommandStart(b);
-        CleaningRobotCommandCheckCleaning robot_check_cleaning = new CleaningRobotCommandCheckCleaning(b);
-        CleaningRobotCommandCheckBattery robot_check_battery = new CleaningRobotCommandCheckBattery(b);
-        CleaningRobotCommandCheckCharging robot_check_charging = new CleaningRobotCommandCheckCharging(b);
-        CleaningRobotCommandComplete robot_complete = new CleaningRobotCommandComplete(b);
-        CleaningRobotCommandEnd robot_end = new CleaningRobotCommandEnd(b);
-
-        ArrayList<Command> command_list = new ArrayList<Command>(
-                Arrays.asList(oven_on, oven_timer));
-
-
-        // TESTING COMMANDS FOR OVEN
-        System.out.println("TESTS FOR OVEN");
-        p.setCommand(oven_on);
-        p.pressButton();
-        p.setCommand(oven_timer);
-        p.pressButton();
-        p.setCommand(oven_temp);
-        p.pressButton();
-        p.setCommand(oven_program);
-        p.pressButton();
-        p.setCommand(oven_start);
-        p.pressButton();
-        p.setCommand(oven_check);
-        p.pressButton();
-        p.setCommand(oven_interrupt);
-        p.pressButton();
-        p.setCommand(oven_off);
-        p.pressButton();
-
-        // TESTING COMMANDS FOR MICROWAVE
-        System.out.println("\nTESTS FOR MICROWAVE");
-        p.setCommand(microwave_on);
-        p.pressButton();
-        p.setCommand(microwave_timer);
-        p.pressButton();
-        p.setCommand(microwave_temp);
-        p.pressButton();
-        p.setCommand(microwave_start);
-        p.pressButton();
-        p.setCommand(microwave_check);
-        p.pressButton();
-        p.setCommand(microwave_interrupt);
-        p.pressButton();
-        p.setCommand(microwave_off);
-        p.pressButton();
-
-        // TESTING COMMANDS FOR DISHWASHER
-        System.out.println("\nTESTS FOR DISHWASHER");
-        p.setCommand(dishwasher_on);
-        p.pressButton();
-        p.setCommand(dishwasher_start);
-        p.pressButton();
-        p.setCommand(dishwasher_program);
-        p.pressButton();
-        p.setCommand(dishwasher_check);
-        p.pressButton();
-        p.setCommand(dishwasher_stop);
-        p.pressButton();
-        p.setCommand(dishwasher_off);
-        p.pressButton();
-
-        // TESTING COMMANDS FOR WASHING MACHINE
-        System.out.println("\nTESTS FOR WASHING MACHINE");
-        p.setCommand(washing_on);
-        p.pressButton();
-        p.setCommand(washing_temp);
-        p.pressButton();
-        p.setCommand(washing_program);
-        p.pressButton();
-        p.setCommand(washing_stop);
-        p.pressButton();
-        p.setCommand(washing_off);
-        p.pressButton();
-
-        // TESTING COMMANDS FOR CLEANING ROBOT
-        System.out.println("\nTESTS FOR CLEANING ROBOT");
-        p.setCommand(robot_timer);
-        p.pressButton();
-        p.setCommand(robot_start);
-        p.pressButton();
-        p.setCommand(robot_check_cleaning);
-        p.pressButton();
-        p.setCommand(robot_check_battery);
-        p.pressButton();
-        p.setCommand(robot_check_charging);
-        p.pressButton();
-        p.setCommand(robot_complete);
-        p.pressButton();
-        p.setCommand(robot_end);
-        p.pressButton();
-
-        return command_list;
-    }
 }

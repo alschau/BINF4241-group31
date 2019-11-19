@@ -2,7 +2,7 @@ package com.Assignment4;
 
 public class MyThread implements Runnable{
     private boolean running;
-    private int time;
+    private int time; //3000
 
     //Set time
     public MyThread(int time){
@@ -11,7 +11,7 @@ public class MyThread implements Runnable{
 
     //Default
     public MyThread(){
-        this.time = 5000;
+        this.time = 10000;
     }
 
     @Override
@@ -19,7 +19,12 @@ public class MyThread implements Runnable{
         try {
             running = true;
             System.out.println("Thread is starting!");
-            Thread.sleep(time);
+
+            // Count down time
+            while(time>=10){
+                Thread.sleep(10);
+                time = time - 10;
+            }
             running = false;
             System.out.println("Thread is ending!");
         } catch (InterruptedException e) {
@@ -29,6 +34,14 @@ public class MyThread implements Runnable{
 
     public boolean isRunning(){
         return running;
+    }
+
+    public int getTime(){
+        return time/1000;
+    }
+
+    public void setTime(int i){
+        time = i;
     }
 
 }

@@ -22,9 +22,10 @@ public class WashingMachine extends Devices {
         if(!on){
             this.on = true;
             System.out.println("Turning washing machine on.");
-        } else {
-            System.out.println("already on");
         }
+        /*else {
+            System.out.println("already on");
+        }*/
     }
 
     public void temp(int t){

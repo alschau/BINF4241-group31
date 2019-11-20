@@ -1,7 +1,6 @@
 package com.Assignment4.Devices;
 
 import com.Assignment4.MyBatteryThread;
-import com.Assignment4.MyThread;
 import com.Assignment4.MyTimerThread;
 import com.Assignment4.mychargerthread;
 
@@ -29,11 +28,6 @@ public class CleaningRobot extends Devices {
 
     public void timer(int t){
         //wait until its fully charged
-        time = t;
-        while(!full){
-            Thread wait = new Thread(new MyThread( 1000));
-            wait.start();
-        }
 
         if(full){
 
@@ -47,6 +41,8 @@ public class CleaningRobot extends Devices {
             battery.start();
             timer.start();
 
+        }else{
+            System.out.println("sorry the robot is still charging, currently at" + batpercentage + "%");
         }
     }
 
@@ -88,8 +84,19 @@ public class CleaningRobot extends Devices {
     }
     public void complete_cleaning(){
 
+
     }
     public void end_cleaning(){
+
+        if(!base){
+            if(cleanpercentage < 100){
+                mytimer.setTime(0);
+            }else{
+                mybattery.setTime(0);
+            }
+        }
+
+
 
     }
 

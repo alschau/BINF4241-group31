@@ -21,12 +21,13 @@ public class MyBatteryThread implements Runnable{
             running = true;
 
             // Count down time
-            while(time>=1000){
+            while(time>1000){
                 Thread.sleep(1000);
                 time = time - 1000;
                 robo.batpercentage = time/1000;
 
             }
+
             robo.mytimer.setTime(0);
             robo.mytimer.print = false;
             robo.base = true;

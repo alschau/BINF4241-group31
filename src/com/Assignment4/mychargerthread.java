@@ -22,7 +22,7 @@ public class mychargerthread implements Runnable{
             System.out.println("robo coming to base with" +robo.batpercentage +"% battery charge. \n now charging....");
 
             while(robo.batpercentage<90){
-                Thread.sleep(100);
+                Thread.sleep(10000);
                 time = time - 100;
                 robo.batpercentage+=10;
             }

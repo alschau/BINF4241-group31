@@ -8,6 +8,9 @@ public class MyThread implements Runnable{
     public MyThread(int time){
         this.time = time;
     }
+    public MyThread(){
+
+    }
 
     @Override
     public void run(){

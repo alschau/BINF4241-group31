@@ -12,6 +12,7 @@ public class Oven extends Devices{
     public String program;
     public MyThread my_oven_thread;
     public Thread oven_thread;
+    private int temp;
 
 
     public Oven(){
@@ -39,6 +40,7 @@ public class Oven extends Devices{
 
     public void temp(int t){
         if(on){
+            this.temp = t;
             System.out.println("Setting oven temperature to "+t+" degrees.");
         } else {
             System.out.println("not on");
@@ -62,7 +64,7 @@ public class Oven extends Devices{
     }
 
     public void start(){
-        if(on && program!= null && my_oven_thread !=null){
+        if(on && program!= null && my_oven_thread !=null && temp != 0){
             System.out.println("Starting oven!");
             this.oven_thread = new Thread(my_oven_thread, "OvenThread");
             oven_thread.start();
@@ -94,7 +96,6 @@ public class Oven extends Devices{
     }
 
     public void off(){
-        //TODO reset states
         if(on){
             if(my_oven_thread.isRunning()) {
                 my_oven_thread.setTime(0);

@@ -67,7 +67,7 @@ public class Microwave extends Devices {
         if(running){
             this.running = false;
             my_micro_thread.setTime(0);
-            System.out.println("Stop current oven program");
+            System.out.println("Stop current Microwave program");
         } else {
             System.out.println("You can't interrupt if its not running");
         }

@@ -1,5 +1,6 @@
 package com.Assignment4.Devices;
 
+
 import com.Assignment4.Commands.WashingMachine.*;
 import com.Assignment4.MyThread;
 import com.Assignment4.Phone;
@@ -13,6 +14,7 @@ public class WashingMachine extends Devices {
     private MyThread my_washing_thread;
     private Thread washing_thread;
     private int temperature;
+    public boolean running;
 
     public WashingMachine(){}
 
@@ -73,53 +75,80 @@ public class WashingMachine extends Devices {
         if(my_washing_thread.isRunning()){
             System.out.println("The washing machine is still running and will automatically turn off when finished.");
         } else {
-            System.out.println("You cant stop the washing machine because its not running.");
+            System.out.println("You can't stop the washing machine because it's not running.");
         }
     }
 
     public void off(){
-        if(on){
-            if(my_washing_thread.isRunning()) {
-                my_washing_thread.setTime(0);
-            }
+        if(!running && on) {
             this.on = false;
-            this.program = null;
             System.out.println("Turning washing machine off.");
-        }else{
-            System.out.println("nothing seems to be happening");
+        }
+        else if (running) {
+            System.out.println("Washing machine is currently running, it might be damaged if turned off.");
+        }
+        else if (!running && !on) {
+            System.out.println("Washing machine is already turned off.");
         }
     }
 
     public void menu(Phone p) {
         String command2 = "";
         while (!command2.equals("exit")) {
-            System.out.println("on, temp, program, stop, off, exit");
+            if (!on) {
+                System.out.println("on, exit");
+                command2 = scanner.nextLine();
+
+                if (command2.equals("on")) {
+                    on = true;
+                    WashingMachineCommandOn dishwasher_on = new WashingMachineCommandOn(this);
+                    p.setCommand(dishwasher_on);
+                }
+                else if (command2.equals("exit")) {
+                    break;
+                }
+                else {
+                    System.out.println("Please enter a valid command");
+                    continue;
+                }
+            }
+            System.out.println("temp, program, stop, off, exit");
             command2 = scanner.nextLine();
-            if (command2.equals("on")) {
-                WashingMachineCommandOn washing_on = new WashingMachineCommandOn(this);
-                p.setCommand(washing_on);
-            } else if (command2.equals("temp")) {
+
+            if (command2.equals("temp")) {
                 System.out.println("Enter temperature: ");
                 String command3 = scanner.nextLine();
                 WashingMachineCommandTemp washing_temp = new WashingMachineCommandTemp(this, Integer.parseInt(command3));
                 p.setCommand(washing_temp);
-            } else if (command2.equals("program")) {
-                System.out.println("Enter program: ");
+            }
+
+            else if (command2.equals("program")) {
+                System.out.println("Enter program or type exit: double rinse, intense, quick, spin");
                 String command3 = scanner.nextLine();
                 WashingMachineCommandProgram washing_program = new WashingMachineCommandProgram(this, command3);
                 p.setCommand(washing_program);
-            } else if (command2.equals("timer")) {
+            }
+
+            /*else if (command2.equals("timer")) {
                 WashingMachineCommandTimer washing_timer = new WashingMachineCommandTimer(this);
                 p.setCommand(washing_timer);
-            } else if (command2.equals("stop")) {
+            }*/
+
+            else if (command2.equals("stop")) {
                 WashingMachineCommandStop washing_stop = new WashingMachineCommandStop(this);
                 p.setCommand(washing_stop);
-            } else if (command2.equals("off")) {
+            }
+
+            else if (command2.equals("off")) {
                 WashingMachineCommandOff washing_off = new WashingMachineCommandOff(this);
                 p.setCommand(washing_off);
-            } else if (command2.equals("exit")) {
+            }
+
+            else if (command2.equals("exit")) {
                 break;
-            } else {
+            }
+
+            else {
                 System.out.println("Please enter a valid command");
                 continue;
             }

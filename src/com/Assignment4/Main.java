@@ -78,29 +78,7 @@ public class Main {
                 m.menu(p);
 
             } else if (device.equals("dishwasher")){
-                String command2 = "";
-                while(!command2.equals("exit")) {
-                    System.out.println("on, start, program, , check, stop, off, exit");
-                    command2 = scanner.nextLine();
-                    if (command2.equals("on")) {
-                        p.setCommand(dishwasher_on);
-                    } else if (command2.equals("start")) {
-                        p.setCommand(dishwasher_start);
-                    } else if (command2.equals("program")) {
-                        p.setCommand(dishwasher_program);
-                    } else if (command2.equals("check")) {
-                        p.setCommand(dishwasher_check);
-                    } else if (command2.equals("stop")) {
-                        p.setCommand(dishwasher_stop);
-                    } else if (command2.equals("off")) {
-                        p.setCommand(dishwasher_off);
-                    } else if (command2.equals("exit")){
-                        break;
-                    } else {
-                        System.out.println("Please enter a valid command");
-                    }
-                    p.pressButton();
-                }
+                d.menu(p);
 
             } else if (device.equals("washing")){
                 String command2 = "";
@@ -146,6 +124,7 @@ public class Main {
                         break;
                     } else {
                         System.out.println("Please enter a valid command");
+                        break;
                     }
                     p.pressButton();
                 }

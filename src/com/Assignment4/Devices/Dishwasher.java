@@ -38,24 +38,20 @@ public class Dishwasher extends Devices{
     public void program(String program){
         this.program = program;
         if (this.program.equals("Glasses")){
-
+            timer(60, program);
         }
         else if (this.program.equals("Plates")) {
-
+            timer(60, program);
         }
         else if (this.program.equals("Pans")) {
-
+            timer(60, program);
         }
         else if (this.program.equals("Mixed")) {
-
+            timer(60, program);
         }
         System.out.println("Setting dishwasher program to "+program+".");
     }
 
-    public void timer(){
-        //Automatically depending on the current program!!
-        System.out.println(":)");
-    }
 
     public void check_timer(){
         if(running){
@@ -65,9 +61,9 @@ public class Dishwasher extends Devices{
         }
     }
 
-    public void timer(int t){
+    public void timer(int t, String prog){
         this.my_dishwasher_thread = new MyThread(t*1000);
-        System.out.println("The timer of the "+t+" seconds.");
+        System.out.println("The program "+prog+" will run " +t+" seconds.");
 
     }
 

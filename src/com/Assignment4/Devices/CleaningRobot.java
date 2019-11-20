@@ -1,9 +1,9 @@
 package com.Assignment4.Devices;
 
+import com.Assignment4.MyBatteryThread;
 import com.Assignment4.MyThread;
-
-import java.util.Arrays;
-import java.util.List;
+import com.Assignment4.MyTimerThread;
+import com.Assignment4.mychargerthread;
 
 public class CleaningRobot extends Devices {
     public Boolean full = true;
@@ -11,15 +11,21 @@ public class CleaningRobot extends Devices {
     public int time;
     private final int chargetime = 10000;
     private final int runtime = 100000;
-    public MyThread my_timer_thread;
-    public Thread timer_thread;
-    public MyThread my_charging_thread;
-    public Thread charging_thread;
-    private int temp;
+    public MyTimerThread mytimer;
+    public MyBatteryThread mybattery;
+    public mychargerthread mycharger;
+    public Thread timer;
+    public Thread battery;
+    public Thread charger;
+    public int batpercentage;
+    public int cleanpercentage;
+
 
 
     public CleaningRobot(){
     }
+
+
 
     public void timer(int t){
         //wait until its fully charged
@@ -30,17 +36,33 @@ public class CleaningRobot extends Devices {
         }
 
         if(full){
-            System.out.println("there he gooooooes");
-            full = false;
-            my_timer_thread = new MyThread(t*1000);
-            timer_thread = new Thread(my_timer_thread);
-            timer_thread.start();
+
+            base = false;
+            // Start (starting 2 threads)
+
+            mybattery = new MyBatteryThread(this);
+            mytimer = new MyTimerThread(this, time);
+            battery = new Thread(mybattery);
+            timer = new Thread(mytimer);
+            battery.start();
+            timer.start();
 
         }
     }
 
     public void check_battery(){
+        if(base){
+            System.out.println("100%");
+        }else{
+            System.out.println(batpercentage + "%");
+        }
 
+    }
+
+    public void startcharging(){
+        mychargerthread mycharger = new mychargerthread(this);
+        Thread charger = new Thread(mycharger);
+        charger.start();
     }
 
 
@@ -50,7 +72,11 @@ public class CleaningRobot extends Devices {
     }
 
     public void check_cleaning(){
-        System.out.println("the robot is to " + my_timer_thread.getTime()/runtime + "% done");
+        if(base){
+            System.out.println("robo in base");
+        }else{
+            System.out.println(cleanpercentage + "%");
+        }
 
     }
     public void complete_cleaning(){
@@ -64,6 +90,10 @@ public class CleaningRobot extends Devices {
 
 
     public void start(){
+
+    }
+
+    public void menu(){
 
     }
 

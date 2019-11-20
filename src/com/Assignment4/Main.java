@@ -43,7 +43,7 @@ public class Main {
 
 
         // INITIALIZING COMMANDS CLEANING ROBOT
-        CleaningRobotCommandTimer robot_timer = new CleaningRobotCommandTimer(b, 600);
+        CleaningRobotCommandTimer robot_timer = new CleaningRobotCommandTimer(b, 10000);
         CleaningRobotCommandStart robot_start = new CleaningRobotCommandStart(b);
         CleaningRobotCommandCheckCleaning robot_check_cleaning = new CleaningRobotCommandCheckCleaning(b);
         CleaningRobotCommandCheckBattery robot_check_battery = new CleaningRobotCommandCheckBattery(b);

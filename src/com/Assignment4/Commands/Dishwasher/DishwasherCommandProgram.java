@@ -7,6 +7,7 @@ public class DishwasherCommandProgram implements Command {
     Dishwasher dishwasher;
     String program;
 
+
     public DishwasherCommandProgram(Dishwasher d, String p){
         this.dishwasher = d;
         this.program = p;

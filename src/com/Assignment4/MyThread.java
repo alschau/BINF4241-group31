@@ -9,11 +9,6 @@ public class MyThread implements Runnable{
         this.time = time;
     }
 
-    //Default
-    public MyThread(){
-        this.time = 10000;
-    }
-
     @Override
     public void run(){
         try {

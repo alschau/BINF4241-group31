@@ -25,13 +25,8 @@ public class Main {
 
 
         // INITIALIZING COMMANDS MICROWAVE
-        MicrowaveCommandOn microwave_on = new MicrowaveCommandOn(m);
-        MicrowaveCommandTimer microwave_timer = new MicrowaveCommandTimer(m, 30);
-        MicrowaveCommandTemp microwave_temp = new MicrowaveCommandTemp(m, 220);
-        MicrowaveCommandStart microwave_start = new MicrowaveCommandStart(m);
-        MicrowaveCommandCheck microwave_check = new MicrowaveCommandCheck(m);
-        MicrowaveCommandInterrupt microwave_interrupt = new MicrowaveCommandInterrupt(m);
-        MicrowaveCommandOff microwave_off = new MicrowaveCommandOff(m);
+
+
 
         // INITIALIZING COMMANDS DISHWASHER
         DishwasherCommandOn dishwasher_on = new DishwasherCommandOn(d);
@@ -77,38 +72,10 @@ public class Main {
 
 
             if (device.equals("oven")){
-                //TODO Create a function that does this
-
                 o.menu(p);
 
-
-
             } else if (device.equals("microwave")){
-                String command2 = "";
-                while(!command2.equals("exit")) {
-                    System.out.println("on, timer, temp, start, check, interrupt, off, exit");
-                    command2 = scanner.nextLine();
-                    if (command2.equals("on")) {
-                        p.setCommand(microwave_on);
-                    } else if (command2.equals("timer")) {
-                        p.setCommand(microwave_timer);
-                    } else if (command2.equals("temp")) {
-                        p.setCommand(microwave_temp);
-                    } else if (command2.equals("start")) {
-                        p.setCommand(microwave_start);
-                    } else if (command2.equals("check")) {
-                        p.setCommand(microwave_check);
-                    } else if (command2.equals("interrupt")) {
-                        p.setCommand(microwave_interrupt);
-                    } else if (command2.equals("off")) {
-                        p.setCommand(microwave_off);
-                    } else if (command2.equals("exit")){
-                        break;
-                    } else {
-                        System.out.println("Please enter a valid command");
-                    }
-                    p.pressButton();
-                }
+                m.menu(p);
 
             } else if (device.equals("dishwasher")){
                 String command2 = "";

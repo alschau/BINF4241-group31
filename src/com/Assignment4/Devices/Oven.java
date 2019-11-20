@@ -4,9 +4,11 @@ import com.Assignment4.Commands.Oven.*;
 import com.Assignment4.MyThread;
 import com.Assignment4.Phone;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class Oven extends Devices{
     public Boolean on = false;
-    public Boolean running = false;
     public String program;
     public MyThread my_oven_thread;
     public Thread oven_thread;
@@ -16,7 +18,6 @@ public class Oven extends Devices{
     }
 
     public void on(){
-        //TODO if oven on already
         if(!on){
             this.on = true;
             System.out.println("Turning oven on.");
@@ -45,10 +46,15 @@ public class Oven extends Devices{
     }
 
     public void program(String program){
-        //TODO check if program is valid program (ventilated, grill, etc)
+        List<String> programs = Arrays.asList("fan", "grilled", "ventilated", "Plate warming");
         if(on){
-            this.program = program;
-            System.out.println("Setting oven program to "+program+".");
+            if(programs.contains(program.toLowerCase())){
+                this.program = program;
+                System.out.println("Setting oven program to "+program+".");
+            }else{
+                System.out.println("sorry, this oven does not support this program, try another one");
+            }
+
         } else {
             System.out.println("Hmmm, very suspicious owo. The oven doesnt seem to be responding. Come again later. Try switching it on first:");
         }
@@ -56,23 +62,20 @@ public class Oven extends Devices{
     }
 
     public void start(){
-        if(on && program!= null){
-            this.running = true;
+        if(on && program!= null && my_oven_thread !=null){
             System.out.println("Starting oven!");
-            if(my_oven_thread==null){
-                my_oven_thread = new MyThread();
-            }
             this.oven_thread = new Thread(my_oven_thread, "OvenThread");
             oven_thread.start();
 
+
         } else {
-            System.out.println("Choose a program first!");
+            System.out.println("before starting you must add all other parameters");
         }
 
     }
 
     public void check_timer(){
-        if(running){
+        if(my_oven_thread.isRunning()){
             System.out.println(my_oven_thread.getTime());
         } else  {
             System.out.println("Oven not running.");
@@ -81,8 +84,7 @@ public class Oven extends Devices{
     }
 
     public void interrupt(){
-        if(running){
-            this.running = false;
+        if(my_oven_thread.isRunning()){
             my_oven_thread.setTime(0);
             System.out.println("Stop current oven program");
         } else {
@@ -93,9 +95,15 @@ public class Oven extends Devices{
 
     public void off(){
         //TODO reset states
-        if(!running) {
+        if(on){
+            if(my_oven_thread.isRunning()) {
+                my_oven_thread.setTime(0);
+            }
             this.on = false;
+            this.program = null;
             System.out.println("Turning oven off.");
+        }else{
+            System.out.println("nothing seems to be happening");
         }
     }
 
@@ -138,6 +146,7 @@ public class Oven extends Devices{
                 break;
             } else {
                 System.out.println("Please enter a valid command");
+                continue;
             }
             p.pressButton();
         }

@@ -2,7 +2,6 @@ package com.Assignment4;
 
 import com.Assignment4.Commands.CleaningRobot.*;
 import com.Assignment4.Commands.Dishwasher.*;
-import com.Assignment4.Commands.Microwave.*;
 import com.Assignment4.Commands.WashingMachine.*;
 import com.Assignment4.Devices.*;
 
@@ -37,11 +36,11 @@ public class Main {
         DishwasherCommandOff dishwasher_off = new DishwasherCommandOff(d);
 
         // INITIALIZING COMMANDS WASHING MACHINE
-        WashingMachineCommandOn washing_on = new WashingMachineCommandOn(w);
-        WashingMachineCommandTemp washing_temp = new WashingMachineCommandTemp(w, 60);
-        WashingMachineCommandProgram washing_program = new WashingMachineCommandProgram(w, "MYPROGRAM_WASHINGMACHINE");
+
+
+
         WashingMachineCommandStop washing_stop = new WashingMachineCommandStop(w);
-        WashingMachineCommandOff washing_off = new WashingMachineCommandOff(w);
+
 
         // INITIALIZING COMMANDS CLEANING ROBOT
         CleaningRobotCommandTimer robot_timer = new CleaningRobotCommandTimer(b, 600);
@@ -80,26 +79,9 @@ public class Main {
             } else if (device.equals("dishwasher")){
                 d.menu(p);
 
-            } else if (device.equals("washing")){
-                String command2 = "";
-                while(!command2.equals("exit")) {
-                    System.out.println("on, temp, program, off, exit");
-                    command2 = scanner.nextLine();
-                    if (command2.equals("on")) {
-                        p.setCommand(washing_on);
-                    } else if (command2.equals("temp")) {
-                        p.setCommand(washing_temp);
-                    } else if (command2.equals("program")) {
-                        p.setCommand(washing_program);
-                    } else if (command2.equals("off")) {
-                        p.setCommand(washing_off);
-                    } else if (command2.equals("exit")){
-                        break;
-                    } else {
-                        System.out.println("Please enter a valid command");
-                    }
-                    p.pressButton();
-                }
+            } else if (device.equals("washing machine")){
+                w.menu(p);
+
 
             } else if (device.equals("cleaning robot")){
                 String command2 = "";

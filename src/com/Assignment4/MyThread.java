@@ -8,6 +8,9 @@ public class MyThread implements Runnable{
     public MyThread(int time){
         this.time = time;
     }
+    public MyThread(){
+
+    }
 
     @Override
     public void run(){
@@ -16,9 +19,9 @@ public class MyThread implements Runnable{
             System.out.println("Thread is starting!");
 
             // Count down time
-            while(time>=10){
-                Thread.sleep(10);
-                time = time - 10;
+            while(time>=1000){
+                Thread.sleep(1000);
+                time = time - 1000;
             }
             running = false;
             System.out.println("Thread is ending!");

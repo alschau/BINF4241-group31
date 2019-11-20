@@ -1,9 +1,10 @@
 package com.Assignment4.Devices;
 import com.Assignment4.Commands.Dishwasher.*;
+import com.Assignment4.Devices.Devices;
 import com.Assignment4.MyThread;
 import com.Assignment4.Phone;
 
-public class Dishwasher extends Devices{
+public class Dishwasher extends Devices {
     public Dishwasher(){}
     public Boolean on = false;
     public Boolean running = false;
@@ -97,7 +98,7 @@ public class Dishwasher extends Devices{
                 DishwasherCommandOn dishwasher_on = new DishwasherCommandOn(this);
                 p.setCommand(dishwasher_on);
             }
-             else if (command2.equals("program")) {
+            else if (command2.equals("program")) {
                 System.out.println("Enter program: Glasses, Plates, Pans, Mixed");
                 String command3 = scanner.nextLine();
                 DishwasherCommandProgram dishwasher_program = new DishwasherCommandProgram(this, command3);

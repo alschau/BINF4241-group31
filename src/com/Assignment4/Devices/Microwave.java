@@ -1,12 +1,13 @@
 package com.Assignment4.Devices;
 
+
 import com.Assignment4.Commands.Microwave.*;
 import com.Assignment4.MyThread;
 import com.Assignment4.Phone;
 
 public class Microwave extends Devices {
-    public Boolean on = false;
-    public Boolean running = false;
+    public boolean on = false;
+    public boolean running = false;
     public MyThread my_micro_thread;
     public Thread micro_thread;
 
@@ -16,9 +17,10 @@ public class Microwave extends Devices {
         if(!on){
             this.on = true;
             System.out.println("Turning Microwave on.");
-        } else {
-            System.out.println("already on");
         }
+        /*else {
+            System.out.println("already on");
+        }*/
 
     }
 
@@ -85,6 +87,23 @@ public class Microwave extends Devices {
     public void menu(Phone p){
         String command2 = "";
         while(!command2.equals("exit")) {
+            if (!on) {
+                System.out.println("on, exit");
+                command2 = scanner.nextLine();
+
+                if (command2.equals("on")) {
+                    on = true;
+                    MicrowaveCommandOn dishwasher_on = new MicrowaveCommandOn(this);
+                    p.setCommand(dishwasher_on);
+                }
+                else if (command2.equals("exit")) {
+                    break;
+                }
+                else {
+                    System.out.println("Please enter a valid command");
+                    continue;
+                }
+            }
             System.out.println("on, timer, temp, start, check, interrupt, off, exit");
             command2 = scanner.nextLine();
             if (command2.equals("on")) {

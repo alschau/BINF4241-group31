@@ -7,7 +7,7 @@ import com.Assignment4.Phone;
 public class Dishwasher extends Devices {
     public Dishwasher(){}
     public boolean on = false;
-    public Boolean running = false;
+    public boolean running = false;
     public String program = "null";
     public MyThread my_dishwasher_thread;
     public Thread dishwasher_thread;
@@ -16,9 +16,10 @@ public class Dishwasher extends Devices {
         if(!on){
             this.on = true;
             System.out.println("Turning dishwasher on.");
-        } else {
-            System.out.println("already on");
         }
+        /*else {
+            System.out.println("already on");
+        } */
     }
 
     public void start(){

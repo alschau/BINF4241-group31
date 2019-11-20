@@ -68,6 +68,13 @@ public class CleaningRobot extends Devices {
 
 
     public void check_charging(){
+        if(base){
+            System.out.println("robot is in base with " + batpercentage + "% batterylife");
+        }
+        else{
+            System.out.println("sry the robot is currently not home");
+        }
+
 
     }
 

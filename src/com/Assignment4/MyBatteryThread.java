@@ -5,7 +5,8 @@ import com.Assignment4.Devices.CleaningRobot;
 public class MyBatteryThread implements Runnable{
     private boolean running;
     private CleaningRobot robo;
-    private int time = 100000;
+    private int time = 1000;
+    public boolean print = true;
 
 
     //Set time
@@ -27,12 +28,18 @@ public class MyBatteryThread implements Runnable{
 
             }
             robo.mytimer.setTime(0);
+            robo.mytimer.print = false;
             robo.base = true;
+
             running = false;
 
             //todo terminate other thread if one is done!
+            if(print){
+                System.out.println("robo is running out of battery, returning to base");
+                robo.startcharging();
+            }
 
-            System.out.println("robo is running out of battery, returning to base");
+
 
         } catch (InterruptedException e) {
             e.printStackTrace();

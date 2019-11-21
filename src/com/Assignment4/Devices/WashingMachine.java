@@ -66,9 +66,9 @@ public class WashingMachine extends Devices {
 
     public void timer(){
         if(my_washing_thread.isRunning()){
-            System.out.println(my_washing_thread.getTime());
+            System.out.println(my_washing_thread.getTime()+" seconds left.");
         } else  {
-            System.out.println("Washing machine not running.");
+            System.out.println("Washing machine is not running. Timer will automatically be set.");
         }
     }
 
@@ -113,7 +113,7 @@ public class WashingMachine extends Devices {
                     continue;
                 }
             }
-            System.out.println("temp, program, stop, off, exit");
+            System.out.println("temp, timer, program, stop, off, exit");
             command2 = scanner.nextLine();
 
             if (command2.equals("temp")) {
@@ -130,10 +130,10 @@ public class WashingMachine extends Devices {
                 p.setCommand(washing_program);
             }
 
-            /*else if (command2.equals("timer")) {
+            else if (command2.equals("timer")) {
                 WashingMachineCommandTimer washing_timer = new WashingMachineCommandTimer(this);
                 p.setCommand(washing_timer);
-            }*/
+            }
 
             else if (command2.equals("stop")) {
                 WashingMachineCommandStop washing_stop = new WashingMachineCommandStop(this);

@@ -1,8 +1,5 @@
 package com.Assignment4;
 
-import com.Assignment4.Commands.CleaningRobot.*;
-import com.Assignment4.Commands.Dishwasher.*;
-import com.Assignment4.Commands.WashingMachine.*;
 import com.Assignment4.Devices.*;
 
 import java.util.Scanner;
@@ -18,40 +15,6 @@ public class Main {
         Dishwasher d = new Dishwasher();
         WashingMachine w = new WashingMachine();
         CleaningRobot b = new CleaningRobot();
-
-        // INITIALIZING COMMANDS OVEN
-        // In Loop
-
-
-        // INITIALIZING COMMANDS MICROWAVE
-
-
-
-        // INITIALIZING COMMANDS DISHWASHER
-        DishwasherCommandOn dishwasher_on = new DishwasherCommandOn(d);
-        DishwasherCommandStart dishwasher_start = new DishwasherCommandStart(d);
-        DishwasherCommandProgram dishwasher_program = new DishwasherCommandProgram(d,"MYPROGRAM_DISHWASHER");
-        DishwasherCommandCheck dishwasher_check = new DishwasherCommandCheck(d);
-        DishwasherCommandStop dishwasher_stop = new DishwasherCommandStop(d);
-        DishwasherCommandOff dishwasher_off = new DishwasherCommandOff(d);
-
-        // INITIALIZING COMMANDS WASHING MACHINE
-
-
-
-        WashingMachineCommandStop washing_stop = new WashingMachineCommandStop(w);
-
-
-        // INITIALIZING COMMANDS CLEANING ROBOT
-        CleaningRobotCommandTimer robot_timer = new CleaningRobotCommandTimer(b, 10000);
-        CleaningRobotCommandStart robot_start = new CleaningRobotCommandStart(b);
-        CleaningRobotCommandCheckCleaning robot_check_cleaning = new CleaningRobotCommandCheckCleaning(b);
-        CleaningRobotCommandCheckBattery robot_check_battery = new CleaningRobotCommandCheckBattery(b);
-        CleaningRobotCommandCheckCharging robot_check_charging = new CleaningRobotCommandCheckCharging(b);
-        CleaningRobotCommandComplete robot_complete = new CleaningRobotCommandComplete(b);
-        CleaningRobotCommandEnd robot_end = new CleaningRobotCommandEnd(b);
-
-
 
         /*
         ArrayList<Devices> devices = new ArrayList<Devices>(Arrays.asList(o, m, d, w, b));
@@ -82,43 +45,14 @@ public class Main {
             } else if (device.equals("washing machine")){
                 w.menu(p);
 
-
             } else if (device.equals("cleaning robot")){
-                String command2 = "";
-                while(!command2.equals("exit")) {
-                    System.out.println("timer, start, check cleaning, check battery, check charging, complete, end, exit");
-                    command2 = scanner.nextLine();
-                    if (command2.equals("timer")) {
-                        p.setCommand(robot_timer);
-                    } else if (command2.equals("start")) {
-                        p.setCommand(robot_start);
-                    } else if (command2.equals("check cleaning")) {
-                        p.setCommand(robot_check_cleaning);
-                    } else if (command2.equals("check battery")) {
-                        p.setCommand(robot_check_battery);
-                    } else if (command2.equals("check charging")) {
-                        p.setCommand(robot_check_charging);
-                    } else if (command2.equals("complete")) {
-                        p.setCommand(robot_complete);
-                    } else if (command2.equals("end")) {
-                        p.setCommand(robot_end);
-                    } else if (command2.equals("exit")){
-                        break;
-                    } else {
-                        System.out.println("Please enter a valid command");
-                        break;
-                    }
-                    p.pressButton();
-                }
-
+                b.menu(p);
             }
             else {
                 System.out.println("Please enter a valid device!");
             }
 
         }
-
-
 
     }
 

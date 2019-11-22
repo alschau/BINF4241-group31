@@ -12,3 +12,7 @@ the cleaning robot to make it simpler and more understandable for us and everyon
 - MyBatteryThread: used for the Battery Percentage of the cleaning robot.
 - mychargerthread: used for the Charging Percentage of the cleaning robot.
 - MyTimerThread: used for the Cleaning Completion of the cleaning robot.
+
+lord forgive me for i have sinned
+![a4](https://user-images.githubusercontent.com/45588658/69442466-f0fcdb00-0d4c-11ea-96ea-357be52286af.png)
+

@@ -29,18 +29,14 @@ public class WashingMachine extends Devices {
     }
 
     public void temp(int t){
-        if(on){
-            this.temperature = t;
-            System.out.println("Setting washing machine temperature to "+t+" degrees.");
-        } else {
-            System.out.println("not on");
-        }
+        this.temperature = t;
+        System.out.println("Setting washing machine temperature to "+t+" degrees.");
     }
 
     public void program(String program){
         List<String> programs = Arrays.asList("double rinse", "intense", "quick", "spin");
         List<Integer> times = Arrays.asList(40, 60, 15, 30);
-        if(on){
+        if(temperature!=0){
             if(my_washing_thread==null || !my_washing_thread.isRunning()){
                 if(programs.contains(program.toLowerCase())){
                     this.program = program;
@@ -58,39 +54,41 @@ public class WashingMachine extends Devices {
             } else {
                 System.out.println("Washing machine is already running!");
             }
-
-        } else {
-            System.out.println("Hmmm, very suspicious owo. The washing machine doesnt seem to be responding. Come again later. Try switching it on first:");
+        }else{
+            System.out.println("please enter a temperature first");
         }
+
+
     }
 
     public void timer(){
-        if(my_washing_thread.isRunning()){
-            System.out.println(my_washing_thread.getTime()+" seconds left.");
+        if(my_washing_thread!=null){
+            if(my_washing_thread.isRunning()){
+                System.out.println(my_washing_thread.getTime()+" seconds left.");
+        }
+
         } else  {
             System.out.println("Washing machine is not running. Timer will automatically be set.");
         }
     }
 
     public void stop(){
-        if(my_washing_thread.isRunning()){
-            System.out.println("The washing machine is still running and will automatically turn off when finished.");
+        if(my_washing_thread!=null){
+            if(my_washing_thread.isRunning()){
+                System.out.println("The washing machine is still running and will automatically turn off when finished.");
+        }
+
         } else {
             System.out.println("You can't stop the washing machine because it's not running.");
         }
     }
 
     public void off(){
-        if(!running && on) {
-            this.on = false;
-            System.out.println("Turning washing machine off.");
+        if(my_washing_thread!=null) {
+            my_washing_thread.setTime(0);
         }
-        else if (running) {
-            System.out.println("Washing machine is currently running, it might be damaged if turned off.");
-        }
-        else if (!running && !on) {
-            System.out.println("Washing machine is already turned off.");
-        }
+        this.on = false;
+        System.out.println("Turning washing machine off.");
     }
 
     public void menu(Phone p) {

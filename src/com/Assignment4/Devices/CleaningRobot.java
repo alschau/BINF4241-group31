@@ -29,6 +29,7 @@ public class CleaningRobot extends Devices {
 
 
     public void timer(int t){
+        time =t;
         //wait until its fully charged
 
         if(full){

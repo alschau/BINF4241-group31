@@ -5,7 +5,7 @@ import com.Assignment4.Devices.CleaningRobot;
 public class MyBatteryThread implements Runnable{
     private boolean running;
     private CleaningRobot robo;
-    private int time = 1000;
+    private int time = 100000;
     public boolean print = true;
 
 
@@ -29,6 +29,7 @@ public class MyBatteryThread implements Runnable{
             }
 
             robo.mytimer.setTime(0);
+            System.out.println(robo.time);
             robo.mytimer.print = false;
             robo.base = true;
 

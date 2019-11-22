@@ -21,12 +21,13 @@ public class mychargerthread implements Runnable{
 
             System.out.println("robo coming to base with" +robo.batpercentage +"% battery charge. \n now charging....");
 
-            while(robo.batpercentage<90){
-                Thread.sleep(10000);
-                time = time - 100;
-                robo.batpercentage+=10;
+            while(robo.batpercentage<99){
+                Thread.sleep(100);
+                time = time - 10;
+                robo.batpercentage+=1;
             }
             robo.batpercentage = 100;
+            System.out.println("robo is fully charged and ready to use again");
             robo.full = true;
             running = false;
 

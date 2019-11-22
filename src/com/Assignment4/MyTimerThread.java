@@ -23,11 +23,12 @@ public class MyTimerThread implements Runnable{
         try {
             running = true;
 
-            // Count down time
-            while(time>=1000){
-                Thread.sleep(1000);
-                time = time - 1000;
-                robo.cleanpercentage = (time*100/initial_time);
+            // Count percentage of the time that has already been completed
+            while(time>=10){
+                Thread.sleep(10);
+                time = time - 10;
+                robo.cleanpercentage = 100 - (time*100/initial_time);
+                System.out.println(robo.time);
             }
             robo.mybattery.setTime(0);
             robo.mybattery.print = false;

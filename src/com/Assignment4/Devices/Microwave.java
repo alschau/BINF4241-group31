@@ -10,6 +10,7 @@ public class Microwave extends Devices {
     public boolean running = false;
     public MyThread my_micro_thread;
     public Thread micro_thread;
+    private int temp;
 
     public Microwave(){}
 
@@ -36,7 +37,8 @@ public class Microwave extends Devices {
 
     public void temp(int t){
         if(on){
-            System.out.println("Setting oven temperature to "+t+" degrees.");
+            temp = t;
+            System.out.println("Setting microwave temperature to "+t+" degrees.");
         } else {
             System.out.println("not on");
         }
@@ -44,7 +46,7 @@ public class Microwave extends Devices {
 
 
     public void start(){
-        if(on && my_micro_thread !=null){
+        if(on && my_micro_thread !=null&& temp != 0){
             this.running = true;
             System.out.println("Starting Microwave!");
             this.micro_thread = new Thread(my_micro_thread, "MicroThread");
@@ -80,7 +82,7 @@ public class Microwave extends Devices {
         //TODO reset states
         if(!running) {
             this.on = false;
-            System.out.println("Turning oven off.");
+            System.out.println("Turning microwave off.");
         }
     }
 

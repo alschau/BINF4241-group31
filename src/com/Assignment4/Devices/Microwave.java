@@ -18,9 +18,9 @@ public class Microwave extends Devices {
             this.on = true;
             System.out.println("Turning Microwave on.");
         }
-        /*else {
+        else {
             System.out.println("already on");
-        }*/
+        }
 
     }
 

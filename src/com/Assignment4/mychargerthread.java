@@ -19,17 +19,19 @@ public class mychargerthread implements Runnable{
             int percentage = robo.batpercentage;
             int time = (100 - percentage) *1000;
 
-            System.out.println("robo coming to base with" +robo.batpercentage +"% battery charge. \n now charging....");
+            System.out.println("robo coming to base with " +robo.batpercentage +"% battery charge. \nnow charging....");
 
             while(robo.batpercentage<99){
                 Thread.sleep(100);
-                time = time - 10;
+                time = time - 100;
                 robo.batpercentage+=1;
             }
             robo.batpercentage = 100;
             System.out.println("robo is fully charged and ready to use again");
             robo.full = true;
+            robo.base = true;
             running = false;
+            System.out.println(robo.time);
 
         } catch (InterruptedException e) {
             e.printStackTrace();

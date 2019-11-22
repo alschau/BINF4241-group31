@@ -29,12 +29,17 @@ public class CleaningRobot extends Devices {
 
 
     public void timer(int t){
-        time =t;
+        time =t*1000;
         //wait until its fully charged
 
-        if(full){
+    }
+
+
+    public void start(){
+        if(full && base && time!=0){
 
             base = false;
+            System.out.println("robo is starting");
             // Start (starting 2 threads)
 
             mybattery = new MyBatteryThread(this);
@@ -45,9 +50,10 @@ public class CleaningRobot extends Devices {
             timer.start();
 
         }else{
-            System.out.println("sorry the robot is still charging, currently at" + batpercentage + "%");
+            System.out.println("the robot is currently unavailabe (either cleaning already or charging)");
         }
     }
+
 
     public void check_battery(){
         if(base){
@@ -86,6 +92,13 @@ public class CleaningRobot extends Devices {
 
     }
     public void complete_cleaning(){
+        while(time>0){
+            if(full){
+                start();
+            }
+
+        }
+        //System.out.println("nigger");
 
 
     }
@@ -106,9 +119,7 @@ public class CleaningRobot extends Devices {
 
 
 
-    public void start(){
 
-    }
 
     public void menu(Phone p){
 
@@ -117,6 +128,7 @@ public class CleaningRobot extends Devices {
             System.out.println("timer, start, check cleaning, check battery, check charging, complete, end, exit");
             command2 = scanner.nextLine();
             if (command2.equals("timer")) {
+                System.out.println("enter a time");
                 String command3 = scanner.nextLine();
                 CleaningRobotCommandTimer robot_timer = new CleaningRobotCommandTimer(this, Integer.parseInt(command3));
                 p.setCommand(robot_timer);
@@ -142,7 +154,7 @@ public class CleaningRobot extends Devices {
                 break;
             } else {
                 System.out.println("Please enter a valid command");
-                break;
+                continue;
             }
             p.pressButton();
         }

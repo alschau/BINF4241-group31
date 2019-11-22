@@ -5,7 +5,7 @@ import com.Assignment4.Devices.CleaningRobot;
 public class MyBatteryThread implements Runnable{
     private boolean running;
     private CleaningRobot robo;
-    private int time = 100000;
+    private int time = 10000;
     public boolean print = true;
 
 
@@ -21,16 +21,14 @@ public class MyBatteryThread implements Runnable{
             running = true;
 
             // Count down time
-            while(time>1000){
-                Thread.sleep(1000);
-                time = time - 1000;
-                robo.batpercentage = time/1000;
+            while(time>=10){
+                robo.batpercentage = time/100;
+                Thread.sleep(10);
+                time = time - 10;
 
             }
-
-            robo.mytimer.setTime(0);
-            System.out.println(robo.time);
             robo.mytimer.print = false;
+            robo.mytimer.setTime(0);
             robo.base = true;
 
             running = false;

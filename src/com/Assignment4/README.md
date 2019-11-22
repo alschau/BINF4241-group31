@@ -16,3 +16,4 @@ the cleaning robot to make it simpler and more understandable for us and everyon
 lord forgive me for i have sinned
 ![a4](https://user-images.githubusercontent.com/45588658/69442466-f0fcdb00-0d4c-11ea-96ea-357be52286af.png)
 
+we did it by hand but the image was too large to take a photo. for any further questions contact 1-800-784-2433 you will find me there

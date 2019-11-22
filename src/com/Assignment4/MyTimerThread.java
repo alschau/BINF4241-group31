@@ -27,8 +27,12 @@ public class MyTimerThread implements Runnable{
             while(time>=10){
                 Thread.sleep(10);
                 time = time - 10;
+                if(print){
+                    robo.time=time;
+                }
+
                 robo.cleanpercentage = 100 - (time*100/initial_time);
-                System.out.println(robo.time);
+                System.out.println(robo.cleanpercentage);
             }
             robo.mybattery.setTime(0);
             robo.mybattery.print = false;
@@ -36,7 +40,6 @@ public class MyTimerThread implements Runnable{
 
             running = false;
 
-            //todo terminate other thread if one is done!
             if(print){
                 System.out.println("robo is running out of time, returning to base");
                 robo.startcharging();

@@ -52,6 +52,8 @@ public class Oven extends Devices{
             if(!my_oven_thread.isRunning()){
 
                 System.out.println("Starting oven!");
+                this.my_oven_thread = new MyThread(timer*1000);
+                this.oven_thread = new Thread(my_oven_thread, "OvenThread");
                 oven_thread.start();
             }else{
                 System.out.println("you started the oven already");
@@ -72,13 +74,19 @@ public class Oven extends Devices{
     }
 
     public void interrupt(){
-        my_oven_thread.setTime(0);
-        System.out.println("Stop current oven program");
+
+        if(oven_thread!=null){
+            my_oven_thread.setTime(0);
+            System.out.println("Stop current oven program");
+        }else{
+            System.out.println("oven isnt running");
+        }
+
     }
 
     public void off(){
 
-        if(oven_thread!=null){
+        if(my_oven_thread!=null){
             my_oven_thread.setTime(0);
         }
 
@@ -87,6 +95,11 @@ public class Oven extends Devices{
 
         this.on = false;
         System.out.println("Turning oven off.");
+
+        this.timer = 0;
+        this.temp = 0;
+        this.program = null;
+        my_oven_thread = null;
     }
 
     public void menu(Phone p){
@@ -156,12 +169,10 @@ public class Oven extends Devices{
             }
 
             else if (command2.equals("interrupt")) {
-                if(my_oven_thread != null){
-                    OvenCommandInterrupt oven_interrupt = new OvenCommandInterrupt(this);
-                    p.setCommand(oven_interrupt);
-                } else {
-                    System.out.println("The oven isn't running.");
-                }
+
+                OvenCommandInterrupt oven_interrupt = new OvenCommandInterrupt(this);
+                p.setCommand(oven_interrupt);
+
             }
 
             else if (command2.equals("off")) {
@@ -170,10 +181,7 @@ public class Oven extends Devices{
                 p.setCommand(oven_off);
 
                 // Reset device states
-                this.timer = 0;
-                this.temp = 0;
-                this.program = null;
-                my_oven_thread = null;
+
             }
 
             else if (command2.equals("exit")) {

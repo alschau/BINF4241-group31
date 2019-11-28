@@ -1,6 +1,6 @@
 package softcon.tictactoe.ai.heuristic.tictactoe;
 
-import softcon.tictactoe.ai.heuristic.StateEvaluator;
+import com.Assignment5.Part2.src.main.java.softcon.tictactoe.ai.heuristic.tictactoe.StateEvaluator;
 import com.Assignment5.Part2.src.main.java.softcon.tictactoe.tictactoe.TicTacToeGameState;
 
 /**

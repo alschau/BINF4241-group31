@@ -1,12 +1,14 @@
-package softcon.tictactoe.ai;
+package com.Assignment5.Part2.src.main.java.softcon.tictactoe.ai;
 
+
+import com.Assignment5.Part2.src.main.java.softcon.tictactoe.ai.heuristic.tictactoe.StateEvaluator;
+import com.Assignment5.Part2.src.main.java.softcon.tictactoe.DiscreteGameState;
+import com.Assignment5.Part2.src.main.java.softcon.tictactoe.tictactoe.TicTacToeGameState;
+import softcon.tictactoe.ai.heuristic.tictactoe.TicTacToeEvaluator;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import softcon.tictactoe.DiscreteGameState;
-import softcon.tictactoe.ai.heuristic.StateEvaluator;
 
 /**
  * Implementation of {@link GameIntelligenceAgent} that evaluates the next optimal game state using
@@ -31,16 +33,16 @@ public class MinimaxAgent<T extends DiscreteGameState> implements GameIntelligen
     }
   }
 
-  private final StateEvaluator<T> evaluator;
+  private final TicTacToeEvaluator evaluator;
 
   /**
    * Creates a new instance of {@link MinimaxAgent} that uses the given {@link StateEvaluator} for
    * measuring the value of each game state.
-   * 
+   *
    * @param evaluator the {@link StateEvaluator} used to measure the value of each game state;
    *        cannot be null
    */
-  public MinimaxAgent(StateEvaluator<T> evaluator) {
+  public MinimaxAgent(TicTacToeEvaluator evaluator) {
     if (evaluator == null) {
       throw new IllegalArgumentException("evaluator cannot be null");
     }
@@ -74,7 +76,7 @@ public class MinimaxAgent<T extends DiscreteGameState> implements GameIntelligen
     Node<T> current = new Node<T>(state, alpha, beta);
     current.value = max ? alpha : beta;
     if (depth == 0 || state.isOver()) {
-      current.value = evaluator.evaluate(state);
+      current.value = evaluator.evaluate((TicTacToeGameState) state);
       current.alpha = current.value;
       current.beta = current.value;
       current.state = state;

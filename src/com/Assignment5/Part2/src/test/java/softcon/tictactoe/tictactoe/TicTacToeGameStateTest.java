@@ -1,11 +1,12 @@
-package com.Assignment5.Part2.src.main.java.softcon.tictactoe.tictactoe;
+package com.Assignment5.Part2.src.test.java.softcon.tictactoe.tictactoe;
 
+import com.Assignment5.Part2.src.main.java.softcon.tictactoe.tictactoe.TicTacToeGameState;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import softcon.tictactoe.DiscreteGameState;
+import com.Assignment5.Part2.src.main.java.softcon.tictactoe.DiscreteGameState;
 import com.Assignment5.Part2.src.main.java.softcon.tictactoe.Position;
 
 import java.util.List;

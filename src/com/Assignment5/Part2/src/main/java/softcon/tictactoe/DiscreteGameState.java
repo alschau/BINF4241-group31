@@ -1,4 +1,4 @@
-package softcon.tictactoe;
+package com.Assignment5.Part2.src.main.java.softcon.tictactoe;
 
 import java.util.List;
 

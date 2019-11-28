@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import softcon.tictactoe.Position;
+import com.Assignment5.Part2.src.main.java.softcon.tictactoe.Position;
 
 import java.util.ArrayList;
 import java.util.List;

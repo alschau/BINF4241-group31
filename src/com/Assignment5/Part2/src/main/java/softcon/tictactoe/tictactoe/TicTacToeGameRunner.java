@@ -1,6 +1,6 @@
 package com.Assignment5.Part2.src.main.java.softcon.tictactoe.tictactoe;
 
-import softcon.tictactoe.Position;
+import com.Assignment5.Part2.src.main.java.softcon.tictactoe.Position;
 import softcon.tictactoe.ai.GameIntelligenceAgent;
 import com.Assignment5.Part2.src.main.java.softcon.tictactoe.tictactoe.TicTacToeGameState.Player;
 

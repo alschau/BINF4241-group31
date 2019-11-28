@@ -1,6 +1,5 @@
 package com.Assignment4.Devices;
 import com.Assignment4.Commands.Dishwasher.*;
-import com.Assignment4.Devices.Devices;
 import com.Assignment4.MyThread;
 import com.Assignment4.Phone;
 
@@ -112,15 +111,17 @@ public class Dishwasher extends Devices {
     }
 
     public void off(){
-        if(!running && on) {
-            this.on = false;
-            System.out.println("Turning dishwasher off.");
-        }
-        else if (running) {
-            System.out.println("Dishwasher is currently running, it might be damaged if turned off.");
-        }
-        else if (!running && !on) {
+        if(!on){
             System.out.println("Dishwasher is already turned off.");
+        } else {
+            if(!running) {
+                this.on = false;
+            }
+            else if (running) {
+                stop();
+                this.on = false;
+            }
+            System.out.println("Turning dishwasher off.");
         }
     }
 
@@ -145,10 +146,10 @@ public class Dishwasher extends Devices {
                     continue;
                 }
             }
-            System.out.println("Make your choice: program, start, check stop, off, exit");
+            System.out.println("Make your choice: program, start, check, stop, off, exit");
             command2 = scanner.nextLine();
             if (command2.equals("program")) {
-                System.out.println("Enter program or type exit: glasses, plates, pans, mixed");
+                System.out.println("Enter program or type exit: glasses, plates, pans, mixed, exit");
                 String command3 = scanner.nextLine();
                 DishwasherCommandProgram dishwasher_program = new DishwasherCommandProgram(this, command3);
                 p.setCommand(dishwasher_program);

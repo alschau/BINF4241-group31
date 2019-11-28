@@ -1,8 +1,8 @@
 package com.uno;
 
 public class card {
-    String color;
-    String sign;
+    private String color;
+    private String sign;
 
     public card(String color, String sign){
         this.color = color;
@@ -10,4 +10,19 @@ public class card {
     }
 
 
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public String getSign() {
+        return sign;
+    }
+
+    public void setSign(String sign) {
+        this.sign = sign;
+    }
 }

@@ -5,7 +5,6 @@ import com.Chess.Player;
 import java.util.ArrayList;
 
 public class player {
-
     private String name;
     private ArrayList<card> handcards;
 

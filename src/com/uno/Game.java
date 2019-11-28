@@ -12,4 +12,14 @@ public class Game {
         this.drawstack = new drawstack();
         this.middlestack = new middlestack();
     }
+
+
+
+    public void start(){
+        for(player temp: players){
+            for(int i = 0; i<7;i++){
+
+            }
+        }
+    }
 }

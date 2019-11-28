@@ -6,13 +6,15 @@ public class drawstack {
     ArrayList<card> stack = new ArrayList<card>();
 
     public drawstack(){
+
+        //fill stack with every card
         for(int i = 0; i < 56; i++){
             String a = Integer.toString(i % 14);
 
             if(a.equals(Integer.toString(10))){
                 a = "stop";
             }else if(a.equals(Integer.toString(11))){
-                a = "no u";
+                a = "reverse";
             }else if(a.equals(Integer.toString(12))){
                 a = "+2";
             }else if(a.equals(Integer.toString(13))){
@@ -48,5 +50,14 @@ public class drawstack {
         stack.get(53).setSign("wish");
         stack.get(80).setSign("wish");
         stack.get(107).setSign("wish");
+
+    }
+
+    public card get_card(int i){
+        return stack.get(i);
+    }
+
+    public ArrayList<card> getStack() {
+        return stack;
     }
 }

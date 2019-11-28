@@ -25,4 +25,8 @@ public class card {
     public void setSign(String sign) {
         this.sign = sign;
     }
+
+    public String getRepr() {
+        return this.getSign() + "" + this.getColor();
+    }
 }

@@ -6,12 +6,23 @@ import java.util.ArrayList;
 
 public class player {
     private String name;
-    ArrayList<card> handcards;
+    ArrayList<card> handcards = new ArrayList<card>();
 
     public player(String name){
         this.name = name;
     }
 
+    public void printhand(){
+        System.out.println(name + "'s hand is:");
+
+        for(card temp: handcards){
+            System.out.println(temp.getRepr());
+        }
+    }
+
+    public String getName() {
+        return name;
+    }
 
 
 }

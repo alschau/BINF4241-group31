@@ -10,8 +10,8 @@ public class main {
         Scanner scanner = new Scanner(System.in);
         String input = "";
         System.out.println("Welcome to uno! Please enter your playernames (2-10). enter *start* if youre ready!");
-
-        while(players.size() <9){
+// TODO: 28/11/2019 set size < 9
+        while(players.size() <3){
             System.out.println("enter here: ");
             input = scanner.nextLine();
             if(input.equals("start")){
@@ -25,8 +25,10 @@ public class main {
             player x = new player(input);
             players.add(x);
         }
+        drawstack stack = new drawstack();
 
         Game game = new Game(players);
+        game.start();
 
 
 

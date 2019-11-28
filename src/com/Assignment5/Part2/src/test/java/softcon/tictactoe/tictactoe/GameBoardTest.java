@@ -1,4 +1,4 @@
-package softcon.tictactoe.tictactoe;
+package com.Assignment5.Part2.src.test.java.softcon.tictactoe.tictactoe;
 
 
 import com.Assignment5.Part2.src.main.java.softcon.tictactoe.tictactoe.GameBoard;

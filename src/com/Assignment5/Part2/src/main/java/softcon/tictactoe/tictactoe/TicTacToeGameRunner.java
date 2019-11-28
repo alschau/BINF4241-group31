@@ -2,7 +2,7 @@ package com.Assignment5.Part2.src.main.java.softcon.tictactoe.tictactoe;
 
 import softcon.tictactoe.Position;
 import softcon.tictactoe.ai.GameIntelligenceAgent;
-import softcon.tictactoe.tictactoe.TicTacToeGameState.Player;
+import com.Assignment5.Part2.src.main.java.softcon.tictactoe.tictactoe.TicTacToeGameState.Player;
 
 import java.io.PrintStream;
 import java.util.Scanner;
@@ -20,10 +20,10 @@ public class TicTacToeGameRunner {
   static final String INSTRUCTION_TEXT =
       "Enter '<row>,<col>' to play a position. For example, '0,2'.";
 
-  private softcon.tictactoe.tictactoe.TicTacToeGameState game;
+  private TicTacToeGameState game;
 
   private TicTacToeBoardPrinter boardPrinter;
-  private GameIntelligenceAgent<softcon.tictactoe.tictactoe.TicTacToeGameState> agent;
+  private GameIntelligenceAgent<TicTacToeGameState> agent;
   private Scanner scanner;
   private PrintStream printStream;
 
@@ -34,9 +34,9 @@ public class TicTacToeGameRunner {
    * @param scanner a {@link Scanner} for collecting user input
    * @param printStream the {@link PrintStream} for displaying text to the user
    */
-  public TicTacToeGameRunner(GameIntelligenceAgent<softcon.tictactoe.tictactoe.TicTacToeGameState> agent, Scanner scanner,
+  public TicTacToeGameRunner(GameIntelligenceAgent<TicTacToeGameState> agent, Scanner scanner,
                              PrintStream printStream) {
-    this.game = new softcon.tictactoe.tictactoe.TicTacToeGameState();
+    this.game = new TicTacToeGameState();
     this.boardPrinter = new TicTacToeBoardPrinter(printStream);
     this.agent = agent;
     this.scanner = scanner;
@@ -61,12 +61,12 @@ public class TicTacToeGameRunner {
    * 
    * @return the game
    */
-  softcon.tictactoe.tictactoe.TicTacToeGameState getGame() {
+  TicTacToeGameState getGame() {
     return game;
   }
 
   void moveComputer() {
-    softcon.tictactoe.tictactoe.TicTacToeGameState nextState = agent.evaluateNextState(game);
+    TicTacToeGameState nextState = agent.evaluateNextState(game);
     if (nextState == null) {
       return;
     }

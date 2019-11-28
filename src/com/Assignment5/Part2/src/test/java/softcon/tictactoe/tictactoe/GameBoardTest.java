@@ -2,6 +2,7 @@ package com.Assignment5.Part2.src.test.java.softcon.tictactoe.tictactoe;
 
 
 import com.Assignment5.Part2.src.main.java.softcon.tictactoe.tictactoe.GameBoard;
+import com.Assignment5.Part2.src.main.java.softcon.tictactoe.tictactoe.TicTacToeGameState;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
@@ -32,12 +33,12 @@ public class GameBoardTest {
 
   @Test
   public void copyConstructor() {
-    board.mark(0, 0, softcon.tictactoe.tictactoe.TicTacToeGameState.Player.X);
+    board.mark(0, 0, TicTacToeGameState.Player.X);
     GameBoard newBoard = new GameBoard(board);
-    Assert.assertEquals(newBoard.getMark(0, 0), softcon.tictactoe.tictactoe.TicTacToeGameState.Player.X);
+    Assert.assertEquals(newBoard.getMark(0, 0), TicTacToeGameState.Player.X);
 
-    newBoard.mark(1, 1, softcon.tictactoe.tictactoe.TicTacToeGameState.Player.O);
-    Assert.assertThat(board.getMark(1, 1), not(equalTo(softcon.tictactoe.tictactoe.TicTacToeGameState.Player.X)));
+    newBoard.mark(1, 1, TicTacToeGameState.Player.O);
+    Assert.assertThat(board.getMark(1, 1), not(equalTo(TicTacToeGameState.Player.X)));
   }
 
   // -- getMark
@@ -64,19 +65,19 @@ public class GameBoardTest {
 
   @Test
   public void markOnBoard() {
-    boolean success = board.mark(0, 0, softcon.tictactoe.tictactoe.TicTacToeGameState.Player.O);
+    boolean success = board.mark(0, 0, TicTacToeGameState.Player.O);
 
     Assert.assertTrue(success);
-    Assert.assertEquals(board.getMark(0, 0), softcon.tictactoe.tictactoe.TicTacToeGameState.Player.O);
+    Assert.assertEquals(board.getMark(0, 0), TicTacToeGameState.Player.O);
   }
 
   @Test
   public void markTwice() {
-    board.mark(0, 0, softcon.tictactoe.tictactoe.TicTacToeGameState.Player.O);
-    boolean success = board.mark(0, 0, softcon.tictactoe.tictactoe.TicTacToeGameState.Player.X);
+    board.mark(0, 0, TicTacToeGameState.Player.O);
+    boolean success = board.mark(0, 0, TicTacToeGameState.Player.X);
 
     Assert.assertFalse(success);
-    Assert.assertEquals(board.getMark(0, 0), softcon.tictactoe.tictactoe.TicTacToeGameState.Player.O);
+    Assert.assertEquals(board.getMark(0, 0), TicTacToeGameState.Player.O);
   }
 
   @Test
@@ -117,7 +118,7 @@ public class GameBoardTest {
 
   @Test
   public void getOpenPositions() {
-    board.mark(0, 0, softcon.tictactoe.tictactoe.TicTacToeGameState.Player.X);
+    board.mark(0, 0, TicTacToeGameState.Player.X);
 
     List<Position> positionsToTest = new ArrayList<>() {{
       add(new Position(0, 1));

@@ -1,7 +1,6 @@
 package com.Assignment5.Part2.src.main.java.softcon.tictactoe.tictactoe;
 
 import softcon.tictactoe.Position;
-import softcon.tictactoe.tictactoe.TicTacToeGameState;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,13 +16,13 @@ public class GameBoard {
   private static final int COLS = 3;
   private static final int ROWS = 3;
 
-  private final softcon.tictactoe.tictactoe.TicTacToeGameState.Player[][] board;
+  private final TicTacToeGameState.Player[][] board;
 
   /**
    * Creates a new blank TicTacToe board.
    */
   public GameBoard() {
-    board = new softcon.tictactoe.tictactoe.TicTacToeGameState.Player[ROWS][COLS];
+    board = new TicTacToeGameState.Player[ROWS][COLS];
   }
 
   /**
@@ -31,7 +30,7 @@ public class GameBoard {
    * 
    * @param board the {@link TicTacToeGameState.Player} array to use as a game board
    */
-  public GameBoard(softcon.tictactoe.tictactoe.TicTacToeGameState.Player[][] board) {
+  public GameBoard(TicTacToeGameState.Player[][] board) {
     if (board == null) {
       throw new IllegalArgumentException("board cannot be null");
     }
@@ -44,7 +43,7 @@ public class GameBoard {
    * @param board the board to copy
    */
   public GameBoard(GameBoard other) {
-    board = new softcon.tictactoe.tictactoe.TicTacToeGameState.Player[ROWS][COLS];
+    board = new TicTacToeGameState.Player[ROWS][COLS];
     for (int row = 0; row < ROWS; row++) {
       for (int col = 0; col < COLS; col++) {
         board[row][col] = other.board[row][col];
@@ -63,7 +62,7 @@ public class GameBoard {
    * @throws IllegalArgumentException if the given position is off the board or the player is
    *         <code>null</code>
    */
-  public boolean mark(int row, int col, softcon.tictactoe.tictactoe.TicTacToeGameState.Player player) {
+  public boolean mark(int row, int col, TicTacToeGameState.Player player) {
     validatePosition(row, col);
     if (player == null) {
       throw new IllegalArgumentException("cannot mark null player");
@@ -84,7 +83,7 @@ public class GameBoard {
    * @return the {@link TicTacToeGameState.Player} that marked the given position, or <code>null</code> if position is
    *         open
    */
-  public softcon.tictactoe.tictactoe.TicTacToeGameState.Player getMark(int row, int col) {
+  public TicTacToeGameState.Player getMark(int row, int col) {
     validatePosition(row, col);
     return board[row][col];
   }
@@ -111,7 +110,7 @@ public class GameBoard {
     StringBuilder sb = new StringBuilder();
     for (int row = 0; row < ROWS; row++) {
       for (int col = 0; col < COLS; col++) {
-        softcon.tictactoe.tictactoe.TicTacToeGameState.Player p = board[row][col];
+        TicTacToeGameState.Player p = board[row][col];
         if (p != null) {
           sb.append(p);
         } else {

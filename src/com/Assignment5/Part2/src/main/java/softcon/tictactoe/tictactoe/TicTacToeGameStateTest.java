@@ -13,27 +13,27 @@ import java.util.List;
 
 public class TicTacToeGameStateTest {
 
-  private softcon.tictactoe.tictactoe.TicTacToeGameState game;
+  private TicTacToeGameState game;
 
   @Rule
   public ExpectedException thrown = ExpectedException.none();
 
   @Before
   public void setup() {
-    game = new softcon.tictactoe.tictactoe.TicTacToeGameState();
+    game = new TicTacToeGameState();
   }
 
   // -- constructor
 
   @Test
   public void startingPlayerIsX() {
-    Assert.assertEquals(new softcon.tictactoe.tictactoe.TicTacToeGameState().getCurrentPlayer(), softcon.tictactoe.tictactoe.TicTacToeGameState.Player.X);
+    Assert.assertEquals(new TicTacToeGameState().getCurrentPlayer(), TicTacToeGameState.Player.X);
   }
 
   @Test
   public void copyConstructorDeepCopiesBoard() {
     game.play(0, 0);
-    softcon.tictactoe.tictactoe.TicTacToeGameState copy = new softcon.tictactoe.tictactoe.TicTacToeGameState(game);
+    TicTacToeGameState copy = new TicTacToeGameState(game);
     Assert.assertEquals(copy.getGameBoard(), game.getGameBoard());
     Assert.assertEquals(copy.getLastMove(), game.getLastMove());
     Assert.assertEquals(copy.getCurrentPlayer(), game.getCurrentPlayer());
@@ -43,14 +43,14 @@ public class TicTacToeGameStateTest {
 
   @Test
   public void getAvailableStatesEmptyBoard() {
-    softcon.tictactoe.tictactoe.TicTacToeGameState game = new softcon.tictactoe.tictactoe.TicTacToeGameState();
+    TicTacToeGameState game = new TicTacToeGameState();
     List<DiscreteGameState> states = game.availableStates();
     Assert.assertTrue(states.size() == 9);
   }
 
   @Test
   public void getAvailableStatesLastOne() {
-    softcon.tictactoe.tictactoe.TicTacToeGameState game = new softcon.tictactoe.tictactoe.TicTacToeGameState();
+    TicTacToeGameState game = new TicTacToeGameState();
     game.play(0, 0);
     game.play(0, 1);
     game.play(0, 2);
@@ -62,15 +62,15 @@ public class TicTacToeGameStateTest {
 
     List<DiscreteGameState> states = game.availableStates();
     Assert.assertTrue(states.size() == 1);
-    softcon.tictactoe.tictactoe.TicTacToeGameState availableState = (softcon.tictactoe.tictactoe.TicTacToeGameState) states.get(0);
+    TicTacToeGameState availableState = (TicTacToeGameState) states.get(0);
     Assert.assertEquals(availableState.getCurrentPlayer(),
-        softcon.tictactoe.tictactoe.TicTacToeGameState.Player.opponentOf(game.getCurrentPlayer()));
+        TicTacToeGameState.Player.opponentOf(game.getCurrentPlayer()));
     Assert.assertEquals(availableState.getLastMove(), (new Position(2, 2)));
   }
 
   @Test
   public void getAvailableStatesCompleteBoard() {
-    softcon.tictactoe.tictactoe.TicTacToeGameState game = new softcon.tictactoe.tictactoe.TicTacToeGameState();
+    TicTacToeGameState game = new TicTacToeGameState();
     game.play(0, 0);
     game.play(0, 1);
     game.play(0, 2);
@@ -91,7 +91,7 @@ public class TicTacToeGameStateTest {
     game.play(0, 0);
     game.play(0, 1);
     game.play(0, 2);
-    Assert.assertTrue(game.hasWin(softcon.tictactoe.tictactoe.TicTacToeGameState.Player.X));
+    Assert.assertTrue(game.hasWin(TicTacToeGameState.Player.X));
   }
 
   @Test
@@ -99,7 +99,7 @@ public class TicTacToeGameStateTest {
     game.play(0, 0);
     game.play(1, 0);
     game.play(2, 0);
-    Assert.assertTrue(game.hasWin(softcon.tictactoe.tictactoe.TicTacToeGameState.Player.X));
+    Assert.assertTrue(game.hasWin(TicTacToeGameState.Player.X));
   }
 
   @Test
@@ -107,7 +107,7 @@ public class TicTacToeGameStateTest {
     game.play(0, 0);
     game.play(1, 1);
     game.play(2, 2);
-    Assert.assertTrue(game.hasWin(softcon.tictactoe.tictactoe.TicTacToeGameState.Player.X));
+    Assert.assertTrue(game.hasWin(TicTacToeGameState.Player.X));
   }
 
   // -- isOver
@@ -167,10 +167,10 @@ public class TicTacToeGameStateTest {
 
   @Test
   public void switchPlayer() {
-    Assert.assertEquals(game.getCurrentPlayer(), softcon.tictactoe.tictactoe.TicTacToeGameState.Player.X);
+    Assert.assertEquals(game.getCurrentPlayer(), TicTacToeGameState.Player.X);
     game.switchPlayer();
-    Assert.assertEquals(game.getCurrentPlayer(), softcon.tictactoe.tictactoe.TicTacToeGameState.Player.O);
+    Assert.assertEquals(game.getCurrentPlayer(), TicTacToeGameState.Player.O);
     game.switchPlayer();
-    Assert.assertEquals(game.getCurrentPlayer(), softcon.tictactoe.tictactoe.TicTacToeGameState.Player.X);
+    Assert.assertEquals(game.getCurrentPlayer(), TicTacToeGameState.Player.X);
   }
 }

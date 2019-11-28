@@ -1,6 +1,6 @@
 package com.Assignment5.Part2.src.main.java.softcon.tictactoe.tictactoe;
 
-import softcon.tictactoe.tictactoe.TicTacToeGameState.Player;
+import com.Assignment5.Part2.src.main.java.softcon.tictactoe.tictactoe.TicTacToeGameState.Player;
 
 import java.io.PrintStream;
 

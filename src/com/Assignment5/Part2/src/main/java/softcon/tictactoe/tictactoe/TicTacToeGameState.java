@@ -1,11 +1,10 @@
-package softcon.tictactoe.tictactoe;
+package com.Assignment5.Part2.src.main.java.softcon.tictactoe.tictactoe;
+
+import softcon.tictactoe.DiscreteGameState;
+import softcon.tictactoe.Position;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import com.Assignment5.Part2.src.main.java.softcon.tictactoe.tictactoe.GameBoard;
-import softcon.tictactoe.DiscreteGameState;
-import softcon.tictactoe.Position;
 
 /**
  * A {@link DiscreteGameState} representing the current state of a TicTacToe game.

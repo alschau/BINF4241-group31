@@ -1,4 +1,4 @@
-package softcon.tictactoe.tictactoe;
+package com.Assignment5.Part2.src.main.java.softcon.tictactoe.tictactoe;
 
 import softcon.tictactoe.ai.GameIntelligenceAgent;
 import softcon.tictactoe.ai.MinimaxAgent;
@@ -17,7 +17,7 @@ public class TicTacToeMain {
     GameIntelligenceAgent<softcon.tictactoe.tictactoe.TicTacToeGameState> agent =
             (GameIntelligenceAgent<softcon.tictactoe.tictactoe.TicTacToeGameState>) new MinimaxAgent<softcon.tictactoe.tictactoe.TicTacToeGameState>(evaluator);
     Scanner scanner = new Scanner(System.in);
-    softcon.tictactoe.tictactoe.TicTacToeGameRunner game = new softcon.tictactoe.tictactoe.TicTacToeGameRunner(agent, scanner, System.out);
+    TicTacToeGameRunner game = new TicTacToeGameRunner(agent, scanner, System.out);
 
     game.run();
   }

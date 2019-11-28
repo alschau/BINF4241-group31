@@ -3,6 +3,7 @@ package softcon.tictactoe.tictactoe;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.Assignment5.Part2.src.main.java.softcon.tictactoe.tictactoe.GameBoard;
 import softcon.tictactoe.DiscreteGameState;
 import softcon.tictactoe.Position;
 

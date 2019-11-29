@@ -13,7 +13,7 @@ public class drawstack {
         for(int i = 0; i < 56; i++){
             String a = Integer.toString(i % 14);
 
-            //stop, reverse, +2 and +4 card
+            //skip, reverse, +2 and +4 card
             if(a.equals(Integer.toString(10))){
                 a = "s";
             }else if(a.equals(Integer.toString(11))){
@@ -36,6 +36,8 @@ public class drawstack {
 
         }
 
+
+        //colors
         for(int i = 0; i<27;i++){
             stack.get(i).setColor("r");
         }

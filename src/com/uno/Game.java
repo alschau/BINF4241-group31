@@ -42,6 +42,8 @@ public class Game {
         Boolean turn_possible = false;
         Boolean already_drew_card = false;
         card input_card = null;
+        String input_sign;
+        String input_color;
 
 
 
@@ -52,9 +54,8 @@ public class Game {
             current_player = players.get(turncounter%players.size());
             current_player.printhand();
 
-
+            //check if a move is possible
             if(!already_drew_card){
-                //check if a move is possible
                 for(card temp1:current_player.handcards){
                     if(middlestack.getTopcard().getColor().equals(temp1.getColor()) || middlestack.getTopcard().getSign().equals(temp1.getSign()) || temp1.getSign().equals("w") || temp1.getSign().equals("-")){
                         turn_possible = true;
@@ -70,16 +71,19 @@ public class Game {
                 }
             }else{
                 already_drew_card = false;
+                turncounter++;
+                continue gameloop;
             }
             turn_possible = false;
 
 
+            //get input card
             System.out.println("its your turn, " + current_player.getName() +", select a card from your hand above: (type *skip* to skip your turn)");
             String input = scanner.nextLine();
             if(input.equals("skip")){
                 drawcard(current_player,drawstack);
                 turncounter++;
-                continue;
+                continue gameloop;
             }
 
 
@@ -87,7 +91,6 @@ public class Game {
 
             turnloop:
             while(true){
-
 
                 //check if card is in hand
                 checkloop:
@@ -108,9 +111,12 @@ public class Game {
                     }
                 }
 
+
+
+
                 // check if card can be placed on middlestack
-                String input_sign = String.valueOf(input.charAt(0));
-                String input_color = String.valueOf(input.charAt(1));
+                input_sign = String.valueOf(input.charAt(0));
+                input_color = String.valueOf(input.charAt(1));
 
                 if(middlestack.getTopcard().getColor().equals(input_color) || middlestack.getTopcard().getSign().equals(input_sign) || input_sign.equals("w") || input_sign.equals("-")){
                     middlestack.setTopcard(input_card);
@@ -127,19 +133,19 @@ public class Game {
 
                 }
             }
+
+            // TODO: 29/11/2019  check for possible effects of cards
+
+
+            if(input_sign.equals("s")){
+                System.out.println("skipcard played");
+                turncounter++;
+            }
+
+
+
+
             turncounter++;
-
-
-
-
-
-
-
-
-
-
-
-
         }
     }
 

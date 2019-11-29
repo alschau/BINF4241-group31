@@ -16,13 +16,13 @@ public class player {
         System.out.println(name + "'s hand is:");
 
         for(card temp: handcards){
-            System.out.println(temp.getRepr());
+            System.out.print(temp.getRepr() + "  ");
         }
+        System.out.println("\n");
     }
 
     public String getName() {
         return name;
     }
-
 
 }

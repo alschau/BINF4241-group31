@@ -2,6 +2,7 @@ package com.uno;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Game {
     ArrayList<player> players;
@@ -9,6 +10,7 @@ public class Game {
     middlestack middlestack;
     Boolean uno = false;
     player current_player;
+    Scanner scanner = new Scanner(System.in);
 
     public Game(ArrayList<player> players){
         this.players = players;
@@ -32,16 +34,23 @@ public class Game {
             }
         }
 
+
+        middlestack.setTopcard(drawstack.get_card(drawstack.getsize()-1));
+
         int turncounter = 0;
         while(!uno){
             current_player = players.get(turncounter%players.size());
-            System.out.println("its your turn" + current_player.);
+            current_player.printhand();
+            System.out.println("its your turn, " + current_player.getName() +", select a card from your hand above:");
+            String input = scanner.nextLine();
+
+
+
 
 
 
         }
 
-        players.get(0).printhand();
 
     }
 }

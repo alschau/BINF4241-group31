@@ -60,4 +60,7 @@ public class drawstack {
     public ArrayList<card> getStack() {
         return stack;
     }
+    public int getsize(){
+        return stack.size();
+    }
 }

@@ -25,6 +25,10 @@ public class player {
         handcards.remove(card);
     }
 
+    public void add_to_hand(card card){
+        handcards.add(card);
+    }
+
     public String getName() {
         return name;
     }

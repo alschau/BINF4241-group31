@@ -39,23 +39,55 @@ public class Game {
         drawstack.remove_card(drawstack.getsize()-1);
 
         int turncounter = 0;
-        while(!uno){
+        Boolean turn_possible = false;
+        Boolean already_drew_card = false;
+        card input_card = null;
+
+
+
+        gameloop:
+        while(true){
 
             middlestack.print_topcard();
             current_player = players.get(turncounter%players.size());
             current_player.printhand();
+
+
+            if(!already_drew_card){
+                //check if a move is possible
+                for(card temp1:current_player.handcards){
+                    if(middlestack.getTopcard().getColor().equals(temp1.getColor()) || middlestack.getTopcard().getSign().equals(temp1.getSign()) || temp1.getSign().equals("w") || temp1.getSign().equals("-")){
+                        turn_possible = true;
+                        break;
+                    }
+                }
+                if(!turn_possible){
+                    System.out.println("theres no possible turn for you, draw a card");
+                    drawcard(current_player,drawstack);
+                    already_drew_card = true;
+                    continue;
+
+                }
+            }else{
+                already_drew_card = false;
+            }
+            turn_possible = false;
+
+
             System.out.println("its your turn, " + current_player.getName() +", select a card from your hand above: (type *skip* to skip your turn)");
             String input = scanner.nextLine();
             if(input.equals("skip")){
+                drawcard(current_player,drawstack);
                 turncounter++;
                 continue;
             }
 
-            Boolean valid_input = false;
-            card input_card = null;
+
+
 
             turnloop:
             while(true){
+
 
                 //check if card is in hand
                 checkloop:
@@ -70,7 +102,9 @@ public class Game {
                     System.out.println("sorry this card is not in your hand, please choose another one (type *skip* to skip your turn): ");
                     input = scanner.nextLine();
                     if(input.equals("skip")){
-                        break turnloop;
+                        drawcard(current_player,drawstack);
+                        turncounter++;
+                        continue gameloop;
                     }
                 }
 
@@ -78,7 +112,7 @@ public class Game {
                 String input_sign = String.valueOf(input.charAt(0));
                 String input_color = String.valueOf(input.charAt(1));
 
-                if(middlestack.getTopcard().getColor().equals(input_color) || middlestack.getTopcard().getSign().equals(input_sign)){
+                if(middlestack.getTopcard().getColor().equals(input_color) || middlestack.getTopcard().getSign().equals(input_sign) || input_sign.equals("w") || input_sign.equals("-")){
                     middlestack.setTopcard(input_card);
                     current_player.remove_from_hand(input_card);
                     break turnloop;
@@ -86,8 +120,11 @@ public class Game {
                     System.out.println("sorry this card doesnt fit on the stack, choose another one (type *skip* to skip your turn): ");
                     input= scanner.nextLine();
                     if(input.equals("skip")){
-                        break turnloop;
+                        drawcard(current_player,drawstack);
+                        turncounter++;
+                        continue gameloop;
                     }
+
                 }
             }
             turncounter++;
@@ -104,7 +141,13 @@ public class Game {
 
 
         }
-
-
     }
+
+
+
+    public void drawcard(player player, drawstack drawstack){
+        player.add_to_hand(drawstack.get_card(drawstack.getsize()-1));
+        drawstack.remove_card(drawstack.getsize()-1);
+    }
+
 }

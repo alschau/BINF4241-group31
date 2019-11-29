@@ -21,6 +21,10 @@ public class player {
         System.out.println("\n");
     }
 
+    public void remove_from_hand(card card){
+        handcards.remove(card);
+    }
+
     public String getName() {
         return name;
     }

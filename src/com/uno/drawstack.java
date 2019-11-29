@@ -1,6 +1,8 @@
 package com.uno;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class drawstack {
     ArrayList<card> stack = new ArrayList<card>();
@@ -11,14 +13,15 @@ public class drawstack {
         for(int i = 0; i < 56; i++){
             String a = Integer.toString(i % 14);
 
+            //stop, reverse, +2 and +4 card
             if(a.equals(Integer.toString(10))){
-                a = "stop";
+                a = "s";
             }else if(a.equals(Integer.toString(11))){
-                a = "reverse";
+                a = "r";
             }else if(a.equals(Integer.toString(12))){
-                a = "+2";
+                a = "+";
             }else if(a.equals(Integer.toString(13))){
-                a = "+4";
+                a = "-";
             }
 
 
@@ -45,11 +48,13 @@ public class drawstack {
         for(int i = 81; i<108;i++){
             stack.get(i).setColor("b");
         }
+        //wish card
+        stack.get(26).setSign("w");
+        stack.get(53).setSign("w");
+        stack.get(80).setSign("w");
+        stack.get(107).setSign("w");
 
-        stack.get(26).setSign("wish");
-        stack.get(53).setSign("wish");
-        stack.get(80).setSign("wish");
-        stack.get(107).setSign("wish");
+        Collections.shuffle(stack);
 
     }
 
@@ -62,5 +67,8 @@ public class drawstack {
     }
     public int getsize(){
         return stack.size();
+    }
+    public void remove_card(int i){
+        stack.remove(i);
     }
 }

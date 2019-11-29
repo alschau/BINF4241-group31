@@ -13,4 +13,8 @@ public class middlestack {
     public void setTopcard(card topcard) {
         this.topcard = topcard;
     }
+
+    public void print_topcard(){
+        System.out.println("the topcard is: " + topcard.getRepr());
+    }
 }

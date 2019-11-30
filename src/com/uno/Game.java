@@ -53,26 +53,29 @@ public class Game {
 
         gameloop:
         while(true){
-            has_plus = false;
-            top_card_plus = false;
-
-
+            turn_possible = false;
             middlestack.print_topcard();
-            if(middlestack.getTopcard().getSign().equals("+") || middlestack.getTopcard().getSign().equals("-")){
-                top_card_plus = true;
-            }
             current_player = players.get(turncounter%players.size());
             current_player.printhand();
 
 
 
-            for(card temp1:current_player.handcards){
-                //check if he has plus card
-                if(temp1.getSign().equals("+") ||temp1.getSign().equals("-")){
-                    has_plus = true;
+
+
+            if(draw !=0){
+                System.out.println( current_player.getName() + " needs to draw " + draw +" cards and his turn ends");
+                for(int i=0;i<draw;i++){
+                    drawcard(current_player,drawstack);
                 }
+                draw = 0;
+                turncounter++;
+                continue gameloop;
+            }
 
 
+
+
+            for(card temp1:current_player.handcards){
 
                 //check if a move is possible
                 if(middlestack.getTopcard().getColor().equals(temp1.getColor()) || middlestack.getTopcard().getSign().equals(temp1.getSign()) || temp1.getSign().equals("w") || temp1.getSign().equals("-")){
@@ -92,17 +95,6 @@ public class Game {
                 already_drew_card = true;
                 continue gameloop;
 
-            }
-            turn_possible = false;
-
-
-            //draw card if topcard is plus and has no pluscard in hand
-            if(top_card_plus && !has_plus){
-                System.out.println("you need to draw cards");
-                for(int i=0;i<draw;i++){
-                    drawcard(current_player,drawstack);
-                }
-                continue gameloop;
             }
 
 
@@ -150,8 +142,8 @@ public class Game {
 
                 if(middlestack.getTopcard().getColor().equals(input_color) || middlestack.getTopcard().getSign().equals(input_sign) || input_sign.equals("w") || input_sign.equals("-")){
 
-                    //wish a color if w
-                    if(input_sign.equals("w")){
+                    //wish a color if w or -
+                    if(input_sign.equals("w") ||input_sign.equals("-")){
                         while(true){
                             System.out.println("choose a color of your liking(r,o,b,g) : ");
                             String wish = scanner.nextLine();
@@ -161,6 +153,27 @@ public class Game {
                             }else{
                                 System.out.println("thats not a color....");
                             }
+                        }
+
+                        //check if illegal for -
+                        if(input_sign.equals("-")){
+                            Boolean illegal = false;
+                            for(card temp2:current_player.handcards){
+                                if(temp2.getColor().equals(middlestack.getTopcard().getColor())){
+                                    illegal = true;
+                                }
+                            }
+                            if(illegal){
+                                System.out.println("stop, youve violated the law. Draw four cards or serve your sentence. Your turn is now forfeit");
+                                drawcard(current_player,drawstack);
+                                drawcard(current_player,drawstack);
+                                drawcard(current_player,drawstack);
+                                drawcard(current_player,drawstack);
+                                illegal = false;
+                            }else{
+                                draw+=4;
+                            }
+
                         }
 
                     }
@@ -179,7 +192,7 @@ public class Game {
                 }
             }
 
-            // TODO: 29/11/2019  check for possible effects of cards
+            //check for possible effects of cards
 
 
             if(input_sign.equals("s")){
@@ -195,7 +208,44 @@ public class Game {
             }
 
 
+            /*
+            if(input_sign.equals("-")){
+                //wish color
+                while(true){
+                    System.out.println("choose a color of your liking(r,o,b,g) : ");
+                    String wish = scanner.nextLine();
+                    if(wish.equals("r") ||wish.equals("o") ||wish.equals("b") ||wish.equals("g")){
+                        input_card.setColor(wish);
+                        break;
+                    }else{
+                        System.out.println("thats not a color....");
+                    }
+                }
 
+                //check if illegally played
+                Boolean illegal = false;
+                for(card temp2:current_player.handcards){
+                    if(temp2.getColor().equals(middlestack.getTopcard().getColor())){
+                        illegal = true;
+                    }
+                }
+                if(illegal){
+                    System.out.println("stop, youve violated the law. Draw four cards or serve your sentence. Your turn is now forfeit");
+                    drawcard(current_player,drawstack);
+                    drawcard(current_player,drawstack);
+                    drawcard(current_player,drawstack);
+                    drawcard(current_player,drawstack);
+                    illegal = false;
+                }else{
+                    draw+=4;
+                }
+
+                middlestack.setTopcard(input_card);
+
+
+            }
+
+            **/
 
             turncounter++;
         }

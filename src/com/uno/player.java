@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 public class player {
     private String name;
+    private int age = 20;
     ArrayList<card> handcards = new ArrayList<card>();
 
     public player(String name){

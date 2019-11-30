@@ -1,6 +1,7 @@
 package com.uno;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -11,6 +12,8 @@ public class Game {
     Boolean uno = false;
     player current_player;
     Scanner scanner = new Scanner(System.in);
+    Boolean has_plus= false;
+    Boolean top_card_plus = false;
 
     public Game(ArrayList<player> players){
         this.players = players;
@@ -50,32 +53,59 @@ public class Game {
 
         gameloop:
         while(true){
+            has_plus = false;
+            top_card_plus = false;
+
 
             middlestack.print_topcard();
+            if(middlestack.getTopcard().getSign().equals("+") || middlestack.getTopcard().getSign().equals("-")){
+                top_card_plus = true;
+            }
             current_player = players.get(turncounter%players.size());
             current_player.printhand();
 
-            //check if a move is possible
-            if(!already_drew_card){
-                for(card temp1:current_player.handcards){
-                    if(middlestack.getTopcard().getColor().equals(temp1.getColor()) || middlestack.getTopcard().getSign().equals(temp1.getSign()) || temp1.getSign().equals("w") || temp1.getSign().equals("-")){
-                        turn_possible = true;
-                        break;
-                    }
-                }
-                if(!turn_possible){
-                    System.out.println("theres no possible turn for you, draw a card");
-                    drawcard(current_player,drawstack);
-                    already_drew_card = true;
-                    continue;
 
+
+            for(card temp1:current_player.handcards){
+                //check if he has plus card
+                if(temp1.getSign().equals("+") ||temp1.getSign().equals("-")){
+                    has_plus = true;
                 }
-            }else{
-                already_drew_card = false;
-                turncounter++;
+
+
+
+                //check if a move is possible
+                if(middlestack.getTopcard().getColor().equals(temp1.getColor()) || middlestack.getTopcard().getSign().equals(temp1.getSign()) || temp1.getSign().equals("w") || temp1.getSign().equals("-")){
+                    turn_possible = true;
+                    break;
+                }
+            }
+            if(!turn_possible){
+                if(already_drew_card){
+                    System.out.println("there is still no possible turn for you, go next");
+                    turncounter++;
+                    already_drew_card= false;
+                    continue gameloop;
+                }
+                System.out.println("theres no possible turn for you, draw a card");
+                drawcard(current_player,drawstack);
+                already_drew_card = true;
                 continue gameloop;
+
             }
             turn_possible = false;
+
+
+            //draw card if topcard is plus and has no pluscard in hand
+            if(top_card_plus && !has_plus){
+                System.out.println("you need to draw cards");
+                for(int i=0;i<draw;i++){
+                    drawcard(current_player,drawstack);
+                }
+                continue gameloop;
+            }
+
+
 
 
             //get input card
@@ -114,12 +144,26 @@ public class Game {
 
 
 
-
                 // check if card can be placed on middlestack
                 input_sign = String.valueOf(input.charAt(0));
                 input_color = String.valueOf(input.charAt(1));
 
                 if(middlestack.getTopcard().getColor().equals(input_color) || middlestack.getTopcard().getSign().equals(input_sign) || input_sign.equals("w") || input_sign.equals("-")){
+
+                    //wish a color if w
+                    if(input_sign.equals("w")){
+                        while(true){
+                            System.out.println("choose a color of your liking(r,o,b,g) : ");
+                            String wish = scanner.nextLine();
+                            if(wish.equals("r") ||wish.equals("o") ||wish.equals("b") ||wish.equals("g")){
+                                input_card.setColor(wish);
+                                break;
+                            }else{
+                                System.out.println("thats not a color....");
+                            }
+                        }
+
+                    }
                     middlestack.setTopcard(input_card);
                     current_player.remove_from_hand(input_card);
                     break turnloop;
@@ -144,6 +188,10 @@ public class Game {
             }
             if(input_sign.equals("+")){
                 draw+=2;
+            }
+            if(input_sign.equals("r")){
+                Collections.reverse(players);
+                turncounter= players.indexOf(current_player);
             }
 
 

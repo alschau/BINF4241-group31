@@ -44,6 +44,7 @@ public class Game {
         card input_card = null;
         String input_sign;
         String input_color;
+        int draw = 0;
 
 
 
@@ -140,6 +141,9 @@ public class Game {
             if(input_sign.equals("s")){
                 System.out.println("skipcard played");
                 turncounter++;
+            }
+            if(input_sign.equals("+")){
+                draw+=2;
             }
 
 

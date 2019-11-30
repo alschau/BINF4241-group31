@@ -1,6 +1,6 @@
 package com.uno;
 
-public class card {
+public class card extends unocard {
     private String color;
     private String sign;
 

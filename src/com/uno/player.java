@@ -4,7 +4,7 @@ import com.Chess.Player;
 
 import java.util.ArrayList;
 
-public class player {
+public class player implements person{
     private String name;
     private int age = 20;
     ArrayList<card> handcards = new ArrayList<card>();

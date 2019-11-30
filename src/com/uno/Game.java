@@ -38,8 +38,7 @@ public class Game {
         }
 
 
-        middlestack.setTopcard(drawstack.get_card(drawstack.getsize()-1));
-        drawstack.remove_card(drawstack.getsize()-1);
+
 
         int turncounter = 0;
         Boolean turn_possible = false;
@@ -48,6 +47,21 @@ public class Game {
         String input_sign;
         String input_color;
         int draw = 0;
+
+        middlestack.setTopcard(drawstack.get_card(drawstack.getsize()-1));
+        drawstack.remove_card(drawstack.getsize()-1);
+
+        //first card is actioncard
+
+        if(middlestack.getTopcard().getSign().equals("+")){
+            draw+=2;
+        }
+        if(middlestack.getTopcard().getSign().equals("r")){
+            Collections.reverse(players);
+        }
+        if(middlestack.getTopcard().getSign().equals("s")){
+            turncounter++;
+        }
 
 
 
@@ -179,6 +193,10 @@ public class Game {
                     }
                     middlestack.setTopcard(input_card);
                     current_player.remove_from_hand(input_card);
+                    if(current_player.handcards.size() == 0){
+                        System.out.println("congrats you won," + current_player.getName());
+                        break gameloop;
+                    }
                     break turnloop;
                 }else{
                     System.out.println("sorry this card doesnt fit on the stack, choose another one (type *skip* to skip your turn): ");
@@ -207,45 +225,6 @@ public class Game {
                 turncounter= players.indexOf(current_player);
             }
 
-
-            /*
-            if(input_sign.equals("-")){
-                //wish color
-                while(true){
-                    System.out.println("choose a color of your liking(r,o,b,g) : ");
-                    String wish = scanner.nextLine();
-                    if(wish.equals("r") ||wish.equals("o") ||wish.equals("b") ||wish.equals("g")){
-                        input_card.setColor(wish);
-                        break;
-                    }else{
-                        System.out.println("thats not a color....");
-                    }
-                }
-
-                //check if illegally played
-                Boolean illegal = false;
-                for(card temp2:current_player.handcards){
-                    if(temp2.getColor().equals(middlestack.getTopcard().getColor())){
-                        illegal = true;
-                    }
-                }
-                if(illegal){
-                    System.out.println("stop, youve violated the law. Draw four cards or serve your sentence. Your turn is now forfeit");
-                    drawcard(current_player,drawstack);
-                    drawcard(current_player,drawstack);
-                    drawcard(current_player,drawstack);
-                    drawcard(current_player,drawstack);
-                    illegal = false;
-                }else{
-                    draw+=4;
-                }
-
-                middlestack.setTopcard(input_card);
-
-
-            }
-
-            **/
 
             turncounter++;
         }

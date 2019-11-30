@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
-public class drawstack {
+public class drawstack implements stack{
     ArrayList<card> stack = new ArrayList<card>();
 
     public drawstack(){

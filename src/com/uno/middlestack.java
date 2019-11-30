@@ -2,7 +2,7 @@ package com.uno;
 
 import java.util.ArrayList;
 
-public class middlestack {
+public class middlestack implements stack{
     ArrayList<card> middlestack;
     private card topcard;
 

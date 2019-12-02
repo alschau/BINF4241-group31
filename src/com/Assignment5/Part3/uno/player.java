@@ -1,6 +1,4 @@
-package com.uno;
-
-import com.Chess.Player;
+package com.Assignment5.Part3.uno;
 
 import java.util.ArrayList;
 

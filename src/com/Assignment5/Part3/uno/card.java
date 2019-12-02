@@ -1,4 +1,4 @@
-package com.uno;
+package com.Assignment5.Part3.uno;
 
 public class card extends unocard {
     private String color;

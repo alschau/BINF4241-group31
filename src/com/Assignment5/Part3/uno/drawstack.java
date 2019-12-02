@@ -1,7 +1,6 @@
-package com.uno;
+package com.Assignment5.Part3.uno;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
 public class drawstack implements stack{

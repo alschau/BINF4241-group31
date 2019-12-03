@@ -10,6 +10,7 @@ Part 1
 
 4 out of 10 Tests failed:
 
+###Game Board Test
 
 ####markTwice
 
@@ -55,6 +56,51 @@ __How did I fix it?__
 Fixing the mark method in the GameBoard class (for the markTwice test) also fixed this test. 
 It failed in the beginning because we could not set a marker at all and it always stated 
 that the position is not empty.
+
+###Game State Test
+
+####startingPlayerIsX
+
+__What does it do?__
+It checks if starting player is X. 
+
+__How did I fix it?__
+The starting player is set to X when we strat the game. So we only have to return the 
+starting player variable.
+
+####isOverWin
+
+__What does it do?__
+It checks if game is over. The game is over if one of the player wins (HasWin) or it's a draw. 
+
+__How did I fix it?__
+The method itself isn't wrong but one of the completesColumn / 
+completesRow / completesDiagonal seems to be wrong.
+
+####CompletesDiagonal
+
+__What does it do?__
+It checks if a player has completed a diagonal by checking if given player is the same as 
+the one on position (1,1) and if that player also is in two opposit edges.
+
+__How did I fix it?__
+The coordinate (1,2) is wrong because it's not an edge. It should be (2,2).
+
+####GetCurrentPlayer
+
+__What does it do?__
+Returns the player whose turn it is.
+
+__How did I fix it?__
+This method should only return the currentPlayer variable.
+
+####SwitchPlayer
+
+__What does it do?__
+It checks if the turn changes between the players.
+
+__How did I fix it?__
+Fixed automatically after I fixed the GetCurrentPlayer test.
 
 ##Part 3
 

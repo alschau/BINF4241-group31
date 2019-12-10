@@ -1,5 +1,7 @@
-package com.Assignment5.Part1.company.SnakesandLadder.SnakesandLadders;
+package com.Assignment5.Part1.company.SnakesandLadder.SnakesandLadders.SnakesandLaddersTests;
 
+import com.Assignment5.Part1.company.SnakesandLadder.SnakesandLadders.Field;
+import com.Assignment5.Part1.company.SnakesandLadder.SnakesandLadders.LadderField;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -11,8 +13,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class LadderFieldTest {
 
-    Field ladderfieldtest = new LadderField(5);
     int inputnumber = 5;
+    Field ladderfieldtest = new LadderField(inputnumber);
     int result;
     String result_str;
     Boolean result_bool;
@@ -20,13 +22,13 @@ class LadderFieldTest {
     @Test
     public void getTargetTest() {
         result = ladderfieldtest.getTarget();
-        assertTrue((inputnumber + 3) == 8);
+        assertEquals((inputnumber + 3), 8);
     }
 
     @Test
     public void getNumberTest() {
         result = ladderfieldtest.getNumber();
-        assertTrue(result == inputnumber);
+        assertEquals(result, inputnumber);
     }
 
     @Test
@@ -39,7 +41,7 @@ class LadderFieldTest {
     @Test
     public void getFreeTest() {
         result_bool = ladderfieldtest.getFree();
-        assertTrue(result_bool == true);
+        assertEquals(result_bool, true);
     }
 
 

@@ -1,5 +1,9 @@
-package com.Assignment5.Part1.company.SnakesandLadder.SnakesandLadders;
+package com.Assignment5.Part1.company.SnakesandLadder.SnakesandLadders.SnakesandLaddersTests;
 
+import com.Assignment5.Part1.company.SnakesandLadder.SnakesandLadders.Field;
+import com.Assignment5.Part1.company.SnakesandLadder.SnakesandLadders.LadderField;
+import com.Assignment5.Part1.company.SnakesandLadder.SnakesandLadders.NormalField;
+import com.Assignment5.Part1.company.SnakesandLadder.SnakesandLadders.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

@@ -21,7 +21,7 @@ public class RandomLaddersSnakes {
                 System.out.println("How many players? ");
                 number = Integer.parseInt(scanner.nextLine());
                 if(number<2 || number>4){
-                    System.out.println("you need some friends to play this you lonely fuck");
+                    System.out.println("You need some friends to play this.");
                     continue;
                 }
                 break;

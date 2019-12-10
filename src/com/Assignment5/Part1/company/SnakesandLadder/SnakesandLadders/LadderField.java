@@ -3,7 +3,7 @@ package com.Assignment5.Part1.company.SnakesandLadder.SnakesandLadders;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class LadderField extends Field {
+public class  LadderField extends Field {
     int height;
     int target;
     public LadderField(int number) {

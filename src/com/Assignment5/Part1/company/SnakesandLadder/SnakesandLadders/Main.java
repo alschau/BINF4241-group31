@@ -12,8 +12,8 @@ public class Main {
         ArrayList<Field> fields = new ArrayList<>();
 
         Scanner scanner= new Scanner(System.in);
-        int number;
-        while(true) {
+        int number = amoutnofplayers();
+        /*while(true) {
             try {
                 System.out.println("How many players? ");
                 number = Integer.parseInt(scanner.nextLine());
@@ -41,8 +41,8 @@ public class Main {
             } catch (NumberFormatException e) {
                 System.out.println("Wrong format. Could you please input an integer number?");
             }
-        }
-
+        } */
+        int field_amount = amountoffields();
         int start = 1;
 
         int obj_amount = Math.round(field_amount/4);
@@ -76,6 +76,8 @@ public class Main {
             fields.add(f);
         }
 
+        player = initializingPlayers(starter_field, player, number);
+        /*
         while (number >= start) {
             System.out.println("Player "+(start)+": ");
             String name = scanner.nextLine();
@@ -84,6 +86,8 @@ public class Main {
             starter_field.setPlayer(P);
             start++;
         }
+
+         */
         System.out.println("Starting the Game!");
         for (Player p : player){
             System.out.println("Player: "+p.getName()+", Field: "+p.getField().getNumber());
@@ -161,6 +165,62 @@ public class Main {
         System.out.println("Final state: " + output(fields));
         System.out.println(player.get(turn % number).getName() + " wins!");
 
+    }
+
+    private static int amoutnofplayers() {
+        Scanner scanner = new Scanner(System.in);
+        int number;
+        while(true) {
+            try {
+                System.out.println("How many players? ");
+                number = Integer.parseInt(scanner.nextLine());
+                if(number<2 || number>4){
+                    System.out.println("This game is only for 2-4 players, please try again.");
+                    continue;
+                }
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("Wrong format. Could you please input an integer number?");
+            }
+        }
+
+
+        return number;
+    }
+
+    private static int amountoffields() {
+        Scanner scanner = new Scanner(System.in);
+        int field_amount;
+        while(true) {
+            try {
+                System.out.println("How many Fields (>= 10)? ");
+                field_amount = Integer.parseInt(scanner.nextLine());
+                if(field_amount<10){
+                    System.out.println("The fields need to be greater than 10. Please try again.");
+                    continue;
+                }
+
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("Wrong format. Could you please input an integer number?");
+            }
+        }
+
+        return field_amount;
+    }
+
+    private static ArrayList<Player> initializingPlayers(Field starter_field, ArrayList<Player> player, int number) {
+        int start = 1;
+        Scanner scanner = new Scanner(System.in);
+        while (number >= start) {
+            System.out.println("Player "+(start)+": ");
+            String name = scanner.nextLine();
+            Player P = new Player(name, start, starter_field);
+            player.add(P);
+            starter_field.setPlayer(P);
+            start++;
+        }
+        return player;
     }
 
     // PRINT OUTPUT

@@ -17,17 +17,21 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class MainTest {
 
-    private final InputStream systemIn = System.in;
-    private final PrintStream systemOut = System.out;
+    private  final InputStream systemIn = System.in;
+    private  final PrintStream systemOut = System.out;
 
-    private ByteArrayInputStream testIn;
-    private ByteArrayOutputStream testOut;
+    private  ByteArrayInputStream testIn;
+    private  ByteArrayOutputStream testOut;
+
+    private String test_amount;
+    private int compare_amount;
+
 
     @Before
     public void setUpOutput() {
@@ -45,11 +49,40 @@ class MainTest {
     }
 
     @Test
-    void testamountoffields() {
-        int amount = 5;
+    public  void testtoosmallfields() {
+        compare_amount = 3;
+        try {
+
+            provideInput(Integer.toString(compare_amount));
+            Main.amountoffields();
+
+        }
+        catch (NoSuchElementException e) {
+            return;
+        }
+        fail("NoSuchElementException excepted");
+    }
+
+    @Test
+    public void NotTooFewOrManyPlayersTest() {
+        compare_amount = 5;
+        try {
+
+            provideInput(Integer.toString(compare_amount));
+            Main.amountofplayers();
+
+        }
+        catch (NoSuchElementException e) {
+            return;
+        }
+        fail("NoSuchElementException excepted");
+    }
 
 
 
+
+    @Test
+    public void initializingplayersTest() {
 
     }
 }

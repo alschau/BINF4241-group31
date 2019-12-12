@@ -12,7 +12,7 @@ public class Main {
         ArrayList<Field> fields = new ArrayList<>();
 
         Scanner scanner= new Scanner(System.in);
-        int number = amoutnofplayers();
+        int number = amountofplayers();
         /*while(true) {
             try {
                 System.out.println("How many players? ");
@@ -167,7 +167,7 @@ public class Main {
 
     }
 
-    private static int amoutnofplayers() {
+    public static int amountofplayers() {
         Scanner scanner = new Scanner(System.in);
         int number;
         while(true) {
@@ -188,7 +188,7 @@ public class Main {
         return number;
     }
 
-    private static int amountoffields() {
+    public static int amountoffields() {
         Scanner scanner = new Scanner(System.in);
         int field_amount;
         while(true) {
@@ -209,7 +209,7 @@ public class Main {
         return field_amount;
     }
 
-    private static ArrayList<Player> initializingPlayers(Field starter_field, ArrayList<Player> player, int number) {
+    public static ArrayList<Player> initializingPlayers(Field starter_field, ArrayList<Player> player, int number) {
         int start = 1;
         Scanner scanner = new Scanner(System.in);
         while (number >= start) {

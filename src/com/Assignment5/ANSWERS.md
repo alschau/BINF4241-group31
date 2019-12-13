@@ -121,9 +121,32 @@ It checks if the turn changes between the players.
 __How did I fix it?__
 Fixed automatically after I fixed the GetCurrentPlayer test.
 
-##Part 3
 
-Part 3
+
+
+
+##Part 3
+__Accepting inputs__
+
+at first you should be able to enter the player names(which have no restrictions) and then start the game. the game will only start if there were between 2 and 10 inputs for the playersnames. 
+
+to play any card the input should be "Cardcolor" + "cardsign"
+
+the cardcolor input should be the first letter of the actual color (blue --> "b")
+
+to skip or forfeit a turn the user should write "draw" which lets him automatically draw a card.
+
+if the input is incorrect ro not accepted an error message will appear and the console will ask for a correct input again.
+
+__Handling inputs__
+
+the tests should focus ont he main frame and rules of the games, not syntax or other cosmetics. If the game and the players have been instantiated, the game begins. now if a players wants to play a card, it has to first check for correct color and sign input, then if the card is in his hands and lastly if it fits on the stack. furthermore it has to check if the card has any actions bounded to it (draw,reverse etc). If one of those arent possible it should return a matching errormessage. The amount of cards in the players hands should also be constantly checked to check if drawing was done correctly ( also caused by actionsccards) plus the drawstack has to be under constant surveillance so that it can be newly shuffled form the middlestack if empty. Name inputs are only accepted before the game has started, there is no possible way to join a game in progress.
+
+The tests can completely ignore any cards of the middlestack and drawstack other than the topcards.
+so the inputs should be strictly distinguished by accepting and nonaccepting and should yield an errormessage fitting to unaccepting input.
+
+The game should output the current player and his hand every turn. The game will be running until someone wins.
+
 
 
 

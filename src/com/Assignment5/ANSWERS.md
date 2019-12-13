@@ -4,7 +4,26 @@
 
 ##Part 1
 
-Part 1
+1.
+- DiceTest tests the Dice method, the output should be an integer between 1 and 6.
+- LadderFieldTest/SnakeFieldTest/NormalFieldTest tests all getter methods. 
+- PlayerTest tests all getter/setter methods of Player.
+- The MainTest class tests multiple methods from the Main class, bc our Main method wasn't 
+    structured very well we altered the class a little bit in order to test at least something
+    (as discussed during your coffee break :) )
+    
+    We tested the amount of players and fields allowed in the game.
+    The amount of players should be between 2 and 4 so we used the fail approach to test if 
+    the given user input is lower than 2 or higher than 4. If the input isn't an int it should fail as well.
+    If the input is 2-4 it should not fail but rather give the same int back.
+    
+    The amount of fields was kind of similar as we tested again if the input is an int and 
+    if it's under or equal to 9. In those cases we used the fail approach again.
+    If the input is more than 9 it should be accepted and the output needs to be equal to the input.
+    
+2. Javadoc comments are before each classes/methods
+3. Didn't change anything related to errors, but of course there are differences
+   between the assignment 1 main class und that one we used now.
 
 ##Part 2
 

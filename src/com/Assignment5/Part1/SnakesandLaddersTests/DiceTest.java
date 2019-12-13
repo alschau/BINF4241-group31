@@ -1,9 +1,7 @@
-package com.Assignment5.Part1.company.SnakesandLadder.SnakesandLadders.SnakesandLaddersTests;
+package com.Assignment5.Part1.SnakesandLaddersTests;
 
-import com.Assignment5.Part1.company.SnakesandLadder.SnakesandLadders.Dice;
-import org.junit.jupiter.api.BeforeEach;
+import com.Assignment5.Part1.Dice;
 import org.junit.jupiter.api.Test;
-import org.junit.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -12,6 +10,9 @@ class DiceTest {
     public Dice diceTest = new Dice();
     int result;
 
+    /**
+     * Testing the dice method, the output should be an integer between 1 and 6.
+     */
     @Test
     public void testRoll() {
         result = diceTest.roll();

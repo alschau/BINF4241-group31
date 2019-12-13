@@ -1,9 +1,8 @@
-package com.Assignment5.Part1.company.SnakesandLadder.SnakesandLadders.SnakesandLaddersTests;
+package com.Assignment5.Part1.SnakesandLaddersTests;
 
-import com.Assignment5.Part1.company.SnakesandLadder.SnakesandLadders.Field;
-import com.Assignment5.Part1.company.SnakesandLadder.SnakesandLadders.NormalField;
-import com.Assignment5.Part1.company.SnakesandLadder.SnakesandLadders.Player;
-import org.junit.jupiter.api.BeforeEach;
+import com.Assignment5.Part1.Field;
+import com.Assignment5.Part1.NormalField;
+import com.Assignment5.Part1.Player;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -21,7 +20,10 @@ class NormalFieldTest {
     Field NormalFieldTest = new NormalField(test_number);
     Player testPlayer = new Player(test_name, test_reihenfolge, NormalFieldTest);
 
-
+    /**
+     * All getter methods should do the same:
+     * Give something back or set something to something else.
+     */
 
     @Test
     public void getNumberTest() {

@@ -1,18 +1,13 @@
-package com.Assignment5.Part1.company.SnakesandLadder.SnakesandLadders;
+package com.Assignment5.Part1;
 
 import java.util.ArrayList;
-import java.util.Random;
 
-public class SnakeField extends Field {
-    int height;
-    int target;
-    public SnakeField(int number) {
+public class NormalField extends Field {
+
+    public NormalField(int number) {
         super(number);
-        Random rand = new Random();
-        height = 3;
-        target = number + height;
-
     }
+
 
     @Override
     public int getNumber() {
@@ -21,33 +16,33 @@ public class SnakeField extends Field {
 
     @Override
     public String getTextNumber() {
-        return (number+height) + "<-" + number;
+        return number+"";
     }
 
 
     @Override
     public boolean getFree() {
-        return true;
+        return players.size() == 0;
     }
 
     @Override
     public ArrayList<Player> getPlayer() {
-        return null;
+        return players;
     }
 
     @Override
     public void setPlayer(Player p) {
-
+        players.add(p);
     }
 
     @Override
     public void removePlayer(Player p) {
-
+        players.remove(p);
     }
 
     @Override
     public int getTarget() {
-        return target;
+        return 0;
     }
 
 }

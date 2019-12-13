@@ -1,6 +1,6 @@
-package com.Assignment5.Part1.company.SnakesandLadder.SnakesandLadders.SnakesandLaddersTests;
+package com.Assignment5.Part1.SnakesandLaddersTests;
 
-import com.Assignment5.Part1.company.SnakesandLadder.SnakesandLadders.Main;
+import com.Assignment5.Part1.Main;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
@@ -9,11 +9,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 
-
-import com.Assignment5.Part1.company.SnakesandLadder.SnakesandLadders.Field;
-import com.Assignment5.Part1.company.SnakesandLadder.SnakesandLadders.SnakeField;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;

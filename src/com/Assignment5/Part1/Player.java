@@ -1,4 +1,4 @@
-package com.Assignment5.Part1.company.SnakesandLadder.SnakesandLadders;
+package com.Assignment5.Part1;
 
 
 public class Player {

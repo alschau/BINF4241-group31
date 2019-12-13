@@ -1,8 +1,7 @@
-package com.Assignment5.Part1.company.SnakesandLadder.SnakesandLadders.SnakesandLaddersTests;
+package com.Assignment5.Part1.SnakesandLaddersTests;
 
-import com.Assignment5.Part1.company.SnakesandLadder.SnakesandLadders.Field;
-import com.Assignment5.Part1.company.SnakesandLadder.SnakesandLadders.SnakeField;
-import org.junit.jupiter.api.BeforeEach;
+import com.Assignment5.Part1.SnakeField;
+import com.Assignment5.Part1.Field;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -18,6 +17,11 @@ class SnakeFieldTest {
     int result;
     String result_str;
     Boolean result_bool;
+
+    /**
+     * All getter methods should do the same:
+     * Give something back or set something to something else.
+     */
 
     @Test
     public void getTargetTest() {

@@ -1,10 +1,9 @@
-package com.Assignment5.Part1.company.SnakesandLadder.SnakesandLadders.SnakesandLaddersTests;
+package com.Assignment5.Part1.SnakesandLaddersTests;
 
-import com.Assignment5.Part1.company.SnakesandLadder.SnakesandLadders.Field;
-import com.Assignment5.Part1.company.SnakesandLadder.SnakesandLadders.LadderField;
-import com.Assignment5.Part1.company.SnakesandLadder.SnakesandLadders.NormalField;
-import com.Assignment5.Part1.company.SnakesandLadder.SnakesandLadders.Player;
-import org.junit.jupiter.api.BeforeEach;
+import com.Assignment5.Part1.Field;
+import com.Assignment5.Part1.LadderField;
+import com.Assignment5.Part1.NormalField;
+import com.Assignment5.Part1.Player;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -25,6 +24,12 @@ class PlayerTest {
     Field LadderFieldtest = new LadderField(test_number1);
     Field compareField = new NormalField(test_number2);
     Player playerTest = new Player(test_name, test_reihenfolge, LadderFieldtest);
+
+    /** All getter methods should do the same:
+     *  Give something back or set something to something else.
+     *  All setter methods should do the same as well:
+     *  Set something to something else.
+     */
 
     @Test
     public void getFieldTest() {

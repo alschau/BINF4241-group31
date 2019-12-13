@@ -76,8 +76,7 @@ public class Main {
             fields.add(f);
         }
 
-        player = initializingPlayers(starter_field, player, number);
-        /*
+
         while (number >= start) {
             System.out.println("Player "+(start)+": ");
             String name = scanner.nextLine();
@@ -87,7 +86,7 @@ public class Main {
             start++;
         }
 
-         */
+
         System.out.println("Starting the Game!");
         for (Player p : player){
             System.out.println("Player: "+p.getName()+", Field: "+p.getField().getNumber());
@@ -209,19 +208,6 @@ public class Main {
         return field_amount;
     }
 
-    public static ArrayList<Player> initializingPlayers(Field starter_field, ArrayList<Player> player, int number) {
-        int start = 1;
-        Scanner scanner = new Scanner(System.in);
-        while (number >= start) {
-            System.out.println("Player "+(start)+": ");
-            String name = scanner.nextLine();
-            Player P = new Player(name, start, starter_field);
-            player.add(P);
-            starter_field.setPlayer(P);
-            start++;
-        }
-        return player;
-    }
 
     // PRINT OUTPUT
 

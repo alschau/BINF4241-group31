@@ -49,7 +49,7 @@ class MainTest {
     }
 
     @Test
-    public  void testtoosmallfields() {
+    public  void testtoofewfields() {
         compare_amount = 3;
         try {
 
@@ -64,7 +64,37 @@ class MainTest {
     }
 
     @Test
-    public void NotTooFewOrManyPlayersTest() {
+    public  void testwornginputfields() {
+        String compare_amount = "s";
+        try {
+
+            provideInput(compare_amount);
+            Main.amountoffields();
+
+        }
+        catch (NoSuchElementException e) {
+            return;
+        }
+        fail("NoSuchElementException excepted");
+    }
+
+    @Test
+    public void NotTooFewPlayersTest() {
+        compare_amount = 1;
+        try {
+
+            provideInput(Integer.toString(compare_amount));
+            Main.amountofplayers();
+
+        }
+        catch (NoSuchElementException e) {
+            return;
+        }
+        fail("NoSuchElementException excepted");
+    }
+
+    @Test
+    public void NotTooManyPlayersTest() {
         compare_amount = 5;
         try {
 
@@ -78,11 +108,4 @@ class MainTest {
         fail("NoSuchElementException excepted");
     }
 
-
-
-
-    @Test
-    public void initializingplayersTest() {
-
-    }
 }

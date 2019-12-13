@@ -21,6 +21,11 @@ import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * This class is for testing our main method. Because the code isn't structured that well,
+ * we couldn't test all of it but by altering the code (as discussed on wednesday) we got some testcases.
+ */
+
 class MainTest {
 
     private  final InputStream systemIn = System.in;
@@ -30,8 +35,11 @@ class MainTest {
     private  ByteArrayOutputStream testOut;
 
     private String test_amount;
-    private int compare_amount;
+    int compare_amount;
 
+    /**
+     * Setup for generating the user input
+     */
 
     @Before
     public void setUpOutput() {
@@ -48,8 +56,12 @@ class MainTest {
         return testOut.toString();
     }
 
+    /**
+     * Testing what happens if there are too few fields.
+     * The test should fail bc there isn't a second (and correct) input after rejecting the first one.
+     */
     @Test
-    public  void testtoofewfields() {
+    public  void TooFewFieldsTest() {
         compare_amount = 3;
         try {
 
@@ -63,8 +75,13 @@ class MainTest {
         fail("NoSuchElementException excepted");
     }
 
+
+    /**
+     * Testing what happens if the input of the fields is not an integer.
+     * The test should fail bc there isn't a second (and correct) input after rejecting the first one.
+     */
     @Test
-    public  void testwornginputfields() {
+    public  void WrongInputFieldsTest() {
         String compare_amount = "s";
         try {
 
@@ -78,8 +95,43 @@ class MainTest {
         fail("NoSuchElementException excepted");
     }
 
+    /**
+     * Testing what happens if the input is correct.
+     * The output should be equal to the input.
+     */
     @Test
-    public void NotTooFewPlayersTest() {
+    public  void CorrectInputFieldsTest() {
+        compare_amount = 13;
+        provideInput(Integer.toString(compare_amount));
+        int z = Main.amountoffields();
+        assertEquals(z, compare_amount);
+    }
+
+    /**
+     * Testing what happens if the input isn't an integer.
+     * The test should fail bc there isn't a second (and correct) input after rejecting the first one.
+     */
+    @Test
+    public void WrongInputPlayersTest() {
+        String compare_amount = "";
+        try {
+
+            provideInput(compare_amount);
+            Main.amountofplayers();
+
+        }
+        catch (NoSuchElementException e) {
+            return;
+        }
+        fail("NoSuchElementException excepted");
+    }
+
+    /**
+     * Testing what happens if there're too few players.
+     * The test should fail bc there isn't a second (and correct) input after rejecting the first one.
+     */
+    @Test
+    public void TooFewPlayersTest() {
         compare_amount = 1;
         try {
 
@@ -93,8 +145,12 @@ class MainTest {
         fail("NoSuchElementException excepted");
     }
 
+    /**
+     * Testing what happens if there're too many players.
+     * The test should fail bc there isn't a second (and correct) input after rejecting the first one.
+     */
     @Test
-    public void NotTooManyPlayersTest() {
+    public void TooManyPlayersTest() {
         compare_amount = 5;
         try {
 
@@ -106,6 +162,18 @@ class MainTest {
             return;
         }
         fail("NoSuchElementException excepted");
+    }
+
+    /**
+     * Testing what happens if the input is correct.
+     * The output should be equal to the input.
+     */
+    @Test
+    public void CorrectAmountOfPlayers() {
+        compare_amount = 2;
+        provideInput(Integer.toString(compare_amount));
+        int z = Main.amountofplayers();
+        assertEquals(z, compare_amount);
     }
 
 }

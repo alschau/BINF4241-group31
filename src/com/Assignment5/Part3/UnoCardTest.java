@@ -25,6 +25,7 @@ public class UnoCardTest {
         playerNames[0] = "test1";
         playerNames[1] = "test2";
         scoreToWin = 20;
+        %parlament
         game = new game(nrofplayers, playerNames, scoreToWin);
     }
 

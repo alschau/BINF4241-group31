@@ -150,3 +150,4 @@ The game should output the current player and his hand every turn. The game will
 
 
 
+[uno uml.pdf](https://github.com/alschau/BINF4241-group31/files/3960861/uno.uml.pdf)
